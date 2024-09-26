@@ -15,4 +15,5 @@ const validator = require('validator')
 
 // console.log(validator.isEmail('igorfonseca@gmail.com'))
 // console.log(validator.contains('Meu nome é gal', 'Maria', {minOccurrences: 1}))
-console.log(validator.equals('senha1', 'senha1'))
+// console.log(validator.equals('senha1', 'senha1'))
+console.log(validator.isCreditCard('1234 5678 9012 3456'))
