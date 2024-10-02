@@ -34,7 +34,7 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 
 ### Seção 1: Boas-vindas
 
-- Esta seção apresenta uma introdução ao curso, explicando os objetivos e como ele está estruturado.
+- Esta seção apresenta uma introdução ao curso, explicando os objetivos e como ele está estruturado.  
   **Aulas** : 2 aulas
   **Duração**: 8 minutos
 
@@ -127,4 +127,12 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 
 * 15 aulas / 2 horas e 53 minutos
 
-### Seção 17: Aplicações
+### Seção 17: Aplicações Web em Tempo Real com Socket.io (App de Chat)
+
+- Nesta seção, você aprenderá a criar aplicações web em tempo real utilizando Socket.io, desenvolvendo um aplicativo de chat como exemplo prático.
+  24 aulas / 4 horas e 46 minutos
+
+### Seção 18: Conclusão
+
+A seção final oferece um resumo do que foi aprendido ao longo do curso e apresenta sugestões para continuidade dos estudos e projetos futuros.
+3 aulas / 17 minutos
