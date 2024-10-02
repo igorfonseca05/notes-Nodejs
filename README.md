@@ -153,7 +153,7 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 
 ### Seção 18: Conclusão
 
-A seção final oferece um resumo do que foi aprendido ao longo do curso e apresenta sugestões para continuidade dos estudos e projetos futuros.
+- A seção final oferece um resumo do que foi aprendido ao longo do curso e apresenta sugestões para continuidade dos estudos e projetos futuros.
 
 **Aulas** : 3 aulas  
  **Duração**: 17 minutos
