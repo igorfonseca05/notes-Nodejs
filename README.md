@@ -50,7 +50,7 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 
 - Aqui, você vai aprender sobre o sistema de módulos do Node.js, criando um aplicativo de notas simples para demonstrar o uso prático de módulos.
 
-  **Aulas** : 6 aulas
+  **Aulas** : 6 aulas  
   **Duração**: 1 hora e 1 minuto
 
 ### Seção 4: Sistema de Arquivos e Argumentos de Linha de Comando (App de Notas)
