@@ -147,6 +147,7 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 ### Seção 17: Aplicações Web em Tempo Real com Socket.io (App de Chat)
 
 - Nesta seção, você aprenderá a criar aplicações web em tempo real utilizando Socket.io, desenvolvendo um aplicativo de chat como exemplo prático.
+
   **Aulas** : 24 aulas  
    **Duração**: 4 horas e 46 minutos
 
