@@ -157,3 +157,5 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 
   **Aulas** : 3 aulas  
    **Duração**: 17 minutos
+
+- [FOOTER](c:\Users\Igor\Downloads\FOOTER.png)
