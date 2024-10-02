@@ -1,4 +1,5 @@
-![Group 2](https://github.com/user-attachments/assets/6e4a3d91-9c0c-4985-a8d6-a35c4834663c)
+
+![capa](https://github.com/user-attachments/assets/95888dad-75e7-4ec1-9023-40a5e6c43c74)
 
 # Progresso e descrição
 
@@ -158,6 +159,7 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
   **Aulas** : 3 aulas  
    **Duração**: 17 minutos
 
-![FOOTER (1)](https://github.com/user-attachments/assets/6bb09ca1-9607-4052-9295-f07c04765913)
+![footer](https://github.com/user-attachments/assets/35502ddb-e89b-4c31-be31-74ec26c4f154)
+
 
 
