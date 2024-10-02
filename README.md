@@ -35,8 +35,8 @@ Este curso detalha diversos aspectos de banco de dados e consultas, abrangendo d
 ### Seção 1: Boas-vindas
 
 - Esta seção apresenta uma introdução ao curso, explicando os objetivos e como ele está estruturado.
-
-* 2 aulas / 8 minutos
+  **Aulas** : 2 aulas
+  **Duração**: 8 minutos
 
 ### Seção 2: Instalando e Explorando Node.js
 
