@@ -122,4 +122,75 @@ if (command === "add") {
 
 ## Aula 16 - Analisando o argumento com o yargs - part 1
 
-Yargs é um pacote usado para converter linhas de comando
+Na ultima aula, vimos como utilizar o **process.argv** para obtemos os
+argumentos da linha de comando e criar condicionais com esses comandos. Apesar de util,
+o retorno do comando **process.argv** não é capaz de converter todo e qualquer
+comando, um vez que interpreta caracteres especiais como parte do comando inserido. Vejamos
+um exemplo. Se inserirmos no terminal o comando
+
+```bash
+PS C:\FileSystem> node ./app.js myList --title='Comprar suprimentos'
+
+```
+
+vamos ver como retorno no terminal:
+
+```bash
+[
+  'C:\\Program Files\\nodejs\\node.exe',
+  'C:\\UsersFileSystem\\app.js',
+  'myList',
+  '--title=Comprar suprimentos'
+]
+```
+
+perceba que os comandos foram interpretados como string sem considerar os caracteres especias. Para podermos criar linhas de comando mais complexas vamos precisar utilizar o
+pacote **Yargs**.
+
+O Yargs é uma biblioteca popular para Node.js usada para simplificar a manipulação de argumentos de linha de comando em aplicações. Ele ajuda a processar, interpretar e estruturar argumentos e comandos passados pelo terminal de maneira eficiente e com uma interface amigável. Com o Yargs podemos
+
+1. **Parsear de Argumentos**
+2. **Definir comandos**
+3. **Validar de Argumentos**
+4. **Ajuda e Versão Automáticas**
+5. **Suporte a Alias e Abreviações**
+6. **Comandos Interativos**
+
+Para instalar o yargs, no terminal do Node dentro do diretório do seu projeto digite:
+
+    npm i yargs
+
+Após a instalação do pacote, devemos importa-lo em nossa aplicação
+
+```javascript
+const yargs = require("yargs");
+```
+
+Agora estamos prontos para utilizar as funcionalidades desponibilizadas por essa ferramenta. Vamos replicar o exemplo que fizemos acima para entendermos as vantagens de se utilizar o yargs.
+Dentro do arquivo **app.js** vamos adicionar a linha:
+
+```javascript
+const yargs = require("yargs");
+
+console.log(yargs.argv);
+```
+
+Agora no terminal inserimos o mesmo comando inserido no exemplo anterior
+
+```bash
+  PS C:\FileSystem> node ./app.js myList --title='Comprar suprimentos'
+```
+
+o resultado mostrado no terminal será
+
+```bash
+  {
+  _: [ 'node', './app.js', 'myList' ],
+  title: 'Comprar suprimentos',
+  '$0': 'app.js'
+  }
+```
+
+Isso porque no processo de parseamento da linha de comando o Yargs transforma os argumentos de linha de comando em um objeto JavaScript, permitindo fácil acesso aos valores passados.
+
+**Definir comandos** dentro do yargs,
