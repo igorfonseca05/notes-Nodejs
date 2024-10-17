@@ -87,29 +87,34 @@ Node.js é ideal para construir aplicações escaláveis, eficientes e modernas,
 ## Aula 15 - Obtendo inputs de usúario
 
 Linhas de comando no terminal são amplamente usada dentro da programação em diversas linguagens, mas e se
-fosse possivel obter os comandos que digitamos no cmd? Como poderiamos realizar operações com eles? Vamos ver tudo isso
-nessa nota, mas inicialmente aprenderemos como podemos obter as informações inseridas no terminal
+fosse possivel obter os comandos que digitamos no terminal? Como poderiamos realizar operações com eles? Nesta seção aprenderemos como podemos obter e manipular linhas de comando dentro do nodeJS.
 
-Vamos considerar que no terminal temos digitado o seguinte comando:
+Para inicio de conversa, considere que no terminal inserimos o seguinte comando:
 
-![alt text](img/image-1.png)
+```bash
+PS C:\FileSystem> node app.js MyList
+```
 
-temos então o comando **node**, **app.js** e **Igor Fonseca** que podemos extrair dentro do nosso código
-para isso fazemos:
+<!-- ![alt text](img/image-1.png) -->
+
+temos então o comando **node**, **app.js** e **MyList** que podemos capturar dentro do nosso código:
 
 ```javascript
 console.log(process.argv);
 ```
 
-no código acima usamos o objeto **process** e um de seus métodos **argv** para obter os inputs
+Acima usamos o objeto global **process** junto com o **argv** para obter os inputs
 inseridos no terminal. Como resultado temos que:
 
-![resultado](img/image-2.png)
+```bash
+[
+  'C:\\Program Files\\nodejs\\node.exe',
+  'C:\\Users\\Igor\\Documents\\Repositório\\notes-Nodejs\\FileSystem\\app.js',
+  'MyList'
+]
+```
 
-a operação com o argv retorna um array onde podemos obter os dados usando os indexes do elemento dentro do
-array
-
-Vamos aplicar esse conhecimento num exemplo simples onde adicionaremos ou removeremos notas a depender
+a operação com o _argv_ retorna um array onde podemos obter os dados retornados de acordo com a posição do elemento dentro do array. Vamos aplicar esse conhecimento em um exemplo simples onde adicionaremos ou removeremos notas a depender
 do comando inserido no terminal.
 
 Dentro do nosso arquivo app.js vamos fazer
@@ -210,4 +215,25 @@ o resultado mostrado no terminal será
 
 Isso porque no processo de parseamento da linha de comando o Yargs transforma os argumentos de linha de comando em um **objeto JavaScript**, permitindo fácil acesso aos valores passados.
 
-**Definir comandos** dentro do yargs,
+Sabemos que com o Yargs podemos obter e parsear comandos de terminal, agora veremos como esse recurso pode ser utilizado na criação de comandos no node.  
+Para criar comandos, você pode usar o método `.command()` do yargs. Cada **comando** pode ter uma **descrição** e pode ser associado a uma **função** que será executada quando o comando for chamado. Vejamos o exemplo abaixo:
+
+```javascript
+const yargs = require("yargs");
+
+yargs.command({
+  command: "add",
+  describe: "Adiciona um novo item",
+  handler() {
+    console.log(`Item adicionado a lista`);
+  },
+});
+
+yargs.parse(); // Necessário para processar os comandos
+```
+
+perceba que passamos um **objeto** como argumento para o método `.command()` e esse objeto possui os seguintes campos:
+
+- **command**: Define o comando, neste caso add, que será chamado na CLI como node app.js add.
+- **describe**: Fornece uma descrição do comando, que será exibida ao usar --help.
+- **handler**: Função que será executada quando o comando for invocado, recebendo os argumentos através do objeto argv.

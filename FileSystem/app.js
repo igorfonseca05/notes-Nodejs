@@ -15,7 +15,7 @@ const yargs = require('yargs')
 // Aula 16 - converterndo argumento com o yargs
 
 
-// console.log(process.argv)
+console.log(process.argv)
 
 
 yargs.command({
@@ -42,4 +42,4 @@ yargs.command({
     }
 })
 
-console.log(yargs.argv)
+// console.log(yargs.argv)
