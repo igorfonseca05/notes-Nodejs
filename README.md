@@ -1,11 +1,11 @@
 ![capa](https://github.com/user-attachments/assets/95888dad-75e7-4ec1-9023-40a5e6c43c74)
 
-# Seções
+# Conteúdo do Curso
 
 - [x] Seção 1 - [Boas-vindas](#seção-1---boas-vindas)
 - [x] Seção 2 - [Instalando e Explorando Node.js](#instalando-e-explorando-nodejs)
 - [x] Seção 3 - [Sistema de Módulos do Node.js (App de Notas)](#seção-3---sistema-de-módulos-do-nodejs-app-de-notas)
-- [ ] Seção 4 - [Sistema de Arquivos e Argumentos de Linha de Comando (App de Notas)](#seção-4---sistema-de-arquivos-e-argumentos-de-linha-de-comando-app-de-notas)
+- [ ] Seção 4 - [Sistema de Arquivos e Argumentos de Linha de Comando (App de Notas)](#sistema-de-arquivos-e-argumentos-de-linha-de-comando-app-de-notas)
 - [ ] Seção 5 - [Depuração no Node.js (App de Notas)](#seção-5---depuração-no-nodejs-app-de-notas)
 - [ ] Seção 6 - [Node.js Assíncrono (App de Clima)](#seção-6---nodejs-assíncrono-app-de-clima)
 - [ ] Seção 7 - [Servidores Web (App de Clima)](#seção-7---servidores-web-app-de-clima)
@@ -82,30 +82,7 @@ Se você vir a versão do Node.js e do NPM, a instalação foi um sucesso!
 
 Node.js é ideal para construir aplicações escaláveis, eficientes e modernas, com alta capacidade de resposta, sendo uma escolha popular para desenvolvedores fullstack que desejam uma linguagem unificada entre cliente e servidor.
 
-# Seções
-
-| **Seção** | **Título**                                                          | **Descrição**                                                                          | **Aulas** |
-| --------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | --------- |
-| Seção 1   | Boas-vindas                                                         | Introdução ao curso, explicando objetivos e estrutura.                                 | 2 aulas   |
-| Seção 2   | Instalando e Explorando Node.js                                     | Instalação e configuração do Node.js, explorando os principais recursos da plataforma. | 5 aulas   |
-| Seção 3   | Sistema de Módulos do Node.js (App de Notas)                        | Aprendizado do sistema de módulos, com um app de notas para aplicação prática.         | 6 aulas   |
-| Seção 4   | Sistema de Arquivos e Argumentos de Linha de Comando (App de Notas) | Manipulação de arquivos e uso de argumentos de linha no app de notas.                  | 6 aulas   |
-| Seção 5   | Depuração no Node.js (App de Notas)                                 | Técnicas de depuração no Node.js usando o app de notas como exemplo.                   | 3 aulas   |
-| Seção 6   | Node.js Assíncrono (App de Clima)                                   | Uso de operações assíncronas no Node.js, criando um app de clima.                      | 7 aulas   |
-| Seção 7   | Servidores Web (App de Clima)                                       | Criação e configuração de servidores web com Node.js no app de clima.                  | 7 aulas   |
-| Seção 8   | Acessando API a partir do Navegador (App de Clima)                  | Integração de APIs ao app de clima usando chamadas no navegador.                       | 7 aulas   |
-| Seção 9   | Implantação de Aplicações (App de Clima)                            | Práticas para implantar aplicações Node.js e disponibilizar online.                    | 7 aulas   |
-| Seção 10  | MongoDB e Promises (App de Tarefas)                                 | Integração com MongoDB e uso de Promises no app de tarefas.                            | 7 aulas   |
-| Seção 11  | APIs REST e Mongoose (App de Tarefas)                               | Desenvolvimento de APIs REST usando Mongoose no app de tarefas.                        | 7 aulas   |
-| Seção 12  | Autenticação de API e Segurança (App de Tarefas)                    | Implementação de autenticação e segurança no app de tarefas.                           | 8 aulas   |
-| Seção 13  | Ordenação, Paginação e Filtro (App de Tarefas)                      | Implementação de ordenação, filtros e paginação em APIs.                               | 7 aulas   |
-| Seção 14  | Upload de Arquivos (App de Tarefas)                                 | Integração de upload de arquivos no app de tarefas.                                    | 5 aulas   |
-| Seção 15  | Enviando E-mails (App de Tarefas)                                   | Envio programático de e-mails integrados ao app de tarefas.                            | 6 aulas   |
-| Seção 16  | Testando Node.js (App de Tarefas)                                   | Técnicas de testes para garantir a qualidade do código no app de tarefas.              | 15 aulas  |
-| Seção 17  | Aplicações Web em Tempo Real com Socket.io (App de Chat)            | Criação de aplicações em tempo real utilizando Socket.io com um app de chat.           | 24 aulas  |
-| Seção 18  | Conclusão                                                           | Resumo do conteúdo abordado e próximos passos sugeridos.                               | -         |
-
-# Notas de estudos
+# Seção 4 - Sistema de Módulos do Node.js (App de Notas)
 
 ## Aula 15 - Obtendo inputs de usúario
 
