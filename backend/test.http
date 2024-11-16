@@ -1,0 +1,12 @@
+###
+
+POST http://localhost:3000/submit
+Content-Type: application/json
+
+{
+    "name": "igor",
+    "email": "igorfonseca27@hotmail.com",
+    "password": "123456"
+}
+
+###

@@ -237,3 +237,10 @@ perceba que passamos um **objeto** como argumento para o método `.command()` e 
 - **command**: Define o comando, neste caso add, que será chamado na CLI como node app.js add.
 - **describe**: Fornece uma descrição do comando, que será exibida ao usar --help.
 - **handler**: Função que será executada quando o comando for invocado, recebendo os argumentos através do objeto argv.
+
+A nivel de commando, dentro do yargs temos 4 comandos basicos que são o :
+
+        add, remove, list, read
+
+Utilizamos o **Add** acima, os demais comandos fica como exercicio onde vc criará a estrutura basíca de cada um deles e
+e exibindo mensages dentro da função hadler que estejam de acordo com a ação que está sendo executada pelo método.
