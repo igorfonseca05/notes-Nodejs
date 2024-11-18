@@ -10,3 +10,25 @@ Content-Type: application/json
 }
 
 ###
+
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "igorfonseca27@hotmail.com",
+    "password": "123456"
+}
+
+###
+
+GET http://localhost:3000/protegida
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2IxOTgxYTViNzBiMDJlM2E0NDFjMiIsIm5hbWUiOiJpZ29yIiwiaWF0IjoxNzMxOTQ3MjE1LCJleHAiOjE3MzE5NTA4MTV9.bZY1D9UOL6weQdyzy2aLxBEFa1-osAQ48c6eZBOg_F0
+###
+
+###
+GET http://localhost:3000/protegida
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3M2I3Mzk1Yjg0ODllMTljOTM5NjAzYSIsImlhdCI6MTczMTk0OTQ2MSwiZXhwIjoxNzMxOTUzMDYxfQ.FzhGf5CTlOt_hTKpYxELb2ws651QyifxjJFkVJ2-m8E
+###
+

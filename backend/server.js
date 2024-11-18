@@ -1,8 +1,10 @@
 require('dotenv').config()
 
 const express = require('express')
+const cookieParser = require('cookie-parser')
 const routes = require('./src/routes/routes')
 const app = express()
+
 
 
 // Base de dados
@@ -14,6 +16,7 @@ getDbConnection(process.env.URL_CONNECTION_2)
 // Middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(cookieParser())
 
 // Minhas rotas
 app.use(routes)
