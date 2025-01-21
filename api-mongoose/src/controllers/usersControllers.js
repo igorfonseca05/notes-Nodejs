@@ -4,7 +4,12 @@ const userData = require('../model/userModel')
 exports.userPost = async (req, res) => {
 
     const { name, email, password } = req.body
-    const newUser = new userData({ name, email, password })
+
+    const userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+
+    const newUser = new userData({ userName, email, password })
+
+    console.log(newUser)
 
     try {
         newUser.save()

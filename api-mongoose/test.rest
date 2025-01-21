@@ -3,8 +3,8 @@ POST http://localhost:3000/users_data/signup
 Content-Type: application/json
 
 {
-    "name": "predro",
+    "name": "igor",
     "email": "igorfondev@gmail.com",
-    "password": "1234"
+    "password": "123456"
 }
 ###
