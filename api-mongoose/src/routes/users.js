@@ -9,6 +9,7 @@ const userController = require('../controllers/usersControllers')
 const validator = require('../middlewares/userValidator')
 
 route.get('/users', userController.getusers)
+route.get('/user/:id', userController.user)
 
 route.post('/signup', validator, userController.userPost)
 

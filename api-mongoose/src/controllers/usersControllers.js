@@ -34,3 +34,20 @@ exports.getusers = async (req, res) => {
     }
 
 }
+exports.user = async (req, res) => {
+
+    const { id } = req.params
+
+    // console.log(id)
+
+    try {
+
+        const users = await userData.findById(id)
+
+        res.status(200).json({ users })
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}

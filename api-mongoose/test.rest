@@ -3,7 +3,7 @@ POST http://localhost:3000/users_data/signup
 Content-Type: application/json
 
 {
-    "name": "igor",
+    "name": "  Aline  ",
     "email": "igorfondev@gmail.com",
     "password": "123456"
 }
