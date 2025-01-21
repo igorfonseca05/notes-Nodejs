@@ -1,5 +1,4 @@
 require('dotenv').config()
-
 const express = require('express')
 
 const app = express()
@@ -9,23 +8,25 @@ const { dbConnection, dbEvents } = require('./src/db/dbConnection')
 
 dbConnection()
 
+// models
+const userData = require('./src/model/userModel')
+
+// routes
+const routes = require('./src/routes/routes')
+
 
 // middlewares
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
+
+app.use('/', routes)
 app.get('/', (req, res) => {
     res.status(200).json({ message: 'Bem vindo ao servidor' })
 })
 
-app.post('/signup', (req, res) => {
 
-    const { name, email, password } = req.body
-
-    console.log(name, email, password)
-
-})
 
 
 
