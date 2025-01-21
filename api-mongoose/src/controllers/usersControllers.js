@@ -9,8 +9,6 @@ exports.userPost = async (req, res) => {
 
     const newUser = new userData({ userName, email, password })
 
-    console.log(newUser)
-
     try {
         newUser.save()
 
