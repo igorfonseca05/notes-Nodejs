@@ -63,7 +63,7 @@ exports.updateUser = async (req, res) => {
         if (user) {
 
             user.email = email
-            user.password = password ? password : user.password,
+            user.password = password ? password : user.passwords,
                 user.userName = userName,
 
                 await user.save()
