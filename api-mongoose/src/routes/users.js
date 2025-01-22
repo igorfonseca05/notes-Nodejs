@@ -11,6 +11,7 @@ const validator = require('../middlewares/userValidator')
 route.get('/users', userController.getusers)
 route.get('/user/:id', userController.user)
 
+route.post('/user/:id', userController.updateUser)
 route.post('/signup', validator, userController.userPost)
 
 

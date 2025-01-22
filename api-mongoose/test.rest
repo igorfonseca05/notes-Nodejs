@@ -8,3 +8,14 @@ Content-Type: application/json
     "password": "123456"
 }
 ###
+###
+POST http://localhost:3000/users_data/user/678feca7e03c4499a01cef88
+Content-Type: application/json
+
+{
+    "userName": "Alia",
+    "email": "Alina@gmail.com",
+    "password": "Caderno45"
+    
+}
+###

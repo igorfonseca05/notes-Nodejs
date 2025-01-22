@@ -19,6 +19,7 @@ exports.userPost = async (req, res) => {
     }
 
 }
+
 exports.getusers = async (req, res) => {
 
     try {
@@ -49,3 +50,35 @@ exports.user = async (req, res) => {
     }
 
 }
+
+exports.updateUser = async (req, res) => {
+
+    const { id } = req.params
+    const { userName, email, password } = req.body
+
+    try {
+
+        let user = await userData.findById(id)
+
+        if (user) {
+
+            user.email = email
+            user.password = password ? password : user.password,
+                user.userName = userName,
+
+                await user.save()
+
+            res.status(200).json({
+                message: "Dados atualizados com sucesso ",
+                user
+
+            })
+
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
