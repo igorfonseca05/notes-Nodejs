@@ -28,9 +28,6 @@ app.get('/', (req, res) => {
 
 
 
-
-
-
 dbEvents.on('connected', () => {
     console.log('Base conectada')
     app.listen(3000, () => {

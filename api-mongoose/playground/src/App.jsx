@@ -91,24 +91,45 @@ function App() {
   const genero = new Set()
 
 
-
+  /**Aqui usamos o Set para buscar os tipos de generos
+   * que os jogos possui
+   */
   steamGames.forEach((item, i) => {
     item.genero.filter(type => {
       genero.add(type)
     })
   })
 
+  /** Aqui ordemos os dados obtidos em ordem alfabetica usando o metodo
+   * de array sort juntamente com o metodo localCompare
+   */
   const alinhados = Array.from(genero).sort((a, b) => a.localeCompare(b))
 
-  function getGamesPrice(type) {
-    // let games
-    return steamGames.forEach((game) => {
-      game.genero.filter((item) =>  )
+
+  /**Nessa função busco game com base no genero e 
+   * retorno os games encontrados com os precos ordenados
+   * do mais barato para o mais caro
+   */
+
+  function getGames(genreSearched) {
+
+    let gamesFound = []
+
+    steamGames.forEach((game) => {
+      const gameGenre = game.genero
+
+      gameGenre.filter((genre) => {
+        if (genre === genreSearched) {
+          gamesFound.push(game)
+        }
+      })
     })
+
+    return gamesFound
 
   }
 
-  const data = getGamesPrice('Aventura')
+  const data = getGames('Aventura').sort((a, b) => a.preco - b.preco)
 
   console.log(data)
 
