@@ -8,7 +8,10 @@ const userController = require('../controllers/usersControllers')
 // middlewares
 const validator = require('../middlewares/userValidator')
 
+// Obter usuários
 route.get('/users', userController.getusers)
+
+// Obter usúario
 route.get('/user/:id', userController.user)
 
 route.post('/user/:id', userController.updateUser)
