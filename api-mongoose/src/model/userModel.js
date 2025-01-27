@@ -6,10 +6,7 @@ const userSchema = new mongoose.Schema({
     userName: {
         type: String,
         required: true,
-        trim: true,
-        set: (value) => {
-            value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
-        }
+        trim: true
     },
     email: { type: String, required: true, trim: true },
     password: {
@@ -17,6 +14,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true
     }
+})
+
+// Colocando nome em letra maiscula
+userSchema.pre('save', function (next) {
+    if (this.userName) {
+        this.userName = this.userName.charAt(0).toUpperCase() + this.userName.slice(1).toLocaleLowerCase()
+    }
+
+    next()
 })
 
 

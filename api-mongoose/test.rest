@@ -15,6 +15,23 @@ Content-Type: application/json
 }
 ###
 ###
+POST http://localhost:3000/usersdata/users
+Content-Type: application/json
+
+{
+    "userName": " aline",
+    "email": "Aline@gmail.com",
+    "password": "123456"
+}
+###
+
+###
+DELETE  http://localhost:3000/usersdata/users/679789af9af1185a099419c9
+Content-Type: application/json
+
+###
+
+###
 POST http://localhost:3000/users_data/user/678feca7e03c4499a01cef88
 Content-Type: application/json
 

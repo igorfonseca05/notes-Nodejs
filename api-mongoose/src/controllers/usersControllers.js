@@ -89,3 +89,20 @@ exports.updateUser = async (req, res) => {
 
 }
 
+exports.deleteUser = async (req, res) => {
+
+    const { id } = req.params
+    try {
+
+        let user = await userData.findByIdAndDelete(id)
+
+        if (user) {
+            res.status(200).json({ message: "Usuário deletado com sucessos" })
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
