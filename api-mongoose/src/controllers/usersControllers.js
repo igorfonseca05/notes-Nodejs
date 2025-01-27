@@ -3,32 +3,37 @@ const userData = require('../model/userModel')
 
 exports.userPost = async (req, res) => {
 
-    const { name, email, password } = req.body
-
-    const userName = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()
+    const { userName, email, password } = req.body
 
     const newUser = new userData({ userName, email, password })
 
     try {
         newUser.save()
 
-        console.log('Usuário criado com sucesso')
+        return res.json({
+            messagem: 'Usúario criado com sucesso',
+            newUser
+        })
 
     } catch (error) {
-        console.log(error._message)
+        return res.json({
+            message: error.message
+        })
     }
 
 }
 
 exports.getusers = async (req, res) => {
 
-    console.log('oi')
-
     try {
 
         const users = await userData.find()
 
-        res.status(200).json({ users })
+        if (users.length === 0) {
+            return res.status(401).json({ message: 'Users not found' })
+        }
+
+        return res.status(200).json({ users })
 
     } catch (error) {
         console.log(error)

@@ -10,9 +10,9 @@ function response(statusCode, message) {
 
 function validate(req, res, next) {
 
-    const { name, email, password } = req.body
+    const { userName, email, password } = req.body
 
-    if (!name || name.length <= 2) {
+    if (!userName || userName.length <= 2) {
         return res.send(response(404, 'O nome deve conter mais de 2 caracteres'))
     }
 

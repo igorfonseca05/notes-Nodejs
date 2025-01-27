@@ -3,7 +3,14 @@ const argon2 = require('argon2')
 const validator = require('validator')
 
 const userSchema = new mongoose.Schema({
-    userName: { type: String, required: true, trim: true },
+    userName: {
+        type: String,
+        required: true,
+        trim: true,
+        set: (value) => {
+            value.charAt(0).toUpperCase() + value.slice(1).toLowerCase()
+        }
+    },
     email: { type: String, required: true, trim: true },
     password: {
         type: String,
@@ -12,8 +19,9 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-// Aqui estamos fazendo um hash da senha antes de salvar a senha
 
+
+// Aqui estamos fazendo um hash da senha antes de salvar a senha
 userSchema.pre('save', async function (next) {
     if (!this.isModified('password')) return next()
 
