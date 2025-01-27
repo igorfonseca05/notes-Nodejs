@@ -23,5 +23,7 @@ route.post('/users', validator, userController.userPost)
 // excluir conta usuário
 route.delete('/users/:id', userController.deleteUser)
 
+// atualizar dados
+route.patch('/users/:id', userController.patchUser)
 
 module.exports = route

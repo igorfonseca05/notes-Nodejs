@@ -42,3 +42,12 @@ Content-Type: application/json
     
 }
 ###
+
+###
+PATCH  http://localhost:3000/usersdata/users/67978ab7af76f83ad02a481f
+Content-Type: application/json
+
+{
+    "lastName": "Carvalho"
+}
+###

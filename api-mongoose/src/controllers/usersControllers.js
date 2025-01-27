@@ -106,3 +106,31 @@ exports.deleteUser = async (req, res) => {
 
 }
 
+exports.patchUser = async (req, res) => {
+
+    const keys = Object.keys(req.body)
+    const allowedUpdate = ['userName', 'email', 'password']
+
+    const isValidOperation = keys.every((updates) => allowedUpdate.includes(updates))
+
+
+    if (!isValidOperation) return res.status(404).json({ message: 'Propriedade inválida' })
+
+    const { id } = req.params
+
+    try {
+
+        let user = await userData.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+
+        if (!user) {
+            return res.status(404).json({ message: "Usuário não encontrado" })
+        }
+
+        res.status(200).json(user)
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
+
