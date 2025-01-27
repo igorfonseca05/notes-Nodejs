@@ -3,6 +3,9 @@ const express = require('express')
 
 const app = express()
 
+// server config
+const port = process.env.port || 3000
+
 // custom Modules
 const { dbConnection, dbEvents } = require('./src/db/dbConnection')
 
@@ -30,7 +33,7 @@ app.get('/', (req, res) => {
 
 dbEvents.on('connected', () => {
     console.log('Base conectada')
-    app.listen(3000, () => {
+    app.listen(port, () => {
         console.log('Servidor On')
         console.log('Acesse em http://localhost:3000')
     })

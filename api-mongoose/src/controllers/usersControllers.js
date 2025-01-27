@@ -22,6 +22,8 @@ exports.userPost = async (req, res) => {
 
 exports.getusers = async (req, res) => {
 
+    console.log('oi')
+
     try {
 
         const users = await userData.find()

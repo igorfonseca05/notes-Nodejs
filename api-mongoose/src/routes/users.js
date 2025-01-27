@@ -14,8 +14,11 @@ route.get('/users', userController.getusers)
 // Obter usúario
 route.get('/user/:id', userController.user)
 
+// alterar dado de usúario especifico
 route.post('/user/:id', userController.updateUser)
-route.post('/signup', validator, userController.userPost)
+
+// Adicionar Usúario
+route.post('/users', validator, userController.userPost)
 
 
 module.exports = route
