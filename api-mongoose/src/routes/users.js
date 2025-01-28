@@ -4,26 +4,31 @@ const route = express.Router()
 
 // Controllers
 const userController = require('../controllers/usersControllers')
+const authController = require('../controllers/authController')
 
 // middlewares
 const validator = require('../middlewares/userValidator')
 
+
+// signIn users
+route.post('/login', authController.signIn)
+
+// signUp users
+route.post('/signup', validator, authController.signUp)
+
+
+
 // Obter usuários
-route.get('/users', userController.getusers)
+route.get('/', userController.getusers)
 
 // Obter usúario
-route.get('/users/:id', userController.user)
-
-// // alterar dado de usúario especifico
-// route.post('/users/:id', userController.updateUser)
-
-// Adicionar Usúario
-route.post('/users', validator, userController.userPost)
+route.get('/:id', userController.user)
 
 // atualizar dados
-route.patch('/users/:id', userController.patchUser)
+route.patch('/:id', userController.patchUser)
 
 // excluir conta usuário
-route.delete('/users/:id', userController.deleteUser)
+route.delete('/:id', userController.deleteUser)
+
 
 module.exports = route

@@ -19,9 +19,9 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "userName": " Marcos",
-    "email": "MarcosCobra@gmail.com",
-    "password": "brasilerinhaPorn"
+    "userName": " Andre",
+    "email": "andre@gmail.com",
+    "password": "123456"
 }
 ###
 
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ###
-DELETE  http://localhost:3000/users/6798ce03edfc98abd0333c1a
+DELETE  http://localhost:3000/users/67978ab7af76f83ad02a481f
 Content-Type: application/json
 
 ###
@@ -60,4 +60,19 @@ Content-Type: application/json
 {
     "userName": "cami"
 }
+###
+
+
+# Authentication test
+
+###
+
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email": "andre@gmail.com",
+    "password": "123456"
+}
+
 ###

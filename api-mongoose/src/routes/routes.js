@@ -1,10 +1,14 @@
 const express = require('express')
 
-const routes = express.Router()
+const router = express.Router()
 
 const users = require('./users')
+const auth = require('./auth')
 
 // Rotas para endpoint Users
-routes.use(users)
+router.use('/users', users)
+// signIn/up/out routes
+// router.use('/auth', auth)
 
-module.exports = routes
+
+module.exports = router

@@ -1,28 +1,6 @@
 
 const userData = require('../model/userModel')
 
-exports.userPost = async (req, res) => {
-
-    const { userName, email, password } = req.body
-
-    const newUser = new userData({ userName, email, password })
-
-    try {
-
-        await newUser.save()
-
-        return res.json({
-            messagem: 'Usúario criado com sucesso',
-            newUser
-        })
-
-    } catch (error) {
-        return res.status(404).json({
-            message: error.message
-        })
-    }
-
-}
 
 exports.getusers = async (req, res) => {
 
@@ -82,40 +60,26 @@ exports.patchUser = async (req, res) => {
 
     const isValidOperation = keys.every((updates) => allowedUpdate.includes(updates))
 
-
     if (!isValidOperation) return res.status(404).json({ message: 'Propriedade inválida' })
 
     const { id } = req.params
-    // const { userName, email, password } = req.body
-
-    // console.log(req.body)
 
     try {
 
         let user = await userData.findById(id)
+        if (!user) return res.status(404).json({ message: "Usuário não encontrado" })
 
-
-        if (!user) {
-            return res.status(404).json({ message: "Usuário não encontrado" })
-        }
 
         keys.forEach(key => user[key] = req.body[key])
 
-        // user.userName = userName || user.userName,
-        //     user.email = email || user.email,
-        //     user.password = password || user.password
-
-        // console.log(user)
 
         try {
             await user.save()
-
             res.status(200).json({ message: 'Dados atualizados com sucesso', user })
+
         } catch (error) {
-            // console.log(error)
             res.status(404).json({ message: error.message })
         }
-
 
     } catch (error) {
         return res.status(404).json({ message: error.massage })
