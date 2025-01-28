@@ -12,18 +12,18 @@ const validator = require('../middlewares/userValidator')
 route.get('/users', userController.getusers)
 
 // Obter usúario
-route.get('/user/:id', userController.user)
+route.get('/users/:id', userController.user)
 
-// alterar dado de usúario especifico
-route.post('/user/:id', userController.updateUser)
+// // alterar dado de usúario especifico
+// route.post('/users/:id', userController.updateUser)
 
 // Adicionar Usúario
 route.post('/users', validator, userController.userPost)
 
-// excluir conta usuário
-route.delete('/users/:id', userController.deleteUser)
-
 // atualizar dados
 route.patch('/users/:id', userController.patchUser)
+
+// excluir conta usuário
+route.delete('/users/:id', userController.deleteUser)
 
 module.exports = route

@@ -15,15 +15,25 @@ Content-Type: application/json
 }
 ###
 ###
-POST http://localhost:3000/usersdata/users
+POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "userName": " aline",
-    "email": "Aline@gmail.com",
-    "password": "123456"
+    "userName": " Marcos",
+    "email": "MarcosCobra@gmail.com",
+    "password": "brasilerinhaPorn"
 }
 ###
+
+###
+PATCH  http://localhost:3000/users/6798ce03edfc98abd0333c1a
+Content-Type: application/json
+
+{
+    "password": "pornoTrans"
+}
+###
+
 
 ###
 DELETE  http://localhost:3000/usersdata/users/679789af9af1185a099419c9
@@ -44,10 +54,10 @@ Content-Type: application/json
 ###
 
 ###
-PATCH  http://localhost:3000/usersdata/users/67978ab7af76f83ad02a481f
+PATCH  http://localhost:3000/users/67978ab7af76f83ad02a481f
 Content-Type: application/json
 
 {
-    "lastName": "Carvalho"
+    "userName": "camila"
 }
 ###

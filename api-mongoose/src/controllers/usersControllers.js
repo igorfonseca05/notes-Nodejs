@@ -8,7 +8,8 @@ exports.userPost = async (req, res) => {
     const newUser = new userData({ userName, email, password })
 
     try {
-        newUser.save()
+
+        await newUser.save()
 
         return res.json({
             messagem: 'Usúario criado com sucesso',
@@ -16,7 +17,7 @@ exports.userPost = async (req, res) => {
         })
 
     } catch (error) {
-        return res.json({
+        return res.status(404).json({
             message: error.message
         })
     }
@@ -40,6 +41,7 @@ exports.getusers = async (req, res) => {
     }
 
 }
+
 exports.user = async (req, res) => {
 
     const { id } = req.params
@@ -47,7 +49,6 @@ exports.user = async (req, res) => {
     // console.log(id)
 
     try {
-
         const users = await userData.findById(id)
 
         res.status(200).json({ users })
@@ -58,36 +59,6 @@ exports.user = async (req, res) => {
 
 }
 
-exports.updateUser = async (req, res) => {
-
-    const { id } = req.params
-    const { userName, email, password } = req.body
-
-    try {
-
-        let user = await userData.findById(id)
-
-        if (user) {
-
-            user.email = email
-            user.password = password ? password : user.passwords,
-                user.userName = userName,
-
-                await user.save()
-
-            res.status(200).json({
-                message: "Dados atualizados com sucesso ",
-                user
-
-            })
-
-        }
-
-    } catch (error) {
-        console.log(error)
-    }
-
-}
 
 exports.deleteUser = async (req, res) => {
 
@@ -117,19 +88,37 @@ exports.patchUser = async (req, res) => {
     if (!isValidOperation) return res.status(404).json({ message: 'Propriedade inválida' })
 
     const { id } = req.params
+    const { userName, email, password } = req.body
+
+    // console.log(req.body)
 
     try {
 
-        let user = await userData.findByIdAndUpdate(id, req.body, { new: true, runValidators: true })
+        let user = await userData.findById(id)
+
 
         if (!user) {
             return res.status(404).json({ message: "Usuário não encontrado" })
         }
 
-        res.status(200).json(user)
+        user.userName = userName || user.userName,
+            user.email = email || user.email,
+            user.password = password || user.password
+
+        // console.log(user)
+
+        try {
+            await user.save()
+
+            res.status(200).json({ message: 'Dados atualizados com sucesso', user })
+        } catch (error) {
+            // console.log(error)
+            res.status(404).json({ message: error.message })
+        }
+
 
     } catch (error) {
-        console.log(error)
+        return res.status(404).json({ message: error.massage })
     }
 
 }
