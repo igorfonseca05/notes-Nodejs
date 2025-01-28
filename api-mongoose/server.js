@@ -57,3 +57,18 @@ dbEvents.on('connected', () => {
 // }
 
 // hashingPassword()
+
+
+const jwt = require('jsonwebtoken')
+
+function getToken() {
+
+    const secret_jwt = 'YJXmlth281KwTz8M1anDalrwzXNmBlEWeoOZXkq4mek='
+
+    const token = jwt.sign({ name: 'igor' }, secret_jwt, { expiresIn: '1h' })
+
+    console.log(jwt.decode(token))
+
+}
+
+getToken()

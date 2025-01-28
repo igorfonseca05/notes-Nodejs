@@ -4,6 +4,9 @@ const argon2 = require('argon2')
 const userModel = require('../model/userModel')
 
 
+
+// Public Routes
+
 exports.signUp = async (req, res) => {
 
     const { userName, email, password } = req.body
@@ -26,28 +29,7 @@ exports.signUp = async (req, res) => {
     }
 
 }
-exports.signUp = async (req, res) => {
 
-    const { userName, email, password } = req.body
-
-    const newUser = new userData({ userName, email, password })
-
-    try {
-
-        await newUser.save()
-
-        return res.json({
-            messagem: 'Usúario criado com sucesso',
-            newUser
-        })
-
-    } catch (error) {
-        return res.status(404).json({
-            message: error.message
-        })
-    }
-
-}
 
 exports.signIn = async (req, res) => {
 
