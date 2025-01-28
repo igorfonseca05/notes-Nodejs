@@ -46,8 +46,6 @@ exports.user = async (req, res) => {
 
     const { id } = req.params
 
-    // console.log(id)
-
     try {
         const users = await userData.findById(id)
 
@@ -88,7 +86,7 @@ exports.patchUser = async (req, res) => {
     if (!isValidOperation) return res.status(404).json({ message: 'Propriedade inválida' })
 
     const { id } = req.params
-    const { userName, email, password } = req.body
+    // const { userName, email, password } = req.body
 
     // console.log(req.body)
 
@@ -101,9 +99,11 @@ exports.patchUser = async (req, res) => {
             return res.status(404).json({ message: "Usuário não encontrado" })
         }
 
-        user.userName = userName || user.userName,
-            user.email = email || user.email,
-            user.password = password || user.password
+        keys.forEach(key => user[key] = req.body[key])
+
+        // user.userName = userName || user.userName,
+        //     user.email = email || user.email,
+        //     user.password = password || user.password
 
         // console.log(user)
 

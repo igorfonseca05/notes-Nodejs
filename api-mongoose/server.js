@@ -30,7 +30,6 @@ app.get('/', (req, res) => {
 })
 
 
-
 dbEvents.on('connected', () => {
     console.log('Base conectada')
     app.listen(port, () => {
@@ -38,3 +37,23 @@ dbEvents.on('connected', () => {
         console.log('Acesse em http://localhost:3000')
     })
 })
+
+
+// const argon2 = require('argon2')
+
+// const hashingPassword = async () => {
+
+//     const password = '123456Igor'
+//     const password2 = '123456Igor'
+
+//     const hashedPassword = await argon2.hash(password, 8)
+
+//     // console.log(hashedPassword, password)
+
+//     const isEqual = await argon2.verify(hashedPassword, password2)
+
+//     console.log(isEqual)
+
+// }
+
+// hashingPassword()

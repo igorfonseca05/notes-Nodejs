@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-// Colocando nome em letra maiscula
+// Colocando nome em letra maiscula 
 userSchema.pre('save', function (next) {
     if (this.userName) {
         this.userName = this.userName.charAt(0).toUpperCase() + this.userName.slice(1).toLocaleLowerCase()
@@ -29,10 +29,18 @@ userSchema.pre('save', function (next) {
 
 // Aqui estamos fazendo um hash da senha antes de salvar a senha
 userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next()
+    const user = this
+
+    if (!user.isModified('password')) return next()
 
     try {
-        this.password = await argon2.hash(this.password)
+        user.password = await argon2.hash(user.password, {
+            type: argon2.argon2id,
+            memoryCost: 2 ** 16,
+            timeCost: 5,
+            parallelism: 1
+
+        })
         next()
     } catch (error) {
         next(error)
