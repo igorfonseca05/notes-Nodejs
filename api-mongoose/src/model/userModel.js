@@ -29,6 +29,18 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+
+userSchema.methods.toJSON = function () {
+    const user = this
+
+    const userObject = user.toObject()
+
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
 // Método para gerar novo token
 
 userSchema.methods.generateAuthToken = async function () {
@@ -51,8 +63,6 @@ userSchema.statics.findByCredentials = async function ({ email, password }) {
     const user = this
 
     const existUser = await user.findOne({ email })
-
-    // console.log(existUser)
 
     if (!existUser) {
         throw new Error('Usuário não cadastrado')

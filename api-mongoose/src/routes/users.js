@@ -20,6 +20,11 @@ route.post('/login', authController.signIn)
 // signUp users
 route.post('/signup', validator, authController.signUp)
 
+// logOut route
+route.post('/logout', verifyToken, authController.logout)
+// logOut route
+route.post('/logoutAll', verifyToken, authController.logoutAll)
+
 
 /**Importande destacar que a rota usada para obter
  * todos os usuários cadastraados na base de dados não deve existir
