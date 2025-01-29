@@ -4,19 +4,23 @@ const userData = require('../model/userModel')
 
 exports.getusers = async (req, res) => {
 
-    try {
+    res.status(200).json(req.user)
 
-        const users = await userData.find()
+    // // console.log(req.user)
 
-        if (users.length === 0) {
-            return res.status(401).json({ message: 'Users not found' })
-        }
+    // try {
 
-        return res.status(200).json({ users })
+    //     const users = await userData.find()
 
-    } catch (error) {
-        console.log(error)
-    }
+    //     if (users.length === 0) {
+    //         return res.status(401).json({ message: 'Users not found' })
+    //     }
+
+    //     return res.status(200).json({ users })
+
+    // } catch (error) {
+    //     console.log(error)
+    // }
 
 }
 

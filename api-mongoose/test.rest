@@ -5,7 +5,7 @@ Content-Type: application/json
 ###
 
 ###
-POST http://localhost:3000/usersdata/users
+POST http://localhost:3000/users/signup
 Content-Type: application/json
 
 {
@@ -15,25 +15,19 @@ Content-Type: application/json
 }
 ###
 ###
-POST http://localhost:3000/users
+GET http://localhost:3000/users/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNDhkYWQxZDk5Yzg0ZTA3YmM3MmEiLCJpYXQiOjE3MzgxNjQ0NDIsImV4cCI6MTczODE2ODA0Mn0.PSJQPTtiL7wv_4UjAwzSrjSuGwZj9ALCacUCH5nRhjg
+###
+###
+POST http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "userName": " Andre",
     "email": "andre@gmail.com",
-    "password": "123456"
+    "password": "1234568"
 }
 ###
-
-###
-PATCH  http://localhost:3000/users/6798ce03edfc98abd0333c1a
-Content-Type: application/json
-
-{
-    "password": "pornoTrans"
-}
-###
-
 
 ###
 DELETE  http://localhost:3000/users/679a17c86f9521b021c15b60
@@ -84,14 +78,8 @@ Content-Type: application/json
 ###
 
 ###
-
-POST http://localhost:3000/users/login
+GET http://localhost:3000/users/me
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNDBlMDNmYzcyODEzZjEwMTI2NWMiLCJpYXQiOjE3MzgxNjI0MDAsImV4cCI6MTczODE2NjAwMH0.07ICTLHyeCkeOcOECXI5fhXqZ3mjcIL6w04Rj32HF9c
-
-{
-    "email": "andre@gmail.com",
-    "password": "1234568"
-}
 
 ###

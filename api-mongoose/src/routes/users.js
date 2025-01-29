@@ -21,9 +21,14 @@ route.post('/login', authController.signIn)
 route.post('/signup', validator, authController.signUp)
 
 
+/**Importande destacar que a rota usada para obter
+ * todos os usuários cadastraados na base de dados não deve existir
+ * pois os usuários não devem poder ter acesso as informações de outros
+ * usuários.
+ */
 
-// Obter usuários
-route.get('/', verifyToken, userController.getusers)
+// Obter perfil de usuário
+route.get('/me', verifyToken, userController.getusers)
 
 // Obter usúario
 route.get('/:id', userController.user)
