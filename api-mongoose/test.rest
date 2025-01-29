@@ -48,7 +48,6 @@ Content-Type: application/json
 }
 ###
 
-
 # Authentication test
 
 ###
