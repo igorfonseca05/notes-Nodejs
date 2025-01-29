@@ -72,7 +72,25 @@ Content-Type: application/json
 
 {
     "email": "andre@gmail.com",
-    "password": "123456"
+    "password": "1234568"
+}
+
+###
+###
+
+DELETE  http://localhost:3000/users/67990b26b1806cea654e6ad9
+Content-Type: application/json
+###
+
+###
+
+POST http://localhost:3000/users/signup
+Content-Type: application/json
+
+{
+    "userName": "andre",
+    "email": "andre@gmail.com",
+    "password": "1234568"
 }
 
 ###

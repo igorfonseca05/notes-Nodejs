@@ -2,6 +2,8 @@ const mongoose = require('mongoose')
 const argon2 = require('argon2')
 const validator = require('validator')
 
+const jwt = require('jsonwebtoken')
+
 const userSchema = new mongoose.Schema({
     userName: {
         type: String,
@@ -18,8 +20,54 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true
-    }
+    },
+    tokens: [{
+        token: {
+            type: String,
+            required: true
+        }
+    }]
 })
+
+// Método para gerar novo token
+
+userSchema.methods.generateAuthToken = async function () {
+    const user = this
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1 hour' })
+
+    if (user.tokens.length >= 3) {
+        user.tokens.shift()
+    }
+
+    user.tokens?.push({ token })
+
+    await user.save()
+
+    return token
+}
+
+userSchema.statics.findByCredentials = async function ({ email, password }) {
+
+    const user = this
+
+    const existUser = await user.findOne({ email })
+
+    // console.log(existUser)
+
+    if (!existUser) {
+        throw new Error('Usuário não cadastrado')
+    }
+
+    const isValid = await argon2.verify(existUser.password, password)
+
+    if (!isValid) {
+        throw new Error('Senha inválida')
+    }
+
+    return existUser
+
+}
+
 
 // Colocando nome em letra maiscula 
 userSchema.pre('save', function (next) {

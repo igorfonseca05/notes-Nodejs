@@ -59,16 +59,16 @@ dbEvents.on('connected', () => {
 // hashingPassword()
 
 
-const jwt = require('jsonwebtoken')
+// const jwt = require('jsonwebtoken')
 
-function getToken() {
+// function getToken() {
 
-    const secret_jwt = 'YJXmlth281KwTz8M1anDalrwzXNmBlEWeoOZXkq4mek='
+//     const secret_jwt = 'YJXmlth281KwTz8M1anDalrwzXNmBlEWeoOZXkq4mek='
 
-    const token = jwt.sign({ name: 'igor' }, secret_jwt, { expiresIn: '1h' })
+//     const token = jwt.sign({ name: 'igor' }, secret_jwt, { expiresIn: '1h' })
 
-    console.log(jwt.decode(token))
+//     console.log(jwt.decode(token))
 
-}
+// }
 
-getToken()
+// getToken()

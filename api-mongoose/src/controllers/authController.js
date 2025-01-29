@@ -11,16 +11,33 @@ exports.signUp = async (req, res) => {
 
     const { userName, email, password } = req.body
 
-    const newUser = new userData({ userName, email, password })
-
     try {
 
-        await newUser.save()
+        // Verificando se usuário já está cadastrado
+        const existUser = await userModel.findOne({ email })
 
-        return res.json({
-            messagem: 'Usúario criado com sucesso',
-            newUser
-        })
+        if (existUser) {
+            throw new Error('Email já cadastrado')
+        }
+
+        const newUser = new userModel({ userName, email, password })
+        await newUser.generateAuthToken()
+
+
+        try {
+
+            await newUser.save()
+
+            return res.status(201).json({
+                messagem: 'Usúario criado com sucesso',
+                newUser
+            })
+
+        } catch (error) {
+            return res.status(404).json({
+                message: error.message
+            })
+        }
 
     } catch (error) {
         return res.status(404).json({
@@ -32,18 +49,11 @@ exports.signUp = async (req, res) => {
 
 
 exports.signIn = async (req, res) => {
-
-    const { email, password } = req.body
-
     try {
 
-        const user = await userModel.findOne({ email })
+        const user = await userModel.findByCredentials(req.body)
 
-        if (!user) throw new Error('Usuário não cadastrado')
-
-        const isValid = await argon2.verify(user.password, password)
-
-        if (!isValid) throw new Error('Senha inválida')
+        await user.generateAuthToken()
 
         return res.status(200).json({
             success: true,
@@ -52,6 +62,8 @@ exports.signIn = async (req, res) => {
         })
 
     } catch (error) {
+
+        // console.log(error)
 
         return res.status(404).json({
             success: false,
