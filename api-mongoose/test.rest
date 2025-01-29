@@ -15,81 +15,27 @@ Content-Type: application/json
 }
 ###
 ###
+POST http://localhost:3000/users/login
+Content-Type: application/json
+
+{
+    "email": "MarceloCarvalho@gmail.com",
+    "password": "123456"
+}
+###
+###
 GET http://localhost:3000/users/me
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNDhkYWQxZDk5Yzg0ZTA3YmM3MmEiLCJpYXQiOjE3MzgxNjQ0NDIsImV4cCI6MTczODE2ODA0Mn0.PSJQPTtiL7wv_4UjAwzSrjSuGwZj9ALCacUCH5nRhjg
 ###
 
+
 ###
-POST http://localhost:3000/users/login
+PATCH http://localhost:3000/users/me
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhYjgzNzRjOTk5NDliNTBhMjNhM2IiLCJpYXQiOjE3MzgxOTI5NTEsImV4cCI6MTczODE5NjU1MX0.VjAg1pkWwGVGlBnF1rOBgaSDpf5BPCKCopsPh9v5t28
 
 {
-    "email": "andre@gmail.com",
-    "password": "1234568"
+    "userName": "Marcelo"
 }
-###
-
-###
-DELETE  http://localhost:3000/users/679a17c86f9521b021c15b60
-Content-Type: application/json
-
-###
-
-###
-POST http://localhost:3000/users_data/user/678feca7e03c4499a01cef88
-Content-Type: application/json
-
-{
-    "userName": "Alia",
-    "email": "Alina@gmail.com",
-    "password": "Caderno45"
-    
-}
-###
-
-# Authentication test
-
-###
-
-POST http://localhost:3000/users/signup
-Content-Type: application/json
-
-{
-    "userName": "andre",
-    "email": "andre@gmail.com",
-    "password": "1234568"
-}
-
-###
-###
-
-POST http://localhost:3000/users/login
-Content-Type: application/json
-
-{
-    "email": "andre@gmail.com",
-    "password": "1234568"
-}
-
-###
-
-
-###
-GET http://localhost:3000/users/me
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNDBlMDNmYzcyODEzZjEwMTI2NWMiLCJpYXQiOjE3MzgxNjI0MDAsImV4cCI6MTczODE2NjAwMH0.07ICTLHyeCkeOcOECXI5fhXqZ3mjcIL6w04Rj32HF9c
-
-###
-###
-POST http://localhost:3000/users/logout
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNDBlMDNmYzcyODEzZjEwMTI2NWMiLCJpYXQiOjE3MzgxNzE4ODgsImV4cCI6MTczODE3NTQ4OH0.Y_Qw7-UzayGDoWEVVzW_y23YFeGJixrl-7aBVL9tqsU
-
-###
-###
-POST http://localhost:3000/users/logoutAll
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhNjY4YzE5Mzk2MjZkOTc3YTg5OGYiLCJpYXQiOjE3MzgxNzMwNjYsImV4cCI6MTczODE3NjY2Nn0.3yJ6LtU-JcJJSlKSHeJhEQmS7WgIi-3PF_VSZAFTo6o
-
 ###

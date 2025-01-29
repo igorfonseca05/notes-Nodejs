@@ -35,14 +35,11 @@ route.post('/logoutAll', verifyToken, authController.logoutAll)
 // Obter perfil de usuário
 route.get('/me', verifyToken, userController.getusers)
 
-// Obter usúario
-route.get('/:id', userController.user)
-
 // atualizar dados
-route.patch('/:id', userController.patchUser)
+route.patch('/me', verifyToken, userController.patchUser)
 
 // excluir conta usuário
-route.delete('/:id', userController.deleteUser)
+route.delete('/me', verifyToken, userController.deleteUser)
 
 
 module.exports = route
