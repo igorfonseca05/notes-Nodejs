@@ -10,6 +10,10 @@ const authController = require('../controllers/authController')
 const validator = require('../middlewares/userValidator')
 
 
+// custom middlewares
+const verifyToken = require('../middlewares/verifyToken')
+
+
 // signIn users
 route.post('/login', authController.signIn)
 
@@ -19,7 +23,7 @@ route.post('/signup', validator, authController.signUp)
 
 
 // Obter usuários
-route.get('/', userController.getusers)
+route.get('/', verifyToken, userController.getusers)
 
 // Obter usúario
 route.get('/:id', userController.user)
