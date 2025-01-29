@@ -19,6 +19,10 @@ const routes = require('./src/routes/routes')
 
 
 // middlewares
+app.use((req, res, next) => {
+    res.status(503).send("O site está me manutenção, tente novamente em alguns minutos")
+})
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
