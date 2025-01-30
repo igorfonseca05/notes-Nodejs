@@ -33,6 +33,9 @@ dbEvents.on('connected', () => {
         console.log('Servidor On')
         console.log('Acesse em http://localhost:3000')
     })
+
+
+
 })
 
 
@@ -85,10 +88,12 @@ async function getTask() {
     const user = await userData.findById('679bb0ddb0da54060a6687f2')
         .select('-password -tokens') // Excluindo campos sensíveis
 
-    await user.populate('task')
-    console.log(user);
 
+    // console.log(user.populate('tasks'));
 
+    user.populate('tasks')
+        .then((res) => console.log(res))
+        .catch(err => console.log(err))
 
 }
 
