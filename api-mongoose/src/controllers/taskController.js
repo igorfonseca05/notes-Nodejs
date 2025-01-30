@@ -44,7 +44,7 @@ exports.getTask = async (req, res) => {
 exports.postTask = async (req, res) => {
 
     try {
-        const newTask = new taskModel({ ...req.body, owned: req.user.id })
+        const newTask = new taskModel({ ...req.body, owner: req.user._id })
 
         try {
 

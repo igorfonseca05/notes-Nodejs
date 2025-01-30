@@ -72,3 +72,27 @@ dbEvents.on('connected', () => {
 // }
 
 // getToken()
+
+
+// Relacionando tabelas
+
+const taskModel = require('./src/model/taskModel')
+const usersModel = require('./src/model/userModel')
+
+async function getTask() {
+
+    // const task = await taskModel.findById('679b8b0ece680cce52ae63eb')
+    // await task.populate('owner')
+
+    // console.log(task)
+
+
+    const user = await usersModel.findById('679b812233214d1a97ea9256').select('-password -tokens')
+    await user.populate('tasks')
+
+    console.log(user)
+
+
+}
+
+getTask()

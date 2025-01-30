@@ -10,7 +10,7 @@ const taskController = require('../controllers/taskController')
 const verifyToken = require('../middlewares/verifyToken')
 
 
-router.get('/', verifyToken, taskController.getTasks)
+router.get('/', taskController.getTasks)
 router.get('/:id', taskController.getTask)
 router.post('/', verifyToken, taskController.postTask)
 router.patch('/:id', taskController.patchTasks)
