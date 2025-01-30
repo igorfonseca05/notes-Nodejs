@@ -11,9 +11,6 @@ const { dbConnection, dbEvents } = require('./src/db/dbConnection')
 
 dbConnection()
 
-// models
-const userData = require('./src/model/userModel')
-
 // routes
 const routes = require('./src/routes/routes')
 
@@ -77,20 +74,20 @@ dbEvents.on('connected', () => {
 // Relacionando tabelas
 
 const taskModel = require('./src/model/taskModel')
-const usersModel = require('./src/model/userModel')
+const userData = require('./src/model/userModel')
 
 async function getTask() {
 
     // const task = await taskModel.findById('679b8b0ece680cce52ae63eb')
     // await task.populate('owner')
-
     // console.log(task)
 
+    const user = await userData.findById('679bb0ddb0da54060a6687f2')
+        .select('-password -tokens') // Excluindo campos sensíveis
 
-    const user = await usersModel.findById('679b812233214d1a97ea9256').select('-password -tokens')
-    await user.populate('tasks')
+    await user.populate('task')
+    console.log(user);
 
-    console.log(user)
 
 
 }

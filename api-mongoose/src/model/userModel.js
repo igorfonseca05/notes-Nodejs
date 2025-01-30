@@ -29,10 +29,10 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
-userSchema.virtual('tasks', {
+userSchema.virtual('task', {
     ref: 'Task',
-    localField: 'id',
-    foreignField: 'owner'
+    localField: '_id',
+    foreignField: 'owner',
 })
 
 

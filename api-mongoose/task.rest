@@ -6,10 +6,10 @@ Content-Type: application/json
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliODEyMjMzMjE0ZDFhOTdlYTkyNTYiLCJpYXQiOjE3MzgyNDQzODYsImV4cCI6MTczODI0Nzk4Nn0.91rp3VRtG73W6POaDDwMtQ8fcGr0uNY9HiHi1fgb6VY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliYjBkZGIwZGE1NDA2MGE2Njg3ZjIiLCJpYXQiOjE3MzgyNTY2MDUsImV4cCI6MTczODI2MDIwNX0.chTBk86V8iGVdRKxQgXtsoqUoB7zuSCJHaZrL_3Zsr4
 
 {
-    "description": "Fazer almoço",
+    "description": "Estudar nodeJS",
     "completed": false
 }
 ###
