@@ -76,25 +76,20 @@ dbEvents.on('connected', () => {
 
 // Relacionando tabelas
 
-const taskModel = require('./src/model/taskModel')
-const userData = require('./src/model/userModel')
+// const taskModel = require('./src/model/taskModel')
+// const userData = require('./src/model/userModel')
 
-async function getTask() {
+// async function getTask() {
 
-    // const task = await taskModel.findById('679b8b0ece680cce52ae63eb')
-    // await task.populate('owner')
-    // console.log(task)
+//     // const task = await taskModel.findById('679b8b0ece680cce52ae63eb')
+//     // await task.populate('owner')
+//     // console.log(task)
 
-    const user = await userData.findById('679bb0ddb0da54060a6687f2')
-        .select('-password -tokens') // Excluindo campos sensíveis
+//     const user = await userData.findById('679bb0ddb0da54060a6687f2')
+//         .select('-password -tokens')
+//         .populate('tasks')
 
+//     console.log(user)
+// }
 
-    // console.log(user.populate('tasks'));
-
-    user.populate('tasks')
-        .then((res) => console.log(res))
-        .catch(err => console.log(err))
-
-}
-
-getTask()
+// getTask()

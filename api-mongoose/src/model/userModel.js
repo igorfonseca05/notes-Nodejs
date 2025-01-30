@@ -40,12 +40,16 @@ userSchema.methods.toJSON = function () {
     return userObject
 }
 
+// Codigo extremamente importante
+
 userSchema.virtual('tasks', {
     ref: 'Task',
     localField: '_id',
     foreignField: 'owner',
 })
 
+userSchema.set("toObject", { virtuals: true })
+userSchema.set("toJSON", { virtuals: true })
 
 // Método para gerar novo token
 

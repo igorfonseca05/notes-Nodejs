@@ -1,19 +1,26 @@
 
 const taskModel = require('../model/taskModel')
+const usersData = require('../model/userModel')
 
 
 exports.getTasks = async (req, res) => {
 
     try {
-        const tasks = await taskModel.find()
 
-        if (!tasks) {
+        const user = await usersData.findById(req.user.id)
+            .populate('tasks')
+            .select("-password -tokens")
+
+        // const tasks = await taskModel.find()
+
+        if (!user.tasks) {
             throw new Error('Tarefas não encontradas')
         }
 
-        res.status(200).json({ tasks })
+        res.status(200).json({ task: user.tasks })
 
     } catch (error) {
+
         res.status(404).json({ message: error.message })
     }
 }
