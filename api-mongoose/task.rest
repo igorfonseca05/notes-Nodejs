@@ -16,8 +16,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliZmIxN
 ###
 
 ###
-GET http://localhost:3000/tasks
-Content-Type: application/json
+GET http://localhost:3000/tasks/679bb120b0da54060a6687f8
+Content-Type: application/json 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliZmIxNDM1MGQ2ZGYxZjFkNGM0OGYiLCJpYXQiOjE3MzgyNzU2MDQsImV4cCI6MTczODI3OTIwNH0.BPUHMtUP4XQzisy22p8ERCvYnBpDs_6S6QgcIaH8ZG0
 
 ###
 

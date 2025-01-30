@@ -38,7 +38,7 @@ exports.getTask = async (req, res) => {
 
         const { id } = req.params
 
-        const task = await taskModel.findById(id)
+        const task = await taskModel.findOne({ id, owner: req.user.id })
 
         if (!task) {
             throw new Error('Tarefa não encontrada')
