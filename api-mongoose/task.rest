@@ -1,0 +1,20 @@
+###
+GET http://localhost:3000/tasks/getTask
+Content-Type: application/json
+###
+
+###
+POST  http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+    "description": "Nova tarefa",
+    "completed": true
+}
+###
+
+###
+GET   http://localhost:3000/tasks/679b6812a11eb1d59562906c
+Content-Type: application/json
+
+###
