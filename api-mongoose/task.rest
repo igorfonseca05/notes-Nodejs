@@ -6,15 +6,39 @@ Content-Type: application/json
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliODEyMjMzMjE0ZDFhOTdlYTkyNTYiLCJpYXQiOjE3MzgyNDQzODYsImV4cCI6MTczODI0Nzk4Nn0.91rp3VRtG73W6POaDDwMtQ8fcGr0uNY9HiHi1fgb6VY
 
 {
-    "description": "Nova tarefa",
-    "completed": true
+    "description": "Fazer almoço",
+    "completed": false
 }
 ###
 
 ###
-GET   http://localhost:3000/tasks/679b6812a11eb1d59562906c
+GET http://localhost:3000/tasks
 Content-Type: application/json
 
+###
+
+###
+GET http://localhost:3000/tasks/679b6b9056e466d8e86d29c4
+Content-Type: application/json
+
+###
+
+###
+PATCH http://localhost:3000/tasks/679b6b9056e466d8e86d29c4
+Content-Type: application/json
+
+{
+  
+    "description": "To have my hair cut",
+    "completed": false
+}
+
+###
+
+###
+DELETE http://localhost:3000/tasks/679b782b19ab4f696ab999fe
+Content-Type: application/json
 ###

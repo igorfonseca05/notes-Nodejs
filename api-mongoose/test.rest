@@ -39,3 +39,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhYjgzN
     "userName": "Marcelo"
 }
 ###
+###
+DELETE  http://localhost:3000/users/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlhYjgzNzRjOTk5NDliNTBhMjNhM2IiLCJpYXQiOjE3MzgxOTI5NTEsImV4cCI6MTczODE5NjU1MX0.VjAg1pkWwGVGlBnF1rOBgaSDpf5BPCKCopsPh9v5t28
+
+{
+    "userName": "Marcelo"
+}
+###
+
