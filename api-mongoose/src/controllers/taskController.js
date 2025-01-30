@@ -7,17 +7,24 @@ exports.getTasks = async (req, res) => {
 
     try {
 
-        const user = await usersData.findById(req.user.id)
-            .populate('tasks')
-            .select("-password -tokens")
+        const task = await taskModel.find({ owner: req.user._id })
+            .populate('owner')
 
-        // const tasks = await taskModel.find()
-
-        if (!user.tasks) {
+        if (!task) {
             throw new Error('Tarefas não encontradas')
         }
 
-        res.status(200).json({ task: user.tasks })
+        res.status(200).json({ task })
+
+        // const user = await usersData.findById(req.user.id)
+        //     .populate('tasks')
+
+
+        // if (!user.tasks) {
+        //     throw new Error('Tarefas não encontradas')
+        // }
+
+        // res.status(200).json({ tasks: user.tasks })
 
     } catch (error) {
 

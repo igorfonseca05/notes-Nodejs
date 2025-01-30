@@ -10,7 +10,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliZmIxNDM1MGQ2ZGYxZjFkNGM0OGYiLCJpYXQiOjE3MzgyNzU2MDQsImV4cCI6MTczODI3OTIwNH0.BPUHMtUP4XQzisy22p8ERCvYnBpDs_6S6QgcIaH8ZG0
 
 {
-    "description": "Estudar nodeJS de madrudaga",
+    "description": "Terminar de ver o curso",
     "completed": false
 }
 ###
