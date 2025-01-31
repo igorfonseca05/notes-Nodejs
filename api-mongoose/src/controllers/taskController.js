@@ -7,7 +7,14 @@ exports.getTasks = async (req, res) => {
 
     try {
 
-        await req.user.populate('tasks')
+        const user = await req.user.populate('tasks')
+
+        // console.log(tasks)
+
+        if (!user.tasks.length) {
+            throw new Error('Não há tarefas adicionadas por esse usuário')
+        }
+
         res.status(200).json({ tasks: req.user.tasks })
 
     } catch (error) {
@@ -102,7 +109,8 @@ exports.patchTasks = async (req, res) => {
 exports.deleteTasks = async (req, res) => {
 
     try {
-        const task = await taskModel.findByIdAndDelete(req.params.id, { new: false })
+        const task = await taskModel.findOne({ _id: req.params.id, owner: req.user._id })
+
         if (!task) {
             throw new Error('Task does not exist')
         }

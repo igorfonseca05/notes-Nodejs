@@ -1,7 +1,7 @@
 ###
 GET http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlkMDdmNzViNGMxYzI0M2Y3OWEzOTkiLCJpYXQiOjE3MzgzNDQ0MzksImV4cCI6MTczODM0ODAzOX0.BUSKP0dOpJgJBAn9hTUfrW8F4msyumKF9F4g2Zp-9Q4
 ###
 
 # Edu
@@ -95,6 +95,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZ
 ###
 
 ###
-DELETE http://localhost:3000/tasks/679b782b19ab4f696ab999fe
+DELETE http://localhost:3000/tasks/679cf77106f57015ab92e7fa
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
 ###
