@@ -1,14 +1,21 @@
 ###
 GET http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZDliYmE5MmEyZGQzZWUxNmNhMjgiLCJpYXQiOjE3MzgzMzI2MDMsImV4cCI6MTczODMzNjIwM30.aeW9b8Y3LPCliA0X4xk9mopNuWUqfpx1sfUbLZydc_A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
 ###
 
 # Edu
 ###
-GET  http://localhost:3000/tasks/679cdb01a92a2dd3ee16ca4a
+GET  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzMGE5MmEyZGQzZWUxNmNhMzEiLCJpYXQiOjE3MzgzMzI3MjAsImV4cCI6MTczODMzNjMyMH0.JWYmMihj-Y8lyqPLmxqR8ynORCy0x00ZyMiJ8nWQIts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjc0MTA2ZjU3MDE1YWI5MmU3ZjQiLCJpYXQiOjE3MzgzNDAxNjEsImV4cCI6MTczODM0Mzc2MX0.RGcpEU8iRNKl6o3udbXtG-P7sG8iks83w4p1hZDlcQM
+###
+
+# Edu
+###
+GET  http://localhost:3000/tasks/679cf78006f57015ab92e7fe
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjc0MTA2ZjU3MDE1YWI5MmU3ZjQiLCJpYXQiOjE3MzgzNDAxNjEsImV4cCI6MTczODM0Mzc2MX0.RGcpEU8iRNKl6o3udbXtG-P7sG8iks83w4p1hZDlcQM
 ###
 
 # Edu
@@ -21,10 +28,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzM
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZDliYmE5MmEyZGQzZWUxNmNhMjgiLCJpYXQiOjE3MzgzMzI2MDMsImV4cCI6MTczODMzNjIwM30.aeW9b8Y3LPCliA0X4xk9mopNuWUqfpx1sfUbLZydc_A
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
 
 {
-    "description": "Terminar de ver o curso",
+    "description": "Tarefa 1 do marcelo",
+    "completed": false
+}
+###
+###
+POST  http://localhost:3000/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
+
+{
+    "description": "Tarefa 2 do marcelo",
+    "completed": false
+}
+###
+###
+POST  http://localhost:3000/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
+
+{
+    "description": "Tarefa 3 do marcelo",
     "completed": false
 }
 ###
@@ -33,10 +60,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZDliY
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzMGE5MmEyZGQzZWUxNmNhMzEiLCJpYXQiOjE3MzgzMzI3MjAsImV4cCI6MTczODMzNjMyMH0.JWYmMihj-Y8lyqPLmxqR8ynORCy0x00ZyMiJ8nWQIts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjc0MTA2ZjU3MDE1YWI5MmU3ZjQiLCJpYXQiOjE3MzgzNDAxNjEsImV4cCI6MTczODM0Mzc2MX0.RGcpEU8iRNKl6o3udbXtG-P7sG8iks83w4p1hZDlcQM
 
 {
-    "description": "Tarefas de casa do Edu",
+    "description": "Tarefas de casa do Edu 3",
     "completed": false
 }
 ###
@@ -55,12 +82,13 @@ Content-Type: application/json
 ###
 
 ###
-PATCH http://localhost:3000/tasks/679b6b9056e466d8e86d29c4
+PATCH http://localhost:3000/tasks/679cf77106f57015ab92e7fa
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
 
 {
   
-    "description": "To have my hair cut",
+    "description": "asdlfkaasasd",
     "completed": false
 }
 

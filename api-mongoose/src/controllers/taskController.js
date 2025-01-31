@@ -7,28 +7,11 @@ exports.getTasks = async (req, res) => {
 
     try {
 
-        const task = await taskModel.find({ owner: req.user._id })
-            .populate('owner')
-
-        if (!task) {
-            throw new Error('Tarefas não encontradas')
-        }
-
-        res.status(200).json({ task })
-
-        // const user = await usersData.findById(req.user.id)
-        //     .populate('tasks')
-
-
-        // if (!user.tasks) {
-        //     throw new Error('Tarefas não encontradas')
-        // }
-
-        // res.status(200).json({ tasks: user.tasks })
+        await req.user.populate('tasks')
+        res.status(200).json({ tasks: req.user.tasks })
 
     } catch (error) {
-
-        res.status(404).json({ message: error.message })
+        res.status(500).json({ message: error.message })
     }
 }
 
@@ -37,13 +20,8 @@ exports.getTask = async (req, res) => {
     try {
 
         const _id = req.params.id
-        const { id } = req.params
 
-        console.log(id, _id)
-
-        const task = await taskModel.findOne({ _id })
-
-        console.log(task)
+        const task = await taskModel.findOne({ _id, owner: req.user._id })
 
         if (!task) {
             throw new Error('Tarefa não encontrada')
@@ -97,15 +75,21 @@ exports.patchTasks = async (req, res) => {
     }
 
     try {
-        const { id } = req.params
 
-        const task = await taskModel.findByIdAndUpdate(id, {
-            ...req.body
-        }, { new: true })
+        const _id = req.params.id
+
+        const task = await taskModel.findOne({ _id, owner: req.user._id })
 
         if (!task) {
             throw new Error('Tarefa não atualizada')
         }
+
+        // Aqui estamos alterando o valor dos dados da task
+        // retornada pelo base de dados na busca
+        // e trocando pelos dados enviados no corpo da requisição.
+        updates.forEach((update) => task[update] = req.body[update])
+
+        await task.save()
 
         res.status(200).json({ task })
 
