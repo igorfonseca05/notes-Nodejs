@@ -6,29 +6,26 @@ const app = express()
 // server config
 const port = process.env.port || 3000
 
-// custom Modules
+// Database Connection
 const { dbConnection, dbEvents } = require('./src/db/dbConnection')
 
 dbConnection()
 
-// routes
+// Routes
 const routes = require('./src/routes/routes')
 
-
-// middlewares
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-
-
-app.use(routes)
 app.get('/', (req, res) => {
     res.status(200).json({ message: 'Bem vindo ao servidor' })
 })
 
+// Middlewares
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+app.use(routes)
 
+
+// Servidor
 dbEvents.on('connected', () => {
-    console.log('Base conectada')
     app.listen(port, () => {
         console.log('Servidor On')
         console.log('Acesse em http://localhost:3000')

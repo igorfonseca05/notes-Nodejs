@@ -3,18 +3,15 @@ const userData = require('../model/userModel')
 
 
 exports.getusers = async (req, res) => {
-
     res.status(200).json(req.user)
-
 }
 
 
 exports.deleteUser = async (req, res) => {
-
     try {
 
         await userData.findByIdAndDelete(req.user._id)
-        // await req.user.deleteOne
+
         res.status(200).json({
             message: "Usuário deletado com sucessos",
             user: req.user
@@ -23,7 +20,6 @@ exports.deleteUser = async (req, res) => {
     } catch (error) {
         console.log(error)
     }
-
 }
 
 exports.patchUser = async (req, res) => {
@@ -36,8 +32,6 @@ exports.patchUser = async (req, res) => {
     if (!isValidOperation) return res.status(404).json({ message: 'Propriedade inválida' })
 
     try {
-
-        // console.log(req)
 
         keys.forEach(key => req.user[key] = req.body[key])
 

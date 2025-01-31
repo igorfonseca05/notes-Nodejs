@@ -8,21 +8,13 @@ const authController = require('../controllers/authController')
 
 // middlewares
 const validator = require('../middlewares/userValidator')
-
-
-// custom middlewares
 const verifyToken = require('../middlewares/verifyToken')
 
 
-// signIn users
+// Routes
 route.post('/login', authController.signIn)
-
-// signUp users
 route.post('/signup', validator, authController.signUp)
-
-// logOut route
 route.post('/logout', verifyToken, authController.logout)
-// logOut route
 route.post('/logoutAll', verifyToken, authController.logoutAll)
 
 
