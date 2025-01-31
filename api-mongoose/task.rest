@@ -1,16 +1,42 @@
 ###
 GET http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliZmIxNDM1MGQ2ZGYxZjFkNGM0OGYiLCJpYXQiOjE3MzgyNzU2MDQsImV4cCI6MTczODI3OTIwNH0.BPUHMtUP4XQzisy22p8ERCvYnBpDs_6S6QgcIaH8ZG0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZDliYmE5MmEyZGQzZWUxNmNhMjgiLCJpYXQiOjE3MzgzMzI2MDMsImV4cCI6MTczODMzNjIwM30.aeW9b8Y3LPCliA0X4xk9mopNuWUqfpx1sfUbLZydc_A
+###
+
+# Edu
+###
+GET  http://localhost:3000/tasks/679cdb01a92a2dd3ee16ca4a
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzMGE5MmEyZGQzZWUxNmNhMzEiLCJpYXQiOjE3MzgzMzI3MjAsImV4cCI6MTczODMzNjMyMH0.JWYmMihj-Y8lyqPLmxqR8ynORCy0x00ZyMiJ8nWQIts
+###
+
+# Edu
+###
+GET  http://localhost:3000/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzMGE5MmEyZGQzZWUxNmNhMzEiLCJpYXQiOjE3MzgzMzI3MjAsImV4cCI6MTczODMzNjMyMH0.JWYmMihj-Y8lyqPLmxqR8ynORCy0x00ZyMiJ8nWQIts
 ###
 
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzliZmIxNDM1MGQ2ZGYxZjFkNGM0OGYiLCJpYXQiOjE3MzgyNzU2MDQsImV4cCI6MTczODI3OTIwNH0.BPUHMtUP4XQzisy22p8ERCvYnBpDs_6S6QgcIaH8ZG0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZDliYmE5MmEyZGQzZWUxNmNhMjgiLCJpYXQiOjE3MzgzMzI2MDMsImV4cCI6MTczODMzNjIwM30.aeW9b8Y3LPCliA0X4xk9mopNuWUqfpx1sfUbLZydc_A
 
 {
     "description": "Terminar de ver o curso",
+    "completed": false
+}
+###
+
+# Tarefas Edu
+###
+POST  http://localhost:3000/tasks
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzMGE5MmEyZGQzZWUxNmNhMzEiLCJpYXQiOjE3MzgzMzI3MjAsImV4cCI6MTczODMzNjMyMH0.JWYmMihj-Y8lyqPLmxqR8ynORCy0x00ZyMiJ8nWQIts
+
+{
+    "description": "Tarefas de casa do Edu",
     "completed": false
 }
 ###
