@@ -28,10 +28,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZGEzM
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlkMDdmNzViNGMxYzI0M2Y3OWEzOTkiLCJpYXQiOjE3MzgzNDQ0MzksImV4cCI6MTczODM0ODAzOX0.BUSKP0dOpJgJBAn9hTUfrW8F4msyumKF9F4g2Zp-9Q4
 
 {
-    "description": "Tarefa 1 do marcelo",
+    "description": "lavar roupa",
     "completed": false
 }
 ###
@@ -60,7 +60,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZ
 ###
 POST  http://localhost:3000/tasks
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjc0MTA2ZjU3MDE1YWI5MmU3ZjQiLCJpYXQiOjE3MzgzNDAxNjEsImV4cCI6MTczODM0Mzc2MX0.RGcpEU8iRNKl6o3udbXtG-P7sG8iks83w4p1hZDlcQM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlkMGFjYzMxYjU3MTBlODAwNzUxMzgiLCJpYXQiOjE3MzgzNDUxNjQsImV4cCI6MTczODM0ODc2NH0.2NYta9XjT_2LoahPOrerxzuJ4GfGM5AxjfY7FLPaOYs
 
 {
     "description": "Tarefas de casa do Edu 3",
@@ -95,7 +95,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZ
 ###
 
 ###
-DELETE http://localhost:3000/tasks/679cf77106f57015ab92e7fa
+DELETE http://localhost:3000/tasks/679d09b4b8c271d762ce4c88
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzljZjczZTA2ZjU3MDE1YWI5MmU3ZWYiLCJpYXQiOjE3MzgzNDAxNTgsImV4cCI6MTczODM0Mzc1OH0.wM5z7oSOFEsj2cBoKLCNXklzQyUBFQbx1Nuise88_Zw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlkMDdmNzViNGMxYzI0M2Y3OWEzOTkiLCJpYXQiOjE3MzgzNDQ0MzksImV4cCI6MTczODM0ODAzOX0.BUSKP0dOpJgJBAn9hTUfrW8F4msyumKF9F4g2Zp-9Q4
+###
+###
+DELETE http://localhost:3000/tasks/679d0aea31b5710e8007513e
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzlkMGFjYzMxYjU3MTBlODAwNzUxMzgiLCJpYXQiOjE3MzgzNDUxNjQsImV4cCI6MTczODM0ODc2NH0.2NYta9XjT_2LoahPOrerxzuJ4GfGM5AxjfY7FLPaOYs
 ###
