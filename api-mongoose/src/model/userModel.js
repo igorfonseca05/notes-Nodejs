@@ -99,7 +99,6 @@ userSchema.pre('save', function (next) {
 })
 
 
-
 // Aqui estamos fazendo um hash da senha antes de salvar a senha
 userSchema.pre('save', async function (next) {
     const user = this
