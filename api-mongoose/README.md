@@ -62,6 +62,272 @@ dbEvents.on("connected", () => {
 });
 ```
 
-## 2️⃣ - Arquivos de Rotas
+## 2️⃣ - Conexão base de dados
+
+![alt text](image-1.png)
+
+No **dbConnection.js** temos:
+
+```javascript
+const mongoose = require("mongoose");
+const Events = require("events");
+
+// Armazena evento que libera base de dados
+const dbEvents = new Events();
+
+function dbConnection() {
+  mongoose
+    .connect(process.env.DB_URL)
+    .then(() => {
+      dbEvents.emit("connected");
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+module.exports = { dbConnection, dbEvents };
+```
+
+## 3️⃣ - Arquivos de Rotas
 
 ![alt text](image.png)
+
+### 1️⃣ - **routes.js**
+
+```javascript
+const express = require("express");
+
+const router = express.Router();
+
+// Controllers das rotas
+const tasks = require("./task");
+const users = require("./users");
+
+// Rotas para endpoint Users
+router.use("/tasks", tasks);
+router.use("/users", users);
+
+module.exports = router;
+```
+
+### 2️⃣ - **task.js**
+
+```javascript
+const express = require("express");
+
+const router = express.Router();
+
+// Controllers
+const taskController = require("../controllers/taskController");
+
+// middlewares
+const verifyToken = require("../middlewares/verifyToken");
+
+// Routes
+router.get("/", verifyToken, taskController.getTasks);
+router.get("/:id", verifyToken, taskController.getTask);
+router.post("/", verifyToken, taskController.postTask);
+router.patch("/:id", verifyToken, taskController.patchTasks);
+router.delete("/:id", verifyToken, taskController.deleteTasks);
+
+module.exports = router;
+```
+
+### 🕹️ taskController
+
+```javascript
+const taskModel = require("../model/taskModel");
+const usersData = require("../model/userModel");
+
+// Rotas para obter tarefas do usuário
+exports.getTasks = async (req, res) => {
+  try {
+    const user = await req.user.populate("tasks");
+
+    if (!user.tasks.length) {
+      throw new Error("Não há tarefas adicionadas por esse usuário");
+    }
+
+    res.status(200).json({ tasks: req.user.tasks });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Rota para obter tarefa do usuário por ID
+exports.getTask = async (req, res) => {
+  try {
+    const _id = req.params.id;
+
+    const task = await taskModel.findOne({ _id, owner: req.user._id });
+
+    if (!task) {
+      throw new Error("Tarefa não encontrada");
+    }
+
+    res.status(200).json({ task });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// Rota de postar tarefas
+exports.postTask = async (req, res) => {
+  try {
+    const newTask = new taskModel({ ...req.body, owner: req.user._id });
+
+    try {
+      await newTask.save();
+    } catch (error) {
+      if (error.code === 11000) {
+        return res.status(404).json({ message: "Tarefa já existente!" });
+      }
+
+      return res.status(404).json({ message: error.message });
+    }
+
+    res.status(200).json({ message: "Task saved successfully", task: newTask });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// Rotas para atualizar tarefas do Usuário
+exports.patchTasks = async (req, res) => {
+  const updates = Object.keys(req.body);
+  const fields = ["description", "completed"];
+
+  const fieldIsdValid = updates.every((update) => fields.includes(update));
+
+  if (!fieldIsdValid) {
+    return res.status(404).json({ messagem: "unacknowledged field" });
+  }
+
+  try {
+    const _id = req.params.id;
+
+    const task = await taskModel.findOne({ _id, owner: req.user._id });
+
+    if (!task) {
+      throw new Error("Tarefa não atualizada");
+    }
+
+    // Aqui estamos alterando o valor dos dados da task
+    // retornada pelo base de dados na busca
+    // e trocando pelos dados enviados no corpo da requisição.
+    updates.forEach((update) => (task[update] = req.body[update]));
+
+    await task.save();
+
+    res.status(200).json({ task });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+
+// Rota para deleter tarefas usuário
+exports.deleteTasks = async (req, res) => {
+  try {
+    const task = await taskModel.findByIdAndDelete({
+      _id: req.params.id,
+      owner: req.user._id,
+    });
+
+    if (!task) {
+      throw new Error("Task does not exist");
+    }
+
+    res.status(200).json({ message: "Removed task", task });
+  } catch (error) {
+    res.status(404).json({ message: error.message });
+  }
+};
+```
+
+#### 3️⃣ - **users.js**
+
+```javascript
+const express = require("express");
+
+const route = express.Router();
+
+// Controllers
+const userController = require("../controllers/usersControllers");
+const authController = require("../controllers/authController");
+
+// Middlewares
+const validator = require("../middlewares/userValidator");
+const verifyToken = require("../middlewares/verifyToken");
+
+// Rotas públicas
+route.post("/login", authController.signIn);
+route.post("/signup", validator, authController.signUp);
+
+// Rotas privadas
+route.post("/logout", verifyToken, authController.logout);
+route.post("/logoutAll", verifyToken, authController.logoutAll);
+
+// Rotas para obter informações pessoais do usuário
+
+// Obter perfil de usuário
+route.get("/me", verifyToken, userController.getusers);
+
+// atualizar dados
+route.patch("/me", verifyToken, userController.patchUser);
+
+// excluir conta usuário
+route.delete("/me", verifyToken, userController.deleteUser);
+
+module.exports = route;
+```
+
+### 🕹️ usersController
+
+```javascript
+const userData = require("../model/userModel");
+
+exports.getusers = async (req, res) => {
+  res.status(200).json(req.user);
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    await userData.findByIdAndDelete(req.user._id);
+
+    res.status(200).json({
+      message: "Usuário deletado com sucessos",
+      user: req.user,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.patchUser = async (req, res) => {
+  const keys = Object.keys(req.body);
+  const allowedUpdate = ["userName", "email", "password"];
+
+  const isValidOperation = keys.every((updates) =>
+    allowedUpdate.includes(updates)
+  );
+
+  if (!isValidOperation)
+    return res.status(404).json({ message: "Propriedade inválida" });
+
+  try {
+    keys.forEach((key) => (req.user[key] = req.body[key]));
+
+    try {
+      await req.user.save();
+      res
+        .status(200)
+        .json({ message: "Dados atualizados com sucesso", user: req.user });
+    } catch (error) {
+      res.status(404).json({ message: error.message });
+    }
+  } catch (error) {
+    return res.status(404).json({ message: error.massage });
+  }
+};
+```
