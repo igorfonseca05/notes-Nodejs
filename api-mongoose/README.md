@@ -1,4 +1,4 @@
-# API REST e serviço de Autenticação
+# 🔒 API REST e serviço de Autenticação
 
 Para iniciar o projeto, crie uma pasta onde irá adicionar toda a lógica do projeto e no terminal do VScode instale os seguintes pacotes
 
@@ -6,7 +6,7 @@ Para iniciar o projeto, crie uma pasta onde irá adicionar toda a lógica do pro
 
     npm i express mongoose dotenv jsonwebtoken cors cookie_parser nodemon validator argon2
 
-# 📌 Breve descrição pacotes
+## 📌 Breve descrição pacotes
 
 - **Express** é um framework minimalista para construir APIs e servidores web em Node.js.
 - **Mongoose** é uma biblioteca que simplifica a modelagem e manipulação de dados no MongoDB usando esquemas flexíveis.
@@ -22,7 +22,7 @@ Para iniciar o projeto, crie uma pasta onde irá adicionar toda a lógica do pro
 - **helmet** é um middleware que melhora a segurança da API definindo cabeçalhos HTTP adequados.
 - **morgan** é um logger que registra detalhes das requisições HTTP para facilitar a depuração e monitoramento.
 
-## 1 - Servidor
+## 1️⃣ - O Servidor
 
 Todo API ou sistema de autenticação precisa de um servidor rodando para ser executado. Criamos o arquivo **server.js** onde colocamos adicionamos o codigo abaixo.
 
@@ -62,4 +62,6 @@ dbEvents.on("connected", () => {
 });
 ```
 
-## 2 - Arquivos de Rotas
+## 2️⃣ - Arquivos de Rotas
+
+![alt text](image.png)
