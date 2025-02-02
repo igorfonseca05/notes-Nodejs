@@ -2,9 +2,13 @@ const express = require('express')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.send('Acessou rota /auth')
-})
+
+const authController = require('../Controllers/authController')
+
+router.get('/', authController.getUsers)
+
+// Rota de inscrição
+router.post('/signup', authController.signup)
 
 
 module.exports = router
