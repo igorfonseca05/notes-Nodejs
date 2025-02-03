@@ -35,6 +35,10 @@ dbEvents.on('connected', () => {
 
 })
 
+const name = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWdvciBmb25zZWNhIiwiaWF0IjoxNzM4NjA4MDE3LCJleHAiOjE3MzkyMTI4MTd9.UyXygw439bDKummDTrUYLcp7CKhR-R0PGf3r_pcEqas'
+
+console.log(name.split('.')[0])
+
 
 // const argon2 = require('argon2')
 
@@ -90,3 +94,26 @@ dbEvents.on('connected', () => {
 // }
 
 // getTask()
+
+
+// Estudando attacks por jwt
+
+const jwt = require('jsonwebtoken')
+
+
+const test = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiaWdvciIsImlhdCI6MTczODYxMzc4NywiZXhwIjoxNzM5MjE4NTg3fQ.zKbsno8nEOOEnsZ3 - 5zvwbeTy647wqq - hrZKboB_JzA'
+
+function token(test) {
+
+    // const token = jwt.sign({ name: 'igor' }, process.env.JWT_SECRET, { expiresIn: '7d' })
+
+
+    // console.log(JSON.parse(Buffer.from(test.split('.')[0], 'base64').toString()))
+
+    const isValid = jwt.verify(test, process.env.JWT_SECRET, { algorithms: ['HS256'] })
+
+    console.log(isValid)
+
+}
+
+token(test)
