@@ -1,9 +1,22 @@
 
+const mongoose = require('mongoose')
 const User = require('../Models/userModel')
 
 
 exports.getUsers = async (req, res) => {
-    res.send('oi')
+    try {
+
+        const user = await User.find()
+
+        if (!user) {
+            throw new Error('Não existe usuário cadastrado')
+        }
+
+        res.status(200).json({ user })
+
+    } catch (error) {
+
+    }
 }
 
 exports.signup = async (req, res) => {
@@ -13,7 +26,10 @@ exports.signup = async (req, res) => {
 
         try {
             await user.save()
-            res.status(200).json({ message: "Usuário criado com sucesso" })
+            res.status(200).json({
+                message: "Usuário criado com sucesso",
+                user
+            })
 
         } catch (error) {
 
@@ -23,7 +39,6 @@ exports.signup = async (req, res) => {
 
             res.status(400).json({ message: error.message })
         }
-
 
     } catch (error) {
         res.status(500).json({ message: error.message })
