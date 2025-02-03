@@ -32,3 +32,20 @@ dbEvent.on('connected', () => {
 })
 
 
+
+const jwt = require('jsonwebtoken')
+
+function getToken() {
+
+    // const token = jwt.sign({ name: 'Igor fonseca' }, process.env.JWT_SECRET, { expiresIn: '7d' })
+
+    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkVkdWFyZG8iLCJzb2JyZW5vbWUiOiJWaWxlbGEiLCJpYXQiOjE1MTYyMzkwMjJ9.Uu57IdWagtnxQfqklOiglzrbEKhRxqNP0HIzxdsRMts'
+
+    const verify = jwt.verify(token, process.env.JWT_SECRET)
+
+    // console.log(token)
+    console.log(verify)
+
+}
+
+getToken()
