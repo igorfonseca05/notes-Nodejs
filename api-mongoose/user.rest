@@ -10,17 +10,18 @@ Content-Type:  application/json
 }
 ###
 # Login
+
 ###
 POST http://localhost:3000/auth/login
 Content-Type:  application/json
 
 {
-    
     "email": "igor@gmail.com",
     "password" : "teste123"
-    
 }
+
 ###
+
 ###
 POST http://localhost:3000/auth/signup
 Content-Type:  application/json

@@ -2,6 +2,8 @@
 const mongoose = require('mongoose')
 const User = require('../Models/userModel')
 
+const jwt = require('jsonwebtoken')
+
 // Rota para adicionar usuários a base de dados
 exports.signup = async (req, res) => {
     try {
@@ -33,17 +35,13 @@ exports.signup = async (req, res) => {
 exports.login = async (req, res) => {
 
     try {
+        const user = await User.findByCredentials(req.body.email, req.body.password)
+        const token = await user.generateToken(user._id)
 
-        const { email, password } = req.body
-
-        const user = await User.findByCredentials({ email, password })
-
-        console.log(user)
-
-        res.end()
+        res.status(200).json({ user })
 
 
     } catch (error) {
-        res.send(error)
+        res.status(500).json({ message: error.message })
     }
 }
