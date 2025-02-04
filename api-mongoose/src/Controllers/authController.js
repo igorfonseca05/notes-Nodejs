@@ -29,3 +29,21 @@ exports.signup = async (req, res) => {
 
     }
 }
+
+exports.login = async (req, res) => {
+
+    try {
+
+        const { email, password } = req.body
+
+        const user = await User.findByCredentials({ email, password })
+
+        console.log(user)
+
+        res.end()
+
+
+    } catch (error) {
+        res.send(error)
+    }
+}
