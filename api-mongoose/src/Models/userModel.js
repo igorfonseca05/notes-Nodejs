@@ -34,18 +34,13 @@ userSchema.methods.generateToken = async function () {
     const user = this
 
     const secretKey = process.env.JWT_SECRET
-    const token = jwt.sign({ id: user._id }, secretKey, { expiresIn: '7d' }) // Gerando Token
+    const token = jwt.sign({ _id: user._id }, secretKey, { expiresIn: '7d' }) // Gerando Token
 
-    // console.log(token)
-
-    // const tokensIsGratherThan4 = user.tokens.length >= 4
-
-    if (user.tokens.length >= 4) { //Fazendo controle de tokens
+    if (user.tokens.length >= 3) { //Fazendo controle de tokens
         user.tokens.shift()
     }
 
-    user.tokens.push(token)// Adicionando tokens na base de dados
-
+    user.tokens?.push({ token })// Adicionando tokens na base de dados
     await user.save()
 
     return token
