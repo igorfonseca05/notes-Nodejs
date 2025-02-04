@@ -29,12 +29,12 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
-userSchema.methods.generateToken = async function ({ _id }) {
+userSchema.methods.generateToken = async function () {
 
     const user = this
 
     const secretKey = process.env.JWT_SECRET
-    const token = jwt.sign({ _id }, secretKey, { expiresIn: '7d' }) // Gerando Token
+    const token = jwt.sign({ id: user._id }, secretKey, { expiresIn: '7d' }) // Gerando Token
 
     // console.log(token)
 
@@ -44,7 +44,7 @@ userSchema.methods.generateToken = async function ({ _id }) {
         user.tokens.shift()
     }
 
-    user.tokens = user.tokens.push({ token })// Adicionando tokens na base de dados
+    user.tokens.push(token)// Adicionando tokens na base de dados
 
     await user.save()
 

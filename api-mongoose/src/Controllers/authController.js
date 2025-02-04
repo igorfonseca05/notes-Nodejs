@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
 
     try {
         const user = await User.findByCredentials(req.body.email, req.body.password)
-        const token = await user.generateToken(user._id)
+        const token = await user.generateToken()
 
         res.status(200).json({ user })
 
