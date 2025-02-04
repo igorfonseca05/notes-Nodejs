@@ -20,3 +20,9 @@ Content-Type:  application/json
     
 }
 ###
+
+# delete all
+###
+DELETE http://localhost:3000/users
+Content-Type:  application/json
+###

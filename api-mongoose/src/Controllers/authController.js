@@ -2,23 +2,7 @@
 const mongoose = require('mongoose')
 const User = require('../Models/userModel')
 
-
-exports.getUsers = async (req, res) => {
-    try {
-
-        const user = await User.find()
-
-        if (!user) {
-            throw new Error('Não existe usuário cadastrado')
-        }
-
-        res.status(200).json({ user })
-
-    } catch (error) {
-
-    }
-}
-
+// Rota para adicionar usuários a base de dados
 exports.signup = async (req, res) => {
     try {
 

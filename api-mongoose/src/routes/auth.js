@@ -5,7 +5,7 @@ const router = express.Router()
 
 const authController = require('../Controllers/authController')
 
-router.get('/', authController.getUsers)
+// router.get('/', authController.getUsers)
 
 // Rota de inscrição
 router.post('/signup', authController.signup)
