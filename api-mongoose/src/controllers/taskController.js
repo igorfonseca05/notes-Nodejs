@@ -7,16 +7,16 @@ exports.getTasks = async (req, res) => {
 
     if (req.query.skip <= 0) req.query.skip = 1
 
-
     try {
 
         const user = await req.user.populate({
             path: 'tasks',
-            match: req.query.completed ? { completed: req.query.completed === 'true' } : '',
+            match: req.query.completed ? { completed: req.query.completed === 'true' } : null,
             options: {
                 limit: parseInt(req.query.limit),
                 skip: parseInt((req.query.skip - 1) * req.query.limit),
-                sort: req.query.sortBy ? (req.query.sortBy.split(':')[1] === 'desc' ? -1 : 1) : ''
+                // Verificando se o sortBy foi enviado, se foi verifica se é desc ou asce, senão não faz nada
+                sort: req.query.sortBy ? req.query.sortBy.split(':')[1] === 'desc' ? -1 : 1 : null
             }
         })
 
