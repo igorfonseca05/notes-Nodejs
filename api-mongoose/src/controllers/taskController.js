@@ -11,7 +11,7 @@ exports.getTasks = async (req, res) => {
             match: req.query.completed ? { completed: req.query.completed === 'true' } : '',
             options: {
                 limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip)
+                skip: parseInt(req.query.skip * req.query.limit)
             }
         })
 
