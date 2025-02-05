@@ -7,7 +7,10 @@ exports.getTasks = async (req, res) => {
 
     try {
 
-        const user = await req.user.populate('tasks')
+        const user = await req.user.populate({
+            path: 'tasks',
+            match: req.query.completed ? { completed: req.query.completed === 'true' } : ''
+        })
 
         if (!user.tasks.length) {
             throw new Error('Não há tarefas adicionadas por esse usuário')
