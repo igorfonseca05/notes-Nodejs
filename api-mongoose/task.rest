@@ -5,8 +5,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyM
 ###
 
 # Tarefas Marcelo
-###
-GET http://localhost:3000/tasks?limit=2&skip=2
+##
+GET http://localhost:3000/tasks?limit=3&skip=0&sortBy=createdAt:desc
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyMWE3YzUzMzJmYjZlNzdiODEiLCJpYXQiOjE3Mzg3NjIyNzMsImV4cCI6MTczOTM2NzA3M30.mjpTapwbJ_yC0zblghyO2mSN3rzcxwd2f8-DiCe55_w
 ###

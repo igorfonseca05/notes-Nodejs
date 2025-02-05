@@ -4,6 +4,10 @@ const usersData = require('../model/userModel')
 
 
 exports.getTasks = async (req, res) => {
+
+    if (req.query.skip <= 0) req.query.skip = 1
+
+
     try {
 
         const user = await req.user.populate({
@@ -11,7 +15,8 @@ exports.getTasks = async (req, res) => {
             match: req.query.completed ? { completed: req.query.completed === 'true' } : '',
             options: {
                 limit: parseInt(req.query.limit),
-                skip: parseInt(req.query.skip * req.query.limit)
+                skip: parseInt((req.query.skip - 1) * req.query.limit),
+                sort: req.query.sortBy ? (req.query.sortBy.split(':')[1] === 'desc' ? -1 : 1) : ''
             }
         })
 
