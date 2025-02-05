@@ -166,14 +166,18 @@ function App() {
   return (
     <>
 
-      <ul>
+
+
+
+
+      {/* <ul>
         {alinhados.map((item, i) => (
           <div key={i}>
             <h2>{item}</h2>
             <p>lorem</p>
           </div>
         ))}
-      </ul>
+      </ul> */}
 
     </>
   )

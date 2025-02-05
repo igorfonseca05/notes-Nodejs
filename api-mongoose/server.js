@@ -1,5 +1,6 @@
 require('dotenv').config()
 const express = require('express')
+const cors = require('cors')
 
 const app = express()
 
@@ -19,6 +20,11 @@ app.get('/', (req, res) => {
 })
 
 // Middlewares
+app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+}))
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(routes)
@@ -96,5 +102,5 @@ dbEvents.on('connected', () => {
 // getTask()
 
 
-// Estudando attacks por jwt
+
 
