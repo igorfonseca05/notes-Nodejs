@@ -4,12 +4,15 @@ const usersData = require('../model/userModel')
 
 
 exports.getTasks = async (req, res) => {
-
     try {
 
         const user = await req.user.populate({
             path: 'tasks',
-            match: req.query.completed ? { completed: req.query.completed === 'true' } : ''
+            match: req.query.completed ? { completed: req.query.completed === 'true' } : '',
+            options: {
+                limit: parseInt(req.query.limit),
+                skip: parseInt(req.query.skip)
+            }
         })
 
         if (!user.tasks.length) {

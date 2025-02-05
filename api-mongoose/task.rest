@@ -6,7 +6,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyM
 
 # Tarefas Marcelo
 ###
-GET http://localhost:3000/tasks
+GET http://localhost:3000/tasks?completed=true&limit=5&skip=0
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyMWE3YzUzMzJmYjZlNzdiODEiLCJpYXQiOjE3Mzg3NjIyNzMsImV4cCI6MTczOTM2NzA3M30.mjpTapwbJ_yC0zblghyO2mSN3rzcxwd2f8-DiCe55_w
 ###
@@ -48,8 +48,8 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyMWE3YzUzMzJmYjZlNzdiODEiLCJpYXQiOjE3Mzg3NjIyNzMsImV4cCI6MTczOTM2NzA3M30.mjpTapwbJ_yC0zblghyO2mSN3rzcxwd2f8-DiCe55_w
 
 {
-    "description": "Tarefa 5",
-    "completed": false
+    "description": "Tarefa 13",
+    "completed": true
 }
 ###
 ###
