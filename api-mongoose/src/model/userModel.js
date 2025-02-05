@@ -55,7 +55,7 @@ userSchema.set("toJSON", { virtuals: true })
 
 userSchema.methods.generateAuthToken = async function () {
     const user = this
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '1 hour' })
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: '7d' })
 
     if (user.tokens.length >= 3) {
         user.tokens.shift()
