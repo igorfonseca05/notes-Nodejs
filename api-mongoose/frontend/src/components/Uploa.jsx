@@ -1,10 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './Uploa.css'
+
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 
 function Uploa() {
 
     const [file, setFile] = useState(null)
     const [message, setMessage] = useState(null)
+
+
+    const form = useRef()
 
     async function handleUpload(e) {
         e.preventDefault()
@@ -42,6 +49,8 @@ function Uploa() {
             const data = await res.json()
             console.log(data)
             setMessage(data.message)
+            form.current.reset()
+            setFile(null)
 
         } catch (error) {
             console.log(error)
@@ -60,7 +69,7 @@ function Uploa() {
     return (
         <div className="upload-form">
             <h1>Upload de Arquivo</h1>
-            <form onSubmit={handleUpload}>
+            <form onSubmit={handleUpload} ref={form}>
                 <div>
                     <label htmlFor="file">Escolha um arquivo:</label>
                     <input
