@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import './App.css'
+import Uploa from './components/Uploa';
 
 function App() {
 
@@ -131,7 +132,7 @@ function App() {
 
   const data = getGames('Aventura').sort((a, b) => a.preco - b.preco)
 
-  console.log(data)
+  // console.log(data)
 
 
   // const prices = steamGames.reduce((acc, game) => {
@@ -166,8 +167,10 @@ function App() {
   return (
     <>
 
+      <div className='form_container'>
 
-
+        <Uploa />
+      </div>
 
 
       {/* <ul>
