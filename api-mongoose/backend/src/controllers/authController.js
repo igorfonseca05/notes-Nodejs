@@ -114,6 +114,12 @@ exports.logoutAll = async (req, res) => {
     }
 }
 
-exports.uploads = (req, res) => {
+exports.uploads = async (req, res) => {
+    try {
+
+    } catch (error) {
+
+    }
+
     res.status(200).json({ message: 'Upload realizado com sucesso' })
 }
