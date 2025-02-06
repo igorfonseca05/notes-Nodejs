@@ -5,7 +5,7 @@ const cors = require('cors')
 const app = express()
 
 // server config
-const port = process.env.port || 3000
+const port = process.env.port || 5000
 
 
 // Database Connection
@@ -17,9 +17,6 @@ dbConnection()
 // Routes
 const routes = require('./src/routes/routes')
 
-app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Bem vindo ao servidor' })
-})
 
 
 // Middlewares
@@ -27,10 +24,14 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(cors({
-    origin: "http://localhost:5173",
+    origin: 'http://localhost:5173',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Bem vindo ao servidor' })
+})
 
 app.use(routes)
 
@@ -38,7 +39,7 @@ app.use(routes)
 dbEvents.on('connected', () => {
     app.listen(port, () => {
         console.log('Servidor On')
-        console.log('Acesse em http://localhost:3000')
+        console.log(`Acesse em http://localhost:${port}`)
     })
 
 

@@ -16,7 +16,7 @@ const multer = require('multer')
 // 3° Passo - usar o diskStorage para definir onde salvar e nome do arquivo
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {  // Configuração de onde salvaremos os arquivos, nesse caso pasta uploads
-        cb(null, 'upload/s')
+        cb(null, 'src/uploads/')
     }
 })
 
@@ -26,8 +26,14 @@ const upload = multer({ storage })
 
 
 
-router.post('/upload', upload.single('upload'), (req, res) => {
-    res.status(200).json({ message: 'upload co' })
+router.get('/uploads', (req, res) => {
+    // console.log(req.file)
+    res.status(200).json({ message: 'upload está aqui' })
+})
+
+router.post('/uploads', upload.single('upload'), (req, res) => {
+    console.log(req.file)
+    res.status(200).json({ message: 'upload está aqui' })
 })
 
 
