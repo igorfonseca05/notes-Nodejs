@@ -1,4 +1,6 @@
 const express = require('express')
+const multer = require('multer')
+const path = require('path')
 
 const route = express.Router()
 
@@ -13,30 +15,17 @@ const verifyToken = require('../middlewares/verifyToken')
 
 // // Usando multer para uploads de arquivos
 
-// // 1° Passo
-// const multer = require('multer')
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'src/uploads/')
+    },
+    filename: (req, file, cb) => {
+        const uniqueName = `${Date.now()}-${Math.random() * 1e9}${path.extname(file.originalname)}`
+        cb(null, uniqueName)
+    }
+})
 
-// // 3° Passo - usar o diskStorage para definir onde salvar e nome do arquivo
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {  // Configuração de onde salvaremos os arquivos, nesse caso pasta uploads
-//         cb(null, 'uploads/')
-//     }
-// })
-
-
-// // 2° Passo
-// const upload = multer({ storage })
-
-
-// route.get('/uploads', (req, res) => {
-//     // console.log(req.file)
-//     res.status(200).json({ message: 'upload está aqui' })
-// })
-
-// route.post('/uploads', upload.single('upload'), (req, res) => {
-//     console.log(req.file)
-//     res.status(200).json({ message: 'upload está aqui' })
-// })
+const uplaod = multer({ storage })
 
 
 // Routes
@@ -50,7 +39,7 @@ route.post('/logoutAll', verifyToken, authController.logoutAll)
  * todos os usuários cadastraados na base de dados não deve existir
  * pois os usuários não devem poder ter acesso as informações de outros
  * usuários.
- */
+*/
 
 // Obter perfil de usuário
 route.get('/me', verifyToken, userController.getusers)
@@ -61,5 +50,7 @@ route.patch('/me', verifyToken, userController.patchUser)
 // excluir conta usuário
 route.delete('/me', verifyToken, userController.deleteUser)
 
+// Adicionar imagem de perfil
+route.post('/me/avatar', verifyToken, uplaod.single('upload'), authController.uploads)
 
 module.exports = route

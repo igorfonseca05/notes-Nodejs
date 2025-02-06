@@ -26,16 +26,22 @@ function Uploa() {
         // Aqui fazemos a conexão com o backend
 
         try {
-            const res = await fetch('http://localhost:5000/uploads', {
+            const res = await fetch('http://localhost:5000/users/me/avatar', {
                 method: 'POST',
-                body: formData
+                headers: {
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyMWE3YzUzMzJmYjZlNzdiODEiLCJpYXQiOjE3Mzg3NjIyNzMsImV4cCI6MTczOTM2NzA3M30.mjpTapwbJ_yC0zblghyO2mSN3rzcxwd2f8-DiCe55_w"
+                },
+                body: formData,
+
             })
 
             if (!res.ok) {
-                throw new Error('Erro no upload. Tente novamente.')
+                throw new Error((await res.json()).message)
             }
 
-            setMessage((await res.json()).message)
+            const data = await res.json()
+            console.log(data)
+            setMessage(data.message)
 
         } catch (error) {
             console.log(error)
