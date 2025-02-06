@@ -26,7 +26,7 @@ function Uploa() {
         // Aqui fazemos a conexão com o backend
 
         try {
-            const res = await fetch('http://localhost:3000', {
+            const res = await fetch('http://localhost:3000/uploads', {
                 method: 'POST',
                 body: formData
             })
@@ -41,14 +41,11 @@ function Uploa() {
             setMessage(error.message)
         }
 
-
-
-
     }
 
     // Função para capturar o arquivo
     function handleFileChange(e) {
-        setFile(e.target.file[0])
+        setFile(e.target.files[0])
     }
 
 

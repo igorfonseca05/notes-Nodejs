@@ -23,16 +23,16 @@ app.get('/', (req, res) => {
 
 
 // Middlewares
-app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}))
-
-
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(routes)
 
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+}))
+
+app.use(routes)
 
 // Servidor
 dbEvents.on('connected', () => {
