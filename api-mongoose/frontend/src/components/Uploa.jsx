@@ -26,7 +26,7 @@ function Uploa() {
         // Aqui fazemos a conexão com o backend
 
         try {
-            const res = await fetch('http://localhost:3000/uploads', {
+            const res = await fetch('http://localhost:5000/uploads', {
                 method: 'POST',
                 body: formData
             })
@@ -35,9 +35,10 @@ function Uploa() {
                 throw new Error('Erro no upload. Tente novamente.')
             }
 
-            setMessage('Upload realizado com sucesso')
+            setMessage((await res.json()).message)
 
         } catch (error) {
+            console.log(error)
             setMessage(error.message)
         }
 
