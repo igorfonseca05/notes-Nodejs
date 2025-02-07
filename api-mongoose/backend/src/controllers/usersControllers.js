@@ -52,15 +52,18 @@ exports.patchUser = async (req, res) => {
 
 
 exports.uploads = async (req, res) => {
+    try {
 
-    // console.log(req.user)
+        if (!req.file) return res.status(400).json({ message: 'Imagem não enviada' })
 
-    const file = req.file.buffer
+        req.user.avatar = req.file.buffer
 
-    req.user.avatar = file
+        await req.user.save()
 
-    await req.user.save()
+        res.status(200).json({ message: 'Upload realizado com sucesso', user: req.user })
 
-    res.status(200).json({ message: 'Upload realizado com sucesso', user: req.user })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
