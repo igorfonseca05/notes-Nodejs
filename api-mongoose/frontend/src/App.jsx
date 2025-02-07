@@ -9,8 +9,8 @@ function App() {
     <>
 
       <div className='form_container'>
-        <Test />
-        {/* <Uploa /> */}
+        {/* <Test /> */}
+        <Uploa />
       </div>
 
 

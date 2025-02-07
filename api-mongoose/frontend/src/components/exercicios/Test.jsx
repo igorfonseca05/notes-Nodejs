@@ -148,23 +148,30 @@ function Test() {
 
     class Pessoa {
         constructor(nome, sobrenome) {
-            console.log(this)
-
-            this.nome = nome
+            // console.log(this)
+            this._nome = nome // usamos _name para diferencias propriedades internas
             this.sobrenome = sobrenome
+        }
+
+        get nome() {
+            return this.sobrenome
         }
 
         /** Igor repare que aqui usamos o this para podermos manipular os dados dentro da classe. Como 
          * vc pode reparar no nome colocado em letra maiscula.Ou seja, internalize que métodos de classe são
          * utilizados para manipulações dos dados da classe/Objeto instanciados
          */
-        getFullName() {
-            console.log((this.nome.charAt(0).toUpperCase() + this.nome.slice(1)) + ' ' + this.sobrenome)
-        }
+        // getFullName() {
+        //     console.log((this.nome.charAt(0).toUpperCase() + this.nome.slice(1)) + ' ' + this.sobrenome)
+        // }
     }
 
-    const pessoa1 = new Pessoa('igor', 'Fonseca')
-    const pessoa2 = new Pessoa('edu', 'Fonseca')
+    const fullName = new Pessoa('igor', 'Fonseca')
+
+    console.log(fullName.nome)
+
+    // const pessoa1 = new Pessoa('igor', 'Fonseca')
+    // const pessoa2 = new Pessoa('edu', 'Fonseca')
 
     // console.log(pessoa1)
 

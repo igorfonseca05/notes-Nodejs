@@ -2,6 +2,7 @@
 const userData = require('../model/userModel')
 
 
+
 exports.getusers = async (req, res) => {
     res.status(200).json(req.user)
 }
@@ -47,5 +48,19 @@ exports.patchUser = async (req, res) => {
         return res.status(404).json({ message: error.massage })
     }
 
+}
+
+
+exports.uploads = async (req, res) => {
+
+    // console.log(req.user)
+
+    const file = req.file.buffer
+
+    req.user.avatar = file
+
+    await req.user.save()
+
+    res.status(200).json({ message: 'Upload realizado com sucesso', user: req.user })
 }
 

@@ -36,7 +36,7 @@ function Uploa() {
             const res = await fetch('http://localhost:5000/users/me/avatar', {
                 method: 'POST',
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2EzNjgyMWE3YzUzMzJmYjZlNzdiODEiLCJpYXQiOjE3Mzg3NjIyNzMsImV4cCI6MTczOTM2NzA3M30.mjpTapwbJ_yC0zblghyO2mSN3rzcxwd2f8-DiCe55_w"
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E2MjM0ODQwODgyYjE0YjVjYWUwMTMiLCJpYXQiOjE3Mzg5NDEyNTYsImV4cCI6MTczOTU0NjA1Nn0.438BVI2E3jU5LYyvrzgoPT2v_wjY710zcPAw7z7kyxs"
                 },
                 body: formData,
 
