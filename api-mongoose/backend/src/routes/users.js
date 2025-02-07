@@ -12,7 +12,7 @@ const authController = require('../controllers/authController')
 const validator = require('../middlewares/userValidator')
 const verifyToken = require('../middlewares/verifyToken')
 
-// // Usando multer para uploads de arquivos
+// Usando multer para uploads de arquivos
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -26,11 +26,6 @@ const upload = multer({
     }),
     limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
     fileFilter: (req, file, cb) => {
-
-        // const allowedFormat = ['.jpg', '.jpeg', '.png']
-        // const extensionFile = path.extname(file.originalname)
-        // const isAllowedExtension = allowedFormat.includes(extensionFile)
-
         if (file.originalname.match(/\.(png|jpg|jpeg)$/)) {
             return cb(null, file)
         }
