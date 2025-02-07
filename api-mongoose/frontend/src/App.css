@@ -1,5 +1,10 @@
 /* From Uiverse.io by csemszepp */
 
+html {
+  overflow-x: hidden;
+  text-align: center;
+}
+
 .form_container {
   width: 100vw;
   min-height: 100vh;
