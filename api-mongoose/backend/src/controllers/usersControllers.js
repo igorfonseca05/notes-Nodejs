@@ -56,7 +56,9 @@ exports.uploads = async (req, res) => {
 
         if (!req.file) return res.status(400).json({ message: 'Imagem não enviada' })
 
-        req.user.avatar = req.file.buffer
+        // console.log(req.user.photo)
+
+        req.user.photo = req.file.buffer
 
         await req.user.save()
 

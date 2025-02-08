@@ -21,8 +21,9 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    avatar: {
-        type: Buffer
+    photo: {
+        type: Buffer,
+        default: null
     },
     tokens: [{
         token: {

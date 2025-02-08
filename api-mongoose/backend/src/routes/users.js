@@ -18,15 +18,15 @@ const verifyToken = require('../middlewares/verifyToken')
 // Usando multer para uploads de arquivos
 
 const upload = multer({
-    storage: multer.diskStorage({
-        // destination: (req, file, cb) => {
-        //     cb(null, 'src/uploads/')
-        // },
-        filename: (req, file, cb) => {
-            const uniqueName = `${Date.now()}-${Math.random() * 1e9}${path.extname(file.originalname)}`
-            cb(null, uniqueName)
-        }
-    }),
+    // storage: multer.diskStorage({
+    //     // destination: (req, file, cb) => {
+    //     //     cb(null, 'src/uploads/')
+    //     // },
+    //     filename: (req, file, cb) => {
+    //         const uniqueName = `${Date.now()}-${Math.random() * 1e9}${path.extname(file.originalname)}`
+    //         cb(null, uniqueName)
+    //     }
+    // }),
     limits: { fileSize: 1 * 1024 * 1024 },
     fileFilter(req, file, cb) {
         if (file.originalname.match(/\.(png|jpg|jpeg)$/)) {
