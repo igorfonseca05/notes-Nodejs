@@ -21,15 +21,15 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
+    avatar: {
+        type: Buffer
+    },
     tokens: [{
         token: {
             type: String,
             required: true
         }
-    }],
-    avatar: {
-        type: Buffer,
-    }
+    }]
 }, {
     timestamps: true
 })

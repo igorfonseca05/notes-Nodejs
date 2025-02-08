@@ -36,14 +36,14 @@ Content-Type: application/json
 ###
 GET http://localhost:5000/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E2MzU4MzIwMTc5NDM3NmIzYjYyMjkiLCJpYXQiOjE3Mzg5NDU5MjMsImV4cCI6MTczOTU1MDcyM30.kEL6nO51w3ku2YQ3rBb3FZalW8FYw-LUcSrqP_hB_q4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E3NDBjMTczZWEzZTNlNjY5ODA5MGIiLCJpYXQiOjE3MzkwMTQzMzcsImV4cCI6MTczOTYxOTEzN30.LWKaEnEkfdfRgmA_NDUsAPMfuvfvjGORpYwT2pOepb8
 ###
 
 
 ###
 PATCH http://localhost:5000/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E2MzU4MzIwMTc5NDM3NmIzYjYyMjkiLCJpYXQiOjE3Mzg5NDU5MjMsImV4cCI6MTczOTU1MDcyM30.kEL6nO51w3ku2YQ3rBb3FZalW8FYw-LUcSrqP_hB_q4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E3NDBjMTczZWEzZTNlNjY5ODA5MGIiLCJpYXQiOjE3MzkwMTQzMzcsImV4cCI6MTczOTYxOTEzN30.LWKaEnEkfdfRgmA_NDUsAPMfuvfvjGORpYwT2pOepb8
 
 {
     "userName": "Marcelo"
@@ -52,6 +52,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E2MzU4M
 ###
 DELETE  http://localhost:5000/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E2MzU4MzIwMTc5NDM3NmIzYjYyMjkiLCJpYXQiOjE3Mzg5NDU5MjMsImV4cCI6MTczOTU1MDcyM30.kEL6nO51w3ku2YQ3rBb3FZalW8FYw-LUcSrqP_hB_q4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E3NDBjMTczZWEzZTNlNjY5ODA5MGIiLCJpYXQiOjE3MzkwMTQzMzcsImV4cCI6MTczOTYxOTEzN30.LWKaEnEkfdfRgmA_NDUsAPMfuvfvjGORpYwT2pOepb8
 ###
 
