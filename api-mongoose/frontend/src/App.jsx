@@ -5,6 +5,11 @@ import Test from './components/exercicios/Test';
 
 function App() {
 
+  const name = 'igor ribeiro da fonseca'
+
+  // console.log(name.match(/Igor/gi))
+  console.log(/igor/g.test(name))
+
   return (
     <>
 
