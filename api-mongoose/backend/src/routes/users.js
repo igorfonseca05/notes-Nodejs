@@ -37,7 +37,8 @@ const storage = new CloudinaryStorage({
             quality: 'auto',
             height: 400,
             width: 400,
-            crop: 'fill'
+            crop: 'fill',
+            gravity: 'auto'
 
         }],
     }
