@@ -18,7 +18,7 @@ const validator = require('../middlewares/userValidator')
 const verifyToken = require('../middlewares/verifyToken')
 
 
-// Usando multer para uploads de arquivos
+// Usando multer e cloudinary para uploads de arquivos
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -84,7 +84,7 @@ route.post('/me/avatar', verifyToken, upload.single('upload'), userController.up
 route.delete('/me/avatar', verifyToken, userController.deleteAvatar)
 
 // Obter imagem de perfil
-route.get('/:id/avatar', userController.getAvatar)
+// route.get('/:id/avatar', userController.getAvatar)
 
 
 route.use((err, req, res, next) => {
