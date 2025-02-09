@@ -28,9 +28,9 @@ class HouseProducts extends Produtos {
 
 const house = new HouseProducts('mesa', 10, 36, 78, 'house')
 
-console.log(house)
+house.getProduct()
 
-
+// console.log(house)
 
 
 // Produtos para banho

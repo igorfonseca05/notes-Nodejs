@@ -1,5 +1,6 @@
 
 const userData = require('../model/userModel')
+const path = require('path')
 
 
 
@@ -52,14 +53,14 @@ exports.patchUser = async (req, res) => {
 
 
 exports.uploads = async (req, res) => {
+
+    console.log(req.file)
     try {
 
         if (!req.file) return res.status(400).json({ message: 'Imagem não enviada' })
 
-        // console.log(req.user.photo)
 
-        req.user.photo = req.file.buffer
-
+        req.user.photo = req.file
         await req.user.save()
 
         res.status(200).json({ message: 'Upload realizado com sucesso', user: req.user })
@@ -72,13 +73,39 @@ exports.uploads = async (req, res) => {
 exports.deleteAvatar = async (req, res) => {
     try {
 
+        if (!req.user.photo || !req.user.format) {
+            res.status(404).json({ message: 'Usuário não possui foto de perfil cadastrada' })
+        }
+
         req.user.photo = undefined
+        req.user.format = undefined
 
         await req.user.save()
 
         res.status(200).json({ message: 'Imagem de perfil deletada com sucesso', user: req.user })
 
     } catch (error) {
+        console.log(error)
+    }
+}
+
+exports.getAvatar = async (req, res) => {
+    try {
+
+        const user = await userData.findById(req.params.id)
+
+        // console.log(user)
+
+        if (!user || !user.photo) {
+            throw new Error('Error ao carregar avatar do usuário')
+        }
+
+        res.set('Content-Type', user.format)
+
+        res.status(200).send(user.photo)
+
+    } catch (error) {
+        res.status(400).json({ message: error.message })
         console.log(error)
     }
 }

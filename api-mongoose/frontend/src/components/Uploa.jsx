@@ -36,7 +36,7 @@ function Uploa() {
             const res = await fetch('http://localhost:5000/users/me/avatar', {
                 method: 'POST',
                 headers: {
-                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E3NDYwNTJiNGQxYjBlMWYyNmNlODciLCJpYXQiOjE3MzkwMTU2ODUsImV4cCI6MTczOTYyMDQ4NX0.8TQeu8-g4DMhPbOlb9WA4zjjkobcoyLAqpOnVadE1SM"
+                    Authorization: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E4ZjExODU1MzM0MmFjYmMyNzA2OTUiLCJpYXQiOjE3MzkxMjUwMTYsImV4cCI6MTczOTcyOTgxNn0.ZbesXgDlc568qYUAIjKkxWdUKv9cohkr5llg41bAZ_c"
                 },
                 body: formData,
 
@@ -47,7 +47,6 @@ function Uploa() {
             }
 
             const data = await res.json()
-            console.log(data)
             setMessage(data.message)
             form.current.reset()
             setFile(null)

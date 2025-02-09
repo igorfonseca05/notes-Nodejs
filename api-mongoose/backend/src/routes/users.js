@@ -3,6 +3,9 @@ const express = require('express')
 const path = require('path')
 
 const multer = require('multer')
+const { CloudinaryStorage } = require('multer-storage-cloudinary')
+const { v2: cloudinary } = require('cloudinary')
+
 
 const route = express.Router()
 
@@ -17,16 +20,34 @@ const verifyToken = require('../middlewares/verifyToken')
 
 // Usando multer para uploads de arquivos
 
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+})
+
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: (req, file) => `profile/${req.user.id}`,
+        format: (req, file) => path.extname(file.originalname).substring(1),
+        public_id: (req, file) => Date.now() + "-" + file.originalname,
+        transformation: [{
+            quality: 'auto',
+            height: 400,
+            width: 400,
+            crop: 'fill'
+
+        }],
+        // access_control: [
+        //     { access_type: 'authenticated', start: Date.now() }
+        // ]
+    }
+})
+
 const upload = multer({
-    // storage: multer.diskStorage({
-    //     // destination: (req, file, cb) => {
-    //     //     cb(null, 'src/uploads/')
-    //     // },
-    //     filename: (req, file, cb) => {
-    //         const uniqueName = `${Date.now()}-${Math.random() * 1e9}${path.extname(file.originalname)}`
-    //         cb(null, uniqueName)
-    //     }
-    // }),
+    storage,
     limits: { fileSize: 1 * 1024 * 1024 },
     fileFilter(req, file, cb) {
         if (file.originalname.match(/\.(png|jpg|jpeg)$/)) {
@@ -62,7 +83,11 @@ route.delete('/me', verifyToken, userController.deleteUser)
 // Adicionar imagem de perfil
 route.post('/me/avatar', verifyToken, upload.single('upload'), userController.uploads)
 
+// Remover imagem de perfil
 route.delete('/me/avatar', verifyToken, userController.deleteAvatar)
+
+// Obter imagem de perfil
+route.get('/:id/avatar', userController.getAvatar)
 
 
 route.use((err, req, res, next) => {
