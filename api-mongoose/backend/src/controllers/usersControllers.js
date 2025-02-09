@@ -59,7 +59,6 @@ exports.uploads = async (req, res) => {
 
         if (!req.file) return res.status(400).json({ message: 'Imagem não enviada' })
 
-
         req.user.photo = req.file
         await req.user.save()
 
@@ -73,12 +72,11 @@ exports.uploads = async (req, res) => {
 exports.deleteAvatar = async (req, res) => {
     try {
 
-        if (!req.user.photo || !req.user.format) {
+        if (!req.user.photo) {
             res.status(404).json({ message: 'Usuário não possui foto de perfil cadastrada' })
         }
 
         req.user.photo = undefined
-        req.user.format = undefined
 
         await req.user.save()
 
@@ -100,9 +98,9 @@ exports.getAvatar = async (req, res) => {
             throw new Error('Error ao carregar avatar do usuário')
         }
 
-        res.set('Content-Type', user.format)
+        res.set('Content-Type', "image/jpeg")
 
-        res.status(200).send(user.photo)
+        res.status(200).send(user.photo.path)
 
     } catch (error) {
         res.status(400).json({ message: error.message })

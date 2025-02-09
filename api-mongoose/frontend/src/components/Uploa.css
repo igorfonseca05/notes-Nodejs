@@ -29,3 +29,7 @@
     margin-top: 10px;
     color: green;
 }
+
+button[disabled] {
+    background-color: #03376e;
+}

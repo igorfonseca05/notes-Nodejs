@@ -30,7 +30,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: (req, file) => `profile/${req.user.id}`,
+        folder: (req, file) => `Auth/${req.user.id}/profile`,
         format: (req, file) => path.extname(file.originalname).substring(1),
         public_id: (req, file) => Date.now() + "-" + file.originalname,
         transformation: [{
@@ -40,9 +40,6 @@ const storage = new CloudinaryStorage({
             crop: 'fill'
 
         }],
-        // access_control: [
-        //     { access_type: 'authenticated', start: Date.now() }
-        // ]
     }
 })
 
@@ -53,7 +50,6 @@ const upload = multer({
         if (file.originalname.match(/\.(png|jpg|jpeg)$/)) {
             return cb(null, file)
         }
-
         cb(new Error('Formato de arquivo inválido'))
     }
 })

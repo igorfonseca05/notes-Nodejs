@@ -10,11 +10,15 @@ function Uploa() {
     const [file, setFile] = useState(null)
     const [message, setMessage] = useState(null)
 
+    const [loading, setLoading] = useState(false)
+
 
     const form = useRef()
 
     async function handleUpload(e) {
         e.preventDefault()
+
+        setLoading(true)
 
         if (!file) {
             return setMessage('O arquivo não foi selecionado')
@@ -54,6 +58,8 @@ function Uploa() {
         } catch (error) {
             console.log(error)
             setMessage(error.message)
+        } finally {
+            setLoading(false)
         }
 
     }
@@ -78,7 +84,7 @@ function Uploa() {
                         accept="image/*" // Apenas imagens (opcional)
                     />
                 </div>
-                <button type="submit">Enviar</button>
+                <button type="submit" disabled={loading}>{loading ? 'Aguarde...' : 'Enviar'}</button>
             </form>
             {message && <p>{message}</p>}
         </div>

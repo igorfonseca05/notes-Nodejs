@@ -1,6 +1,6 @@
 
 ###
-GET http://localhost:5000/users/67a8da09f1374f13ffa58008/avatar
+GET http://localhost:5000/users/67a8f118553342acbc270695/avatar
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E4ZjExODU1MzM0MmFjYmMyNzA2OTUiLCJpYXQiOjE3MzkxMjUwMTYsImV4cCI6MTczOTcyOTgxNn0.ZbesXgDlc568qYUAIjKkxWdUKv9cohkr5llg41bAZ_c
 
