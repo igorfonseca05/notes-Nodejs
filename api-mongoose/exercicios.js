@@ -18,6 +18,19 @@ const abajur = new Produtos('abajur lilas', 120.65, 56, 25)
 
 // Produtos para casa
 
+class HouseProducts extends Produtos {
+    constructor(name, price, height, width, type) {
+        super(name, price, height, width)
+        this.type = type
+    }
+}
+
+
+const house = new HouseProducts('mesa', 10, 36, 78, 'house')
+
+console.log(house)
+
+
 
 
 // Produtos para banho
