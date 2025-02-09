@@ -62,6 +62,8 @@ route.delete('/me', verifyToken, userController.deleteUser)
 // Adicionar imagem de perfil
 route.post('/me/avatar', verifyToken, upload.single('upload'), userController.uploads)
 
+route.delete('/me/avatar', verifyToken, userController.deleteAvatar)
+
 
 route.use((err, req, res, next) => {
     if (err.code === 'LIMIT_FILE_SIZE') {

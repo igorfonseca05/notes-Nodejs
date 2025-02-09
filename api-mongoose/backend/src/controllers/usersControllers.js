@@ -69,3 +69,17 @@ exports.uploads = async (req, res) => {
     }
 }
 
+exports.deleteAvatar = async (req, res) => {
+    try {
+
+        req.user.photo = undefined
+
+        await req.user.save()
+
+        res.status(200).json({ message: 'Imagem de perfil deletada com sucesso', user: req.user })
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+
