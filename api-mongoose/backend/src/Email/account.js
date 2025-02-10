@@ -1,31 +1,43 @@
 const sgMail = require('@sendgrid/mail')
+const path = require('path')
+const fs = require('fs')
+
 
 const { MailerSend, EmailParams, Recipient, Sender } = require('mailersend')
 
 
 const mailersend = new MailerSend({
-    apiKey: process.env.API_KEY
+    apiKey: 'mlsn.5d6fb15f4f2c6d0361f3470cff91b56473b0891f2eb3e83d196d385183de356e'
 })
 
 
+// Obtendo templete HTML para enviar no corpo da requisição 
+function getHTML(name, message) {
+
+    const templete = path.join(__dirname, 'index.html')
+    let html = fs.readFileSync(templete, 'utf8')
+
+    html = html.replace('{{name}}', name).replace('{{message}}', message)
+
+    return html
+}
+
+
 async function sendEmail(to, name, subject, text) {
-
     try {
-
         const recipients = [new Recipient(to, name)]
 
-        const sentFrom = new Sender('igorfondev@gmail.com', 'Igor')
+        const sentFrom = new Sender('igor@trial-3zxk54vexdzljy6v.mlsender.net', 'Igor')
+
+        const html = getHTML(name, text)
 
         const emailParams = new EmailParams()
             .setFrom(sentFrom)
             .setTo(recipients)
             .setSubject(subject)
-            .setText(text)
+            .setHtml(html)
 
         const msg = await mailersend.email.send(emailParams)
-
-        console.log(msg)
-
     } catch (error) {
         console.log(error)
 

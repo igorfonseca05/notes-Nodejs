@@ -2,6 +2,8 @@
 const userData = require('../model/userModel')
 const path = require('path')
 
+const sendEmail = require('../Email/account')
+
 
 exports.getusers = async (req, res) => {
     res.status(200).json(req.user)
@@ -13,6 +15,7 @@ exports.deleteUser = async (req, res) => {
 
         await userData.findByIdAndDelete(req.user._id)
 
+        sendEmail(req.user.email, req.user.userName, `Desculpe por vê-lo partir`, `Até logo ${req.user.userName}. Espero vê-lo de volta em breve`)
         res.status(200).json({
             message: "Usuário deletado com sucessos",
             user: req.user
