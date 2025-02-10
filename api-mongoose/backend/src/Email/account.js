@@ -7,7 +7,7 @@ const { MailerSend, EmailParams, Recipient, Sender } = require('mailersend')
 
 
 const mailersend = new MailerSend({
-    apiKey: 'mlsn.5d6fb15f4f2c6d0361f3470cff91b56473b0891f2eb3e83d196d385183de356e'
+    apiKey: process.env.API_KEY
 })
 
 
