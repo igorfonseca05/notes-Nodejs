@@ -57,6 +57,9 @@ exports.uploads = async (req, res) => {
         if (!req.file) return res.status(400).json({ message: 'Imagem não enviada' })
 
         req.user.photo = req.file
+        console.log(req.file)
+        // req.user.photo = req.file.buffer
+        // req.user.format = req.file.mimetype
         await req.user.save()
 
         res.status(200).json({ message: 'Upload realizado com sucesso', user: req.user })

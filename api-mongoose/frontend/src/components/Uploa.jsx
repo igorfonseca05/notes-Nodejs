@@ -58,9 +58,9 @@ function Uploa() {
         } catch (error) {
             console.log(error)
             setMessage(error.message)
-        } finally {
-            setLoading(false)
         }
+
+        setLoading(false)
 
     }
 

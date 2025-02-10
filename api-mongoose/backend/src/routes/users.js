@@ -8,7 +8,7 @@ const path = require('path')
 
 
 const multer = require('multer')
-const { v2: Cloudinary } = require('cloudinary')
+const { v2: cloudinary } = require('cloudinary')
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
 
 
@@ -25,25 +25,19 @@ const verifyToken = require('../middlewares/verifyToken')
 
 // Usando multer e cloudinary para uploads de arquivos
 
-Cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
-    api_key: process.env.API_KEY,
-    api_secret: process.env.API_KEY_SECRET
-})
 
 
-const storage = new CloudinaryStorage({
-    cloudinary,
-    params: {
-        folder: (req, file) => { },
-        format: (req, file) => { },
-        public_id: (req, file) => { },
-        transformation: [{
+// const upload = multer({
+//     storage,
+//     limits: { fileSize: 1 * 2024 * 1024 },
+//     fileFilter: (req, file, cb) => {
+//         if (file.originalname.match(/\.(png|jpeg|jpg)$/)) {
+//             return cb(null, file)
+//         }
 
-        }]
-    }
-
-})
+//         cb(new Error('Formato inválido'))
+//     }
+// })
 
 
 
@@ -52,6 +46,28 @@ const storage = new CloudinaryStorage({
 //     api_key: process.env.API_KEY,
 //     api_secret: process.env.API_SECRET
 // })
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_KEY_SECRET
+})
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: (req, file) => `Auth/${req.user.id}/profile`,
+        format: (req, file) => path.extname(file.originalname).substring(1),
+        public_id: (req, file) => `${req.user.id} - ${Date.now()}`,
+        transformation: [{
+            quality: 'auto',
+            height: 400,
+            width: 400,
+            crop: 'fill',
+            gravity: 'auto'
+        }]
+    }
+})
 
 // const storage = new CloudinaryStorage({
 //     cloudinary,
@@ -71,6 +87,7 @@ const storage = new CloudinaryStorage({
 // })
 
 const upload = multer({
+    storage,
     limits: { fileSize: 1 * 1024 * 1024 },
     fileFilter(req, file, cb) {
         if (file.originalname.match(/\.(png|jpg|jpeg)$/)) {
