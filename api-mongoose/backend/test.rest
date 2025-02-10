@@ -69,7 +69,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2FhNGM4Z
 ###
 DELETE  http://localhost:5000/users/me
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2FhMTEyYTJlYWNlNGEzYjZhNTNjNTgiLCJpYXQiOjE3MzkxOTg3NjIsImV4cCI6MTczOTgwMzU2Mn0.9ymHotpOwZjfvVVIAHqsqD8zCT1DlzpjYEvk8Nn38ig
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2FhNGM4ZWJmN2YwMTY3MzNhYzI4NjAiLCJpYXQiOjE3MzkyMTM5NjYsImV4cCI6MTczOTgxODc2Nn0.je-Zcj0K6eTnwxSNlGZqPz3tAuQC7ZzjQBrT-tOYNt4
 ###
 ###
 DELETE  http://localhost:5000/users/me/avatar

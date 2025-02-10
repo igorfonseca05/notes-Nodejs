@@ -17,7 +17,9 @@ function getHTML(name, message) {
     const templete = path.join(__dirname, 'index.html')
     let html = fs.readFileSync(templete, 'utf8')
 
-    html = html.replace('{{name}}', name).replace('{{message}}', message)
+    html = html.replace('{{name}}', name)
+        .replace('{{message}}', message)
+    // .replace('{{title}}', header)
 
     return html
 }
