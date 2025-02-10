@@ -3,7 +3,6 @@ const userData = require('../model/userModel')
 const path = require('path')
 
 
-
 exports.getusers = async (req, res) => {
     res.status(200).json(req.user)
 }
@@ -85,6 +84,11 @@ exports.deleteAvatar = async (req, res) => {
         es.status(404).json({ message: error.message })
     }
 }
+
+
+// Fiz a integração do meu projeto com o Cloudinary, onde faço o upload
+//da imagem do usuário e salvo na base de dados o link que é
+// enviado ao usuário assim que ele faz o upload.
 
 // exports.getAvatar = async (req, res) => {
 //     try {

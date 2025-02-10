@@ -2,9 +2,14 @@ const express = require('express')
 // const multer = require('multer')
 const path = require('path')
 
+// const multer = require('multer')
+// const { CloudinaryStorage } = require('multer-storage-cloudinary')
+// const { v2: cloudinary } = require('cloudinary')
+
+
 const multer = require('multer')
+const { v2: Cloudinary } = require('cloudinary')
 const { CloudinaryStorage } = require('multer-storage-cloudinary')
-const { v2: cloudinary } = require('cloudinary')
 
 
 const route = express.Router()
@@ -20,32 +25,43 @@ const verifyToken = require('../middlewares/verifyToken')
 
 // Usando multer e cloudinary para uploads de arquivos
 
-cloudinary.config({
+Cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.API_KEY,
-    api_secret: process.env.API_SECRET
+    api_secret: process.env.API_KEY_SECRET
 })
 
 
 const storage = new CloudinaryStorage({
-    cloudinary,
-    params: {
-        folder: (req, file) => `Auth/${req.user.id}/profile`,
-        format: (req, file) => path.extname(file.originalname).substring(1),
-        public_id: (req, file) => Date.now() + "-" + file.originalname,
-        transformation: [{
-            quality: 'auto',
-            height: 400,
-            width: 400,
-            crop: 'fill',
-            gravity: 'auto'
 
-        }],
-    }
 })
 
+
+
+// cloudinary.config({
+//     cloud_name: process.env.CLOUD_NAME,
+//     api_key: process.env.API_KEY,
+//     api_secret: process.env.API_SECRET
+// })
+
+// const storage = new CloudinaryStorage({
+//     cloudinary,
+//     params: {
+//         folder: (req, file) => `Auth/${req.user.id}/profile`,
+//         format: (req, file) => path.extname(file.originalname).substring(1),
+//         public_id: (req, file) => Date.now() + "-" + file.originalname,
+//         transformation: [{
+//             quality: 'auto',
+//             height: 400,
+//             width: 400,
+//             crop: 'fill',
+//             gravity: 'auto'
+
+//         }],
+//     }
+// })
+
 const upload = multer({
-    storage,
     limits: { fileSize: 1 * 1024 * 1024 },
     fileFilter(req, file, cb) {
         if (file.originalname.match(/\.(png|jpg|jpeg)$/)) {
