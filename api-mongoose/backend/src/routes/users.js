@@ -69,23 +69,6 @@ const storage = new CloudinaryStorage({
     }
 })
 
-// const storage = new CloudinaryStorage({
-//     cloudinary,
-//     params: {
-//         folder: (req, file) => `Auth/${req.user.id}/profile`,
-//         format: (req, file) => path.extname(file.originalname).substring(1),
-//         public_id: (req, file) => Date.now() + "-" + file.originalname,
-//         transformation: [{
-//             quality: 'auto',
-//             height: 400,
-//             width: 400,
-//             crop: 'fill',
-//             gravity: 'auto'
-
-//         }],
-//     }
-// })
-
 const upload = multer({
     storage,
     limits: { fileSize: 1 * 1024 * 1024 },

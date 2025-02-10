@@ -27,6 +27,16 @@ Content-Type: application/json
 }
 ###
 ###
+POST http://localhost:5000/users/signup
+Content-Type: application/json
+
+{
+    "userName": "igor",
+    "email": "igorfondev@gmail.com",
+    "password": "123456"
+}
+###
+###
 POST http://localhost:5000/users/login
 Content-Type: application/json
 
@@ -55,6 +65,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E4ZjExO
 DELETE  http://localhost:5000/users/me
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E4ZjExODU1MzM0MmFjYmMyNzA2OTUiLCJpYXQiOjE3MzkxMjUwMTYsImV4cCI6MTczOTcyOTgxNn0.ZbesXgDlc568qYUAIjKkxWdUKv9cohkr5llg41bAZ_c
+###
+###
+DELETE  http://localhost:5000/users/me
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2FhMGQzYjM5NDNlOThjODRlNjBlNmQiLCJpYXQiOjE3MzkxOTc3NTUsImV4cCI6MTczOTgwMjU1NX0.OnzD5LCnSvulbg6Io7TNWBk2JasuKdpK0LpPXeCrR7Y
 ###
 ###
 DELETE  http://localhost:5000/users/me/avatar

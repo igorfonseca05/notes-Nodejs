@@ -2,6 +2,8 @@
 const userModel = require('../model/userModel')
 const multer = require('multer')
 
+const sendEmail = require('../Email/account')
+
 
 // Public Routes
 
@@ -26,12 +28,15 @@ exports.signUp = async (req, res) => {
 
             await newUser.save()
 
-            return res.status(201).json({
+            sendEmail(email, userName, 'Bem vindo ao AuthAPI', 'Seja bem vindo')
+            res.status(201).json({
                 messagem: 'Usúario criado com sucesso',
                 newUser
             })
 
+
         } catch (error) {
+            console.log(error)
             return res.status(404).json({
                 message: error.message
             })
