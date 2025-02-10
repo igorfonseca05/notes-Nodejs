@@ -108,5 +108,9 @@ dbEvents.on('connected', () => {
 // getTask()
 
 
+// Testar como enviar email usando o sendGrill
+
+
+
 
 
