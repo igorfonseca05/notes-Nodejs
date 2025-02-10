@@ -33,6 +33,15 @@ Cloudinary.config({
 
 
 const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+        folder: (req, file) => { },
+        format: (req, file) => { },
+        public_id: (req, file) => { },
+        transformation: [{
+
+        }]
+    }
 
 })
 
