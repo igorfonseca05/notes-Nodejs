@@ -28,7 +28,8 @@ exports.signUp = async (req, res) => {
 
             await newUser.save()
 
-            sendEmail(email, userName, 'Bem vindo(a) à AuthAPI! 🎉', 'Seu acesso à nossa plataforma foi criado com sucesso! Agora você pode explorar todos os recursos e aproveitar ao máximo nossa experiência.')
+            sendEmail(email, userName, 'Bem vindo(a) à AuthAPI! 🎉', 'Seja bem-vindo(a)! Estamos muito felizes por tê-lo(a) conosco. 🎉. \n Seu acesso à nossa plataforma foi criado com sucesso! Agora você pode explorar todos os recursos e aproveitar ao máximo nossa experiência. \n Se precisar de ajuda, estamos à disposição. \n Atenciosamente,')
+
             res.status(201).json({
                 messagem: 'Usúario criado com sucesso',
                 newUser

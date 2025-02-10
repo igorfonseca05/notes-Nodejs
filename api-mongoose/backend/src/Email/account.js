@@ -12,20 +12,20 @@ const mailersend = new MailerSend({
 
 
 // Obtendo templete HTML para enviar no corpo da requisição 
-function getHTML(name, message) {
+function getHTML(name, message, title) {
 
     const templete = path.join(__dirname, 'index.html')
     let html = fs.readFileSync(templete, 'utf8')
 
     html = html.replace('{{name}}', name)
         .replace('{{message}}', message)
-    // .replace('{{title}}', header)
+        .replace('{{title}}', title)
 
     return html
 }
 
 
-async function sendEmail(to, name, subject, text) {
+async function sendEmail(to, name, title, text) {
     try {
         const recipients = [new Recipient(to, name)]
 
@@ -36,7 +36,7 @@ async function sendEmail(to, name, subject, text) {
         const emailParams = new EmailParams()
             .setFrom(sentFrom)
             .setTo(recipients)
-            .setSubject(subject)
+            .setSubject(title)
             .setHtml(html)
 
         const msg = await mailersend.email.send(emailParams)
