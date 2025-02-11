@@ -64,7 +64,7 @@ dbEvents.on("connected", () => {
 
 ## 2️⃣ - Conexão base de dados
 
-![alt text](image-1.png)
+![alt text](src/img/image-1.png)
 
 No **dbConnection.js** temos:
 
@@ -95,7 +95,7 @@ Como no nosso projeto os usuários precisam ter conta criada para gerar uma tare
 
 ### ⚠️ Os métodos apresentados no código abaixo foram adicionados conforme o número a sua frente descreve, além disso dos métodos mostrados abaixo, o único que não precisa ser envocado para funcionar é o _toJSON_ (6°)
 
-![alt text](image-3.png)
+![alt text](src/img/image-3.png)
 
 ```javascript
 const mongoose = require("mongoose");
@@ -235,7 +235,7 @@ module.exports = userData;
 
 ## 3️⃣ - Arquivos de Rotas
 
-![alt text](image.png)
+![alt text](src/img/image.png)
 
 ## 1️⃣ - **routes.js**
 
@@ -296,7 +296,7 @@ Como podemos ver acima, entre a rota e a resposta no controller, temos um middle
 
 ## 3️⃣ - Middlewares ⏳
 
-![alt text](image-2.png)
+![alt text](src/img/image-2.png)
 
 ### 3️⃣.1️⃣ - userValidator.js
 
@@ -368,7 +368,7 @@ Controller com as respostas as solicitações do usuário
 
 ## 4️⃣ Controllers
 
-![alt text](image-4.png)
+![alt text](src/img/image-4.png)
 
 ### 4️⃣.1️⃣ - usersController.js
 
