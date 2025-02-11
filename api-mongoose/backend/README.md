@@ -1,8 +1,8 @@
-# 🔒 API REST e serviço de Autenticação
+# 🔒 API REST - Task manager
 
 Para iniciar o projeto, crie uma pasta onde irá adicionar toda a lógica do projeto e no terminal do VScode instale os seguintes pacotes
 
-## 📌 Pacotes para Autenticação no Node.js
+## 📌 Pacotes para Autenticação no projeto usando nodeJs
 
     npm i express mongoose dotenv jsonwebtoken cors cookie_parser nodemon validator argon2
 
