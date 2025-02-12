@@ -1,49 +1,110 @@
-require('dotenv').config()
-const express = require('express')
-const cors = require('cors')
-
-
-const app = express()
+const app = require('./app')
 
 // server config
 const port = process.env.port || 5000
 
 // Database Connection
-const { dbConnection, dbEvents } = require('./src/db/dbConnection')
-
-dbConnection()
-
-// Routes
-const routes = require('./src/routes/routes')
-
-// Middlewares
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-
-app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true,
-}))
-
-app.get('/', (req, res) => {
-    res.status(200).json({ message: 'Bem vindo ao servidor' })
-})
-
-app.use(routes)
+// const { dbEvents } = require('./src/db/dbConnection')
 
 // Servidor
-dbEvents.on('connected', () => {
-    console.log('base conectada')
-    app.listen(port, () => {
-        console.log('Servidor On')
-        console.log(`Acesse em http://localhost:${port}`)
-    })
-
-
-
+app.listen(port, () => {
+    console.log('Servidor On')
+    console.log(`Acesse em http://localhost:${port}`)
 })
+// dbEvents.on('connected', () => {
+//     console.log('base conectada')
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // require('dotenv').config()
+// // const express = require('express')
+// // const cors = require('cors')
+
+
+// // const app = express()
+
+// const app = require('./app')
+
+// // server config
+// const port = process.env.port || 5000
+
+// // Database Connection
+// const { dbEvents } = require('./src/db/dbConnection')
+
+// // // Routes
+// // const routes = require('./src/routes/routes')
+
+// // // Middlewares
+// // app.use(express.json())
+// // app.use(express.urlencoded({ extended: true }))
+
+// // app.use(cors({
+// //     origin: 'http://localhost:5173',
+// //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+// //     allowedHeaders: ['Content-Type', 'Authorization'],
+// //     credentials: true,
+// // }))
+
+// // app.get('/', (req, res) => {
+// //     res.status(200).json({ message: 'Bem vindo ao servidor' })
+// // })
+
+// // app.use(routes)
+
+// // Servidor
+// dbEvents.on('connected', () => {
+//     console.log('base conectada')
+//     app.listen(port, () => {
+//         console.log('Servidor On')
+//         console.log(`Acesse em http://localhost:${port}`)
+//     })
+// })
+
+
+
+
+
+
+
+
+
+
+
+
 
 // const name = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiSWdvciBmb25zZWNhIiwiaWF0IjoxNzM4NjA4MDE3LCJleHAiOjE3MzkyMTI4MTd9.UyXygw439bDKummDTrUYLcp7CKhR-R0PGf3r_pcEqas'
 
