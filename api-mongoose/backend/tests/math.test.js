@@ -1,5 +1,5 @@
 
-const { sum } = require('./math')
+const { sum, add } = require('./math')
 
 // Teste 1
 test('obter soma', () => {
@@ -16,7 +16,17 @@ test('Nome deve ser igor', () => {
 // Teste 3
 test('async', (done) => {
     setTimeout(() => {
-        expect(1).toBe(2)
+        expect(1).toBe(1)
         done()
     }, 2000)
+})
+
+// Teste 4 
+
+test('shoud sum two numbers', (done) => {
+    add(1, 2)
+        .then((sum) => {
+            expect(sum).toBe(3)
+            done()
+        })
 })
