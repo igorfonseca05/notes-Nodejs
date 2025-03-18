@@ -1,14 +1,17 @@
 
 require('dotenv').config({ path: '.env.test' })
 
+const { sum } = require('./math')
 
-// test('Deve retornar nome igor', () => {
-//     const nome = 'alan'
-//     expect(nome).toBe('igor')
-// })
 
-test('Deve retornar nome igor', () => {
-    expect(process.env.DB_URL).toBe('mongodb://127.0.0.1:27017/auth')
-
+test('obter soma', () => {
+    const soma = sum(1, 2)
+    expect(soma).toBe(3)
 })
 
+
+test('Nome deve ser igor', () => {
+    const name = 'Alan'
+
+    expect(name).toBe('igor')
+})
