@@ -7,9 +7,16 @@ test('obter soma', () => {
     expect(soma).toBe(3)
 })
 
-
 // Teste 2
 test('Nome deve ser igor', () => {
-    const name = 'Alan'
+    const name = 'igor'
     expect(name).toBe('igor')
+})
+
+// Teste 3
+test('async', (done) => {
+    setTimeout(() => {
+        expect(1).toBe(2)
+        done()
+    }, 2000)
 })
