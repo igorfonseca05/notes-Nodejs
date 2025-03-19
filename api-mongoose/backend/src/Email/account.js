@@ -29,7 +29,7 @@ async function sendEmail(to, name, title, text) {
     try {
         const recipients = [new Recipient(to, name)]
 
-        const sentFrom = new Sender('igor@trial-3zxk54vexdzljy6v.mlsender.net', 'Igor')
+        const sentFrom = new Sender(process.env.DOMAIN, 'Igor')
 
         const html = getHTML(name, text)
 

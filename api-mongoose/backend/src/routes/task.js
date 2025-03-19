@@ -15,6 +15,4 @@ router.post('/', verifyToken, taskController.postTask)
 router.patch('/:id', verifyToken, taskController.patchTasks)
 router.delete('/:id', verifyToken, taskController.deleteTasks)
 
-
-
 module.exports = router

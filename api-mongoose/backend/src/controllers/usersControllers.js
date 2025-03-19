@@ -15,7 +15,6 @@ exports.deleteUser = async (req, res) => {
 
         await userData.findByIdAndDelete(req.user._id)
 
-
         const text = 'Confirmamos que sua conta foi excluída com sucesso. Lamentamos vê-lo(a) partir, mas respeitamos sua decisão. \n Se houver algo que possamos melhorar ou se desejar retornar no futuro, estaremos de braços abertos para recebê-lo(a) \n !Se a exclusão foi um engano ou precisar de suporte, entre em contato conosco. \nAtenciosamente,\n Igor Fonseca.'
 
         sendEmail(req.user.email, req.user.userName, `Desculpe por vê-lo partir 😕`, `Até logo ${req.user.userName}. \n ${text}`)
@@ -25,7 +24,9 @@ exports.deleteUser = async (req, res) => {
         })
 
     } catch (error) {
-        console.log(error)
+        res.status(401).json({
+            message: "Erro ao deletar usuário",
+        })
     }
 }
 

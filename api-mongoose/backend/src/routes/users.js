@@ -2,10 +2,6 @@ const express = require('express')
 // const multer = require('multer')
 const path = require('path')
 
-// const multer = require('multer')
-// const { CloudinaryStorage } = require('multer-storage-cloudinary')
-// const { v2: cloudinary } = require('cloudinary')
-
 
 const multer = require('multer')
 const { v2: cloudinary } = require('cloudinary')
@@ -22,30 +18,6 @@ const authController = require('../controllers/authController')
 const validator = require('../middlewares/userValidator')
 const verifyToken = require('../middlewares/verifyToken')
 
-
-// Usando multer e cloudinary para uploads de arquivos
-
-
-
-// const upload = multer({
-//     storage,
-//     limits: { fileSize: 1 * 2024 * 1024 },
-//     fileFilter: (req, file, cb) => {
-//         if (file.originalname.match(/\.(png|jpeg|jpg)$/)) {
-//             return cb(null, file)
-//         }
-
-//         cb(new Error('Formato inválido'))
-//     }
-// })
-
-
-
-// cloudinary.config({
-//     cloud_name: process.env.CLOUD_NAME,
-//     api_key: process.env.API_KEY,
-//     api_secret: process.env.API_SECRET
-// })
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -93,20 +65,21 @@ route.post('/logoutAll', verifyToken, authController.logoutAll)
  * pois os usuários não devem poder ter acesso as informações de outros
  * usuários.
 */
+
 // Obter perfil de usuário
-route.get('/me', verifyToken, userController.getusers)
+route.get('/profile', verifyToken, userController.getusers)
 
 // atualizar dados
-route.patch('/me', verifyToken, userController.patchUser)
+route.patch('/profile', verifyToken, userController.patchUser)
 
 // excluir conta usuário
-route.delete('/me', verifyToken, userController.deleteUser)
+route.delete('/profile', verifyToken, userController.deleteUser)
 
 // Adicionar imagem de perfil
-route.post('/me/avatar', verifyToken, upload.single('upload'), userController.uploads)
+route.post('/profile/photo', verifyToken, upload.single('upload'), userController.uploads)
 
 // Remover imagem de perfil
-route.delete('/me/avatar', verifyToken, userController.deleteAvatar)
+route.delete('/profile/photo', verifyToken, userController.deleteAvatar)
 
 // Obter imagem de perfil
 // route.get('/:id/avatar', userController.getAvatar)

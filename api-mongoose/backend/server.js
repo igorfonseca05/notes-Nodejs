@@ -11,6 +11,7 @@ app.listen(port, () => {
     console.log('Servidor On')
     console.log(`Acesse em http://localhost:${port}`)
 })
+
 // dbEvents.on('connected', () => {
 //     console.log('base conectada')
 // })

@@ -30,3 +30,10 @@ test('shoud sum two numbers', (done) => {
             done()
         })
 })
+
+// Teste 5
+
+test('deve retornar soma', async () => {
+    const sum = await add(5, 2)
+    expect(sum).toBe(7)
+})

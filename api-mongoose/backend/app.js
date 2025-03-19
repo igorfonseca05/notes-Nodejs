@@ -4,6 +4,8 @@ const cors = require('cors')
 
 const app = express()
 
+require('./src/db/dbConnection')
+
 // Routes
 const routes = require('./src/routes/routes')
 

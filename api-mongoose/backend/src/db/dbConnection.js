@@ -9,7 +9,7 @@ const dbEvents = new Events()
 
 mongoose.connect(process.env.DB_URL)
     .then(() => {
-        dbEvents.emit('connected')
+        // dbEvents.emit('connected')
     })
     .catch((error) => {
         console.log(error)
