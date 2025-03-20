@@ -1,6 +1,4 @@
 
-require('dotenv').config({ path: "test.env" })
-
 const request = require('supertest')
 const app = require('../app')
 const { default: mongoose } = require('mongoose')
