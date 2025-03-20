@@ -32,6 +32,17 @@ describe('Testar rotas de login e cadastro da API', () => {
             .expect(201)
     })
 
+    test('Não deve cadastrar usuário', async () => {
+        await request(app)
+            .post('/users/signup')
+            .send({
+                userName: 'Igor',
+                email: 'igorfonseca3gmail.com', // Email inválido
+                password: '123456'
+            })
+            .expect(404)
+    })
+
 
     test('Deve fazer login usuário', async () => {
         await request(app)
@@ -41,6 +52,16 @@ describe('Testar rotas de login e cadastro da API', () => {
                 password: user.password
             })
             .expect(200)
+    })
+
+    test('Não deve fazer login do usuário', async () => {
+        await request(app)
+            .post('/users/login')
+            .send({
+                email: 'amanda@gmail.com',
+                password: user.password
+            })
+            .expect(404)
     })
 
 })
