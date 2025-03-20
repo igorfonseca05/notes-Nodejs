@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
     "userName": "Eduardo",
-    "email": "eduCarvalho3gmail.com",
+    "email": "eduCarvalho@gmail.com",
     "password": "12345689"
 }
 ###
@@ -67,9 +67,9 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2FhNTY0MWFiZWEzNTU0Zjg5NWJhM2YiLCJpYXQiOjE3MzkyMTY0NDksImV4cCI6MTczOTgyMTI0OX0.LJ2xAwhMW-Kk0HuB0qBaj29eOOhhyoMUfIjQxqTJ34g
 ###
 ###
-DELETE  http://localhost:5000/users/me
+DELETE  http://localhost:5000/users/profile
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2FhNGM4ZWJmN2YwMTY3MzNhYzI4NjAiLCJpYXQiOjE3MzkyMTM5NjYsImV4cCI6MTczOTgxODc2Nn0.je-Zcj0K6eTnwxSNlGZqPz3tAuQC7ZzjQBrT-tOYNt4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RjNjI0YzdjMDQwNTBhMzBmNGY1MTAiLCJpYXQiOjE3NDI0OTYzMzIsImV4cCI6MTc0MzEwMTEzMn0.E5JA9QGrdxlRfvW8S2BCt2R1inpO1X-BqvTQPW_GsJ4
 ###
 ###
 DELETE  http://localhost:5000/users/me/avatar
@@ -77,3 +77,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2E4ZjExODU1MzM0MmFjYmMyNzA2OTUiLCJpYXQiOjE3MzkxMjUwMTYsImV4cCI6MTczOTcyOTgxNn0.ZbesXgDlc568qYUAIjKkxWdUKv9cohkr5llg41bAZ_c
 ###
 
+GET http://localhost:5000/users/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2N2RjNTA3YmRiZDBhNTI1YTJmYTgxNWUiLCJpYXQiOjE3NDI0OTE3NzF9.ojS9mqA1tsjqEmorWdLyMoXTNCGNiEbIBZIKanqI4ZY
+###

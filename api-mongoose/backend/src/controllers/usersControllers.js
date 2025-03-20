@@ -17,7 +17,8 @@ exports.deleteUser = async (req, res) => {
 
         const text = 'Confirmamos que sua conta foi excluída com sucesso. Lamentamos vê-lo(a) partir, mas respeitamos sua decisão. \n Se houver algo que possamos melhorar ou se desejar retornar no futuro, estaremos de braços abertos para recebê-lo(a) \n !Se a exclusão foi um engano ou precisar de suporte, entre em contato conosco. \nAtenciosamente,\n Igor Fonseca.'
 
-        sendEmail(req.user.email, req.user.userName, `Desculpe por vê-lo partir 😕`, `Até logo ${req.user.userName}. \n ${text}`)
+        // sendEmail(req.user.email, req.user.userName, `Desculpe por vê-lo partir 😕`, `Até logo ${req.user.userName}. \n ${text}`)
+
         res.status(200).json({
             message: "Usuário deletado com sucessos",
             user: req.user

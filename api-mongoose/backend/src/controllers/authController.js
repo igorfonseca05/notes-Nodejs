@@ -36,15 +36,21 @@ exports.signUp = async (req, res) => {
                 newUser
             })
 
-
         } catch (error) {
-            return res.status(404).json({
+            return res.status(500).json({
                 message: error.message
             })
         }
 
     } catch (error) {
-        return res.status(404).json({
+
+        if (error.message === 'Email já cadastrado') {
+            return res.status(409).json({
+                message: error.message
+            })
+        }
+
+        return res.status(500).json({
             message: error.message
         })
     }
