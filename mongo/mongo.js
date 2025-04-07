@@ -3,9 +3,9 @@
 const url = 'mongodb://localhost:27017'
 const database = 'testes'
 
-const mongodb = require('mongodb')
-const client = new mongodb.MongoClient(url)
+const { MongoClient, ObjectId } = require('mongodb')
 
+const client = new MongoClient(url)
 
 async function dbConnection() {
     try {
