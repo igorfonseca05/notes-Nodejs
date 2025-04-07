@@ -28,4 +28,28 @@ async function dbConnection() {
     }
 }
 
-dbConnection()
+
+// Escrevendo query de busca de dados
+
+async function getData() {
+    try {
+        await client.connect()
+
+        const db = client.db('loja')
+        const collection = db.collection('produtos')
+
+        const doc = await collection.find({ name: 'Lápis' }).toArray()
+
+        console.log(doc)
+    } catch (error) {
+        console.log(error)
+    } finally {
+        client.close()
+    }
+
+}
+
+
+getData()
+// dbConnection()
+

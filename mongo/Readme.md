@@ -11,11 +11,5 @@ const MongoClient = mongodb.MongoClient; // vai nos fornecer funçoes pra add da
 const url = "mongodb://12.0.0.1:27017";
 const database = "test";
 
-MongoClient.connect(url, (err, client) => {
-  if (err) {
-    return console.log("Erro ao conectar na base de dados");
-  }
-
-  console.log("Base de dados conectada");
-});
+const client = new MongoClient(url);
 ```
