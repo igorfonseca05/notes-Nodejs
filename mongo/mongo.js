@@ -40,7 +40,7 @@ async function getData() {
 
         const doc = await collection.find({ name: 'Lápis' }).toArray()
 
-        console.log(doc)
+        console.log(doc.count())
     } catch (error) {
         console.log(error)
     } finally {
