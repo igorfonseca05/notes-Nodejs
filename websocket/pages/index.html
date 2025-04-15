@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat Moderno</title>
+    <style>
+        :root {
+            --primary: #7b61ff;
+            --bg: #f4f6ff;
+            --light: #ffffff;
+            --text: #333;
+            --gray: #999;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body,
+        html {
+            height: 100%;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg);
+        }
+
+        .chat-container {
+            display: flex;
+            height: 100vh;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: var(--light);
+            border-right: 1px solid #e0e0e0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-bottom: 1px solid #e0e0e0;
+            color: var(--text);
+        }
+
+        .conversation-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .conversation {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .conversation:hover {
+            background-color: #f0f0ff;
+        }
+
+        .conversation img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .conversation-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .conversation-name {
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .conversation-last-msg {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .chat-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: #f9fafe;
+        }
+
+        .chat-header {
+            padding: 20px;
+            background-color: var(--light);
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 500;
+        }
+
+        .messages {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            overflow-y: auto;
+        }
+
+        .message {
+            max-width: 60%;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .message.sent {
+            background-color: var(--primary);
+            color: white;
+            align-self: flex-start;
+        }
+
+        .message.received {
+            background-color: #e5e9f7;
+            align-self: flex-end;
+            color: var(--text);
+        }
+
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            border-top: 1px solid #ccc;
+            background-color: var(--light);
+        }
+
+        .chat-input input {
+            flex: 1;
+            padding: 12px 16px;
+            font-size: 1rem;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
+        .chat-input button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            margin-left: 10px;
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .chat-input button:hover {
+            background-color: #654deb;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chat-container">
+        <div class="sidebar">
+            <div class="sidebar-header">Conversas</div>
+            <div class="conversation-list">
+                <div class="conversation">
+                    <img src="https://i.pravatar.cc/40?img=1" alt="avatar" />
+                    <div class="conversation-info">
+                        <span class="conversation-name">Mario</span>
+                        <span class="conversation-last-msg">Última mensagem...</span>
+                    </div>
+                </div>
+                <div class="conversation">
+                    <img src="https://i.pravatar.cc/40?img=2" alt="avatar" />
+                    <div class="conversation-info">
+                        <span class="conversation-name">Ana</span>
+                        <span class="conversation-last-msg">Está online</span>
+                    </div>
+                </div>
+                <!-- + outras conversas -->
+            </div>
+        </div>
+
+        <div class="chat-panel">
+            <div class="chat-header">Mario</div>
+            <div class="messages">
+                <!-- <div class="message sent">Olá! Precisamos atualizar o projeto.</div> -->
+                <!-- <div class="message received">Tudo bem! Hoje à tarde posso revisar.</div> -->
+                <!-- <div class="message sent">Perfeito. Depois te passo os detalhes.</div> -->
+            </div>
+            <form class="chat-input" id="form">
+                <input type="text" placeholder="Digite uma mensagem..." id="input" />
+                <button id="enviar" type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/chat.js"></script>
+
+</html>
