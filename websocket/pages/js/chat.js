@@ -2,16 +2,73 @@
 const socket = io()
 
 const button = document.querySelector('#enviar')
+const form = document.querySelector('form')
+const input = document.querySelector('input')
+const messagesContainer = document.querySelector('.messages')
 
-socket.on('countUpdated', (res) => {
-    console.log('Count has been updated', res)
+
+
+function createDiv(owned, message) {
+    const div = document.createElement('div')
+    div.setAttribute('class', owned)
+    div.innerHTML = message
+    messagesContainer.append(div)
+}
+
+socket.on('sent', ({ id, message }) => {
+    if (id === socket.id) {
+        return createDiv('message received', message)
+    }
+    createDiv('message sent', message)
 })
 
-const message = 'oi'
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
 
-button.addEventListener('click', (e) => {
+    socket.emit('message', { msg: input.value })
+    input.value = ''
+})
 
-    console.log(e.target.value)
 
-    socket.emit('message', {})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// socket.on('connect', () => {
+//     console.log('Conectado como:', socket.id)
+// })
+
+// function createDiv(owned, message) {
+//     const div = document.createElement('div')
+//     div.setAttribute('class', owned)
+//     div.innerHTML = message
+//     messagesContainer.append(div)
+// }
+
+// socket.on('sent', ({ id, message }) => {
+//     if (id === socket.id) {
+//         createDiv("message received", message)
+//     } else {
+//         createDiv('message sent', message)
+//     }
+// })
+
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault()
+
 })

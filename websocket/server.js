@@ -1,43 +1,39 @@
 require('dotenv').config()
 
 const express = require('express')
-const http = require('http')
 const { Server } = require('socket.io')
 const path = require('path')
+const http = require('http')
 
-const app = express();
+const app = express()
 const server = http.createServer(app)
 const io = new Server(server)
 
-const port = process.env.PORT || 5000
-app.use(express.static(path.join(__dirname, 'pages')));
+const port = 5000 || process.env.PORT
 
+// middlewares
+app.use(express.static(path.join(__dirname, 'pages')))
 
-let count = 0
 
 io.on('connection', (socket) => {
-    console.log('Nova conexão websocket')
+    console.log('Nova conexão websocket, id:', socket.id)
 
-    // Evento emitido pelo server ---> client
-    socket.emit('countUpdated', { count })
-
-
-    // Evento emitido pelo client ---> Server
     socket.on('message', (message) => {
-        // count++
+        const data = {
+            id: socket.id,
+            message: message.msg
+        }
 
-        console.log(message)
-        const dado = message.message
-        // O método socket.emit() retorna somente para quem emitiu o evento
-        // socket.emit('countUpdated', { count })
-
-        // O método io.emit() retorna para todos que estão conectados ao servidor
-        io.emit('countUpdated', dado)
+        // socket.emit('sent', data)
+        io.emit('sent', data)
     })
+
 })
 
 
+
 server.listen(port, () => {
-    console.log(`Servidor ON: http://localhost:${port}`)
+    console.log('Servidor on')
+    console.log(`http://localhost:${port}`)
 })
 
