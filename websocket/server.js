@@ -18,18 +18,25 @@ app.use(express.static(path.join(__dirname, 'pages')))
 io.on('connection', (socket) => {
     console.log('Nova conexão websocket, id:', socket.id)
 
+    // Ouvintes
     socket.on('message', (message) => {
         const data = {
             id: socket.id,
             message: message.msg
         }
-
-        // socket.emit('sent', data)
-        io.emit('sent', data)
+        io.emit('message', data)
     })
 
-})
+    socket.on('disconnect', () => {
+        io.emit('warning', 'Usuário saiu')
+    })
 
+    // Emissores
+    socket.emit('greating', 'Bem vindo a nosso chat')
+    socket.broadcast.emit('warning', 'Um novo usuário entrou')
+    io.emit('warning', `Conectados: ${io.engine.clientsCount}`)
+
+})
 
 server.listen(port, () => {
     console.log('Servidor on')

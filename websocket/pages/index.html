@@ -22,7 +22,8 @@
 
         body,
         html {
-            height: 100%;
+            height: 100vh;
+            width: 100vw;
             font-family: 'Segoe UI', sans-serif;
             background-color: var(--bg);
         }
@@ -30,15 +31,18 @@
         .chat-container {
             display: flex;
             height: 100vh;
-            width: 100%;
+            width: 100vw;
         }
 
         .sidebar {
+            max-width: 300px;
             width: 300px;
+            height: 100vh !important;
             background-color: var(--light);
             border-right: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
+            flex-shrink: 2;
         }
 
         .sidebar-header {
@@ -57,6 +61,7 @@
         .conversation {
             display: flex;
             align-items: center;
+            flex-wrap: wrap;
             padding: 15px 20px;
             cursor: pointer;
             transition: background 0.2s;
@@ -76,6 +81,7 @@
         .conversation-info {
             display: flex;
             flex-direction: column;
+            min-width: 120px;
         }
 
         .conversation-name {
@@ -170,6 +176,25 @@
         .chat-input button:hover {
             background-color: #654deb;
         }
+
+        @media screen and (max-width: 570px) {
+
+            .conversation {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .conversation img {
+                margin: 0;
+            }
+
+            .conversation-info .conversation-last-msg {
+                display: none;
+            }
+        }
     </style>
 </head>
 
@@ -207,7 +232,7 @@
                 <!-- <div class="message sent">Perfeito. Depois te passo os detalhes.</div> -->
             </div>
             <form class="chat-input" id="form">
-                <input type="text" placeholder="Digite uma mensagem..." id="input" />
+                <input type="text" placeholder="Digite uma mensagem..." id="input" name="message" />
                 <button id="enviar" type="submit">Enviar</button>
             </form>
         </div>

@@ -59,52 +59,48 @@ feito isso teremos um servidor preparado para receber conexões websockets, por�
 </html>
 ```
 
-## Eventos Socket.io
+# Aula 155 - Eventos Socket.io
 
-Aqui vamos utilizar os eventos disponiveis no servidor io para podermos estabeler a conexão e envio de dados entre cliente e servidor. No código do servidor, podemos usar o emit no lado do client para que o servidor ouça o sinal.
+### Servidor responde à cliente
+
+Aqui vamos utilizar os eventos disponiveis no servidor io para podermos estabeler a conexão e envio de dados entre cliente e servidor. No código do servidor, podemos usar o emit para enviar uma mensagem à um cliente que se conectou
+
+**Servidor**
+
+```js
+io.on("connection", (socket) => {
+  console.log("Nova conexão websocket, id:", socket.id);
+
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+});
+```
 
 **Cliente**
 
 ```js
 const socket = io();
 
-socket.emit("message", "Oi servidor!");
+socket.on("greating", (message) => console.log(message));
 ```
 
-**Servidor**
+o sinal emitido pelo servidor será percebido pelo cliente e então a mensagem será mostrada no terminal.
+
+### Cliente responde á servidor
+
+Agora podemos fazer com que o cliente responda ao servidor usando os métodos do primeiro exemplo de maneira contrária, ou seja, quem envia `emit` e quem recebe `on`.
+
+**Cliente**
 
 ```js
-require("dotenv").config();
+const socket = io();
 
-const express = require("express");
-const { Server } = require("socket.io");
-const path = require("path");
-const http = require("http");
+// O cliente receberá a mensagem
+socket.on("greating", (message) => console.log(message));
 
-const app = express();
-const server = http.createServer(app);
-const io = new Server(server);
-
-const port = 5000 || process.env.PORT;
-
-// middlewares
-app.use(express.static(path.join(__dirname, "pages")));
-
-io.on("connection", (socket) => {
-  console.log("Nova conexão websocket, id:", socket.id);
-
-  socket.on("message", (message) => {
-    console.log(message);
-  });
-});
-
-server.listen(port, () => {
-  console.log("Servidor on");
-  console.log(`http://localhost:${port}`);
-});
+// O cliente enviará a mensagem
+socket.emit("message", "Obrigado servidor!");
 ```
-
-o sinal emitido pelo cliente será percebido pelo on e então a mensagem enviada será mostrada no terminal. Para fazermos o servidor responder ao cliente podemos de novo usar o método emit, só que agora dentro do servidor e configurar, de maneira muito similar o cliente, para captar a resposta.
 
 **Servidor**
 
@@ -112,32 +108,180 @@ o sinal emitido pelo cliente será percebido pelo on e então a mensagem enviada
 io.on("connection", (socket) => {
   console.log("Nova conexão websocket, id:", socket.id);
 
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+
+  // O servidor receberá essa mensagem
   socket.on("message", (message) => {
     console.log(message);
   });
+});
+```
 
-  socket.emit("sent", "Oi cliente!");
+A resposta recebida pelo servidor será mostrada no terminal.
+
+### Servidor responde à todos os clientes conectados
+
+Nos exemplos acima temos a comunicação entre servidor e cliente acontecendo, ou seja o servidor e cliente estão se comunicando entre sí e somente isso. Pórem podemos também fazer com que o servidor se comunique ao mesmo tempo com todos os clientes conectados, isso pode ser útil quando criando uma sala de bate papo em grupo. Para isso fazemos:
+
+**Servidor**
+
+```js
+io.on("connection", (socket) => {
+  console.log("Nova conexão websocket, id:", socket.id);
+
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+
+  // Emitindo mensagens globais
+  io.emit("warning", "Sala de bate papo ativa!");
+
+  // O servidor receberá essa mensagem
+  socket.on("message", (message) => {
+    // Enviará a mensagem para todos os clientes
+    io.emit("message", message);
+  });
 });
 ```
 
 **Cliente**
 
 ```js
-socket.on("sent", (message) => {
-  console.logo(message);
+const socket = io();
+
+// O cliente receberá a mensagem
+socket.on("greating", (message) => console.log(message));
+
+socket.on("warning", (message) => console.log(message));
+
+socket.on("message", (dados) => {
+  console.log(dados);
+});
+
+// O cliente enviará a mensagem
+socket.emit("message", "Obrigado servidor!");
+```
+
+no lado do cliente não alteramos nada, assim mensagens enviadas pelo servidor serão ouvidas por todos os clientes conectados.
+
+### Servidor indica que cliente desconectou
+
+Quando um cliente fechar a página do chat, ele será desconectado e isso será informado aos clientes online.
+
+```js
+io.on("connection", (socket) => {
+  console.log("Nova conexão websocket, id:", socket.id);
+
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+
+  // Emitindo mensagens globais
+  io.emit("warning", "Sala de bate papo ativa!");
+
+  // O servidor receberá essa mensagem
+  socket.on("message", (message) => {
+    // Enviará a mensagem para todos os clientes
+    io.emit("message", message);
+  });
+
+  // Quando usuário sair, emite alerta para todos eles
+  socket.on("disconnect", () => {
+    io.emit("wargning", "Usuário saiu!");
+  });
 });
 ```
 
-A resposta enviada pelo servidor será mostrada no console do navegador.
+### Mostrando número de clientes conectados
 
-Na solucão acima temos um pequeno problema, caso tenhamos varios clientes conectados ao servidor, somente quem enviou a mensagem será notificado e reberá os dados da mensagem, o que muitas vezes pode não ser o desejado. Caso seja esse o caso o que podemos fazer e alterar um pouco o código de modo que o servidor quando emitir uma mesagem, ela possa ser percebida e interceptada por todos os clientes conectados.
+Podemos mostrar ao usúario logados o número de clientes conectados
+
+```js
+io.on("connection", (socket) => {
+  console.log("Nova conexão websocket, id:", socket.id);
+
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+
+  // Emitindo mensagens globais
+  io.emit("warning", "Sala de bate papo ativa!");
+  io.emit("warning", `Conectados: ${io.engine.clientsCount}`); // Total de conectados
+
+  // O servidor receberá essa mensagem
+  socket.on("message", (message) => {
+    // Enviará a mensagem para todos os clientes
+    io.emit("message", message);
+  });
+
+  // Quando usuário sair, emite alerta para todos eles
+  socket.on("disconnect", () => {
+    io.emit("wargning", "Usuário saiu!");
+  });
+});
+```
+
+# Aula 157. Evento de Broadcasting
+
+Quando um usuário se conecta a aplicação, podemos emitir uma mensagem para os demais conectados e que não seja enviada ao usuário que entrou. Para isso podemos fazer:
 
 **Servidor**
 
 ```js
-io.on("sent", (message) => {
-  console.logo(message);
+io.on("connection", (socket) => {
+  console.log("Nova conexão websocket, id:", socket.id);
+
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+
+  // Emitindo mensagens globais
+  io.emit("warning", "Sala de bate papo ativa!");
+  io.emit("warning", `Conectados: ${io.engine.clientsCount}`);
+
+  // Emitindo broadcasting(Todos recebem exceto quem enviou)
+  io.broadcast.emit("warning", "Usuário conectou");
+
+  // O servidor receberá essa mensagem
+  socket.on("message", (message) => {
+    // Enviará a mensagem para todos os clientes
+    io.emit("message", message);
+  });
+
+  // Quando usuário sair, emite alerta para todos eles
+  socket.on("disconnect", () => {
+    io.emit("wargning", "Usuário saiu!");
+  });
 });
 ```
 
-no lado do cliente não alteramos nada, assim mensagens enviadas pelo servidor serão ouvidas por todos os clientes conectados.
+**Cliente**
+
+```js
+const socket = io();
+
+// O cliente receberá a mensagem
+socket.on("greating", (message) => console.log(message));
+
+socket.on("warning", (message) => console.log(message));
+
+socket.on("message", (dados) => {
+  console.log(dados);
+});
+
+// O cliente enviará a mensagem
+socket.emit("message", "Obrigado servidor!");
+```
+
+# Aula 158 - Compartilhando localização
+
+Para podermos compartilhar a localização do cliente podemos fazer:
+
+**Cliente**
+
+```js
+button.addEventListener("click", () => {
+  const positionData = navigator.geolocation.getCurrentLocation((position) => {
+    return position;
+  });
+
+  console.log(positionData);
+});
+```
