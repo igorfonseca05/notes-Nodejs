@@ -32,8 +32,27 @@ function openNewConversationTab(e) {
 function sendMessage(e) {
     e.preventDefault()
 
-    socket.emit('message', { msg: input.value })
+    socket.emit('message', { msg: input.value }, (message) => console.log(message))
     input.value = ''
+}
+
+function getLocation() {
+    navigator.geolocation
+        .getCurrentPosition(position => {
+            socket.emit('sendLocation', {
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude
+            })
+
+        },
+            (error) => {
+                console.error("Erro ao obter localização:", error);
+            },
+            {
+                enableHighAccuracy: true, // <- ESSENCIAL
+                timeout: 10000,
+                maximumAge: 0
+            })
 }
 
 
@@ -45,16 +64,22 @@ socket.on('warning', (message) => {
     console.log(message)
 })
 
-socket.on('message', ({ id, message }) => {
-    if (id === socket.id) {
-        return createDiv('message received', message)
-    }
-    createDiv('message sent', message)
+socket.on('message', (dados) => {
+    // if (dados.id === socket.id) {
+    //     return createDiv('message received', dados.message)
+    // }
+    // createDiv('message sent', dados.message)
+
+    // http://google.com/maps?q=0,0
+
+    console.log(dados)
 })
+
+
 
 conversationContainer.addEventListener('click', openNewConversationTab)
 
 form.addEventListener('submit', sendMessage)
 
 
-// navigator.geolocation.getCurrentPosition(position => console.log(position))
+getLocation()
