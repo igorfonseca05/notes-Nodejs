@@ -277,11 +277,124 @@ Para podermos compartilhar a localização do cliente podemos fazer:
 **Cliente**
 
 ```js
+
+// Indicar erro na tranmissão se houver
+const error = (error) => console.error("Erro ao obter localização:", error),
+
+// Aumentar precisão da localização
+const accuracy = {
+                enableHighAccuracy: true, // <- ESSENCIAL
+                timeout: 10000,
+                maximumAge: 0
+            }
+
 button.addEventListener("click", () => {
-  const positionData = navigator.geolocation.getCurrentLocation((position) => {
-    return position;
+  navigator.geolocation.getCurrentLocation((position) => {
+    socket.emit("sendLocation", {
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude,
+    },
+    error (error),
+    accuracy)
+    });
+  });
+```
+
+**Servidor**
+
+```js
+io.on("connection", (socket) => {
+  console.log("Nova conexão websocket, id:", socket.id);
+
+  // O servidor enviará essa mensagem
+  socket.emit("greating", "Bem a nosso chat!");
+
+  // Emitindo mensagens globais
+  io.emit("warning", "Sala de bate papo ativa!");
+  io.emit("warning", `Conectados: ${io.engine.clientsCount}`);
+
+  // Emitindo broadcasting(Todos recebem exceto quem enviou)
+  io.broadcast.emit("warning", "Usuário conectou");
+
+  // O servidor receberá essa mensagem
+  socket.on("message", (message) => {
+    // Enviará a mensagem para todos os clientes
+    io.emit("message", message);
   });
 
-  console.log(positionData);
+  // Todos os usúarios receberam um link com a localização
+  socket.on("sendLocation", (coords) => {
+    io.emit(
+      "message",
+      `http://google.com/maps?q=${coords.latitude},${coords.longitude}`
+    );
+  });
+
+  // Quando usuário sair, emite alerta para todos eles
+  socket.on("disconnect", () => {
+    io.emit("wargning", "Usuário saiu!");
+  });
 });
+```
+
+# 159 - Event Acknowledments
+
+Esse é um evento que o é disparado quando o que foi enviado ao servidor é recebido por ele, funciona como uma confirmação que o processo de envio ocorreu tudo bem. Veja o código abaixo:
+
+**Cliente**
+
+```javascript
+function sendMessage(e) {
+  e.preventDefault();
+
+  $button.setAttribute("disabled", "disabled");
+
+  // Aqui enviamos um callback para o servidor quando o form for enviado
+  // Esperamos receber uma confirmação "message"
+  socket.emit("message", { msg: $input.value }, (message) => {
+    console.log(message);
+  });
+}
+
+socket.on("message", (dados) => {
+  // if (dados.id === socket.id) {
+  //     return createDiv('message received', dados.message)
+  // }
+  // createDiv('message sent', dados.message)
+  // http://google.com/maps?q=0,0
+  // console.log(dados)
+});
+
+$form.addEventListener("submit", sendMessage);
+```
+
+**Servidor**
+
+```js
+// recebos o callback no escutador de evento
+socket.on("message", (message, callback) => {
+  const data = {
+    id: socket.id,
+    message: message.msg,
+  };
+
+  callback("recebido"); // Executamos o callback enviando uma mensagem de confirmação
+  io.emit("message", data);
+});
+```
+
+Agora podemos confirmar recebimento.
+
+## 160 - Form and button states
+
+Aqui usamos o callback enviado no event acknowledgment para poder desabilitar o botoes e formulários quando enquanto a mesagem estiver sendo enviada, e só ativa-los novamente após a confirmação de recebimento pelo servidor.
+
+## 161 - Renderizando mensagens
+
+Aqui usamos os scritps
+
+```js
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
 ```

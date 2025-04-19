@@ -1,18 +1,17 @@
-
 const socket = io()
 
-const button = document.querySelector('#enviar')
-const form = document.querySelector('form')
-const input = document.querySelector('input')
-const messagesContainer = document.querySelector('.messages')
-const conversationContainer = document.getElementById("conversation")
+const $button = document.querySelector('#enviar')
+const $form = document.querySelector('form')
+const $input = document.querySelector('input')
+const $messagesContainer = document.querySelector('.messages')
+const $conversationContainer = document.getElementById("conversation")
 
 
 function createDiv(owned, message) {
     const div = document.createElement('div')
     div.setAttribute('class', owned)
     div.innerHTML = message
-    messagesContainer.append(div)
+    $messagesContainer.append(div)
 }
 
 function openNewConversationTab(e) {
@@ -32,8 +31,12 @@ function openNewConversationTab(e) {
 function sendMessage(e) {
     e.preventDefault()
 
-    socket.emit('message', { msg: input.value }, (message) => console.log(message))
-    input.value = ''
+    $button.setAttribute('disabled', 'disabled')
+
+    socket.emit('message', { msg: $input.value }, (message) => {
+        $button.removeAttribute('disabled')
+        $input.value = ''
+    })
 }
 
 function getLocation() {
@@ -55,7 +58,6 @@ function getLocation() {
             })
 }
 
-
 socket.on('greating', (message) => {
     console.log(message)
 })
@@ -65,10 +67,10 @@ socket.on('warning', (message) => {
 })
 
 socket.on('message', (dados) => {
-    // if (dados.id === socket.id) {
-    //     return createDiv('message received', dados.message)
-    // }
-    // createDiv('message sent', dados.message)
+    if (dados.id === socket.id) {
+        return createDiv('message received', dados.message)
+    }
+    createDiv('message sent', dados.message)
 
     // http://google.com/maps?q=0,0
 
@@ -76,10 +78,7 @@ socket.on('message', (dados) => {
 })
 
 
-
-conversationContainer.addEventListener('click', openNewConversationTab)
-
-form.addEventListener('submit', sendMessage)
-
+$conversationContainer.addEventListener('click', openNewConversationTab)
+$form.addEventListener('submit', sendMessage)
 
 getLocation()
