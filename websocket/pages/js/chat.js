@@ -14,13 +14,12 @@ function createDiv(owned, dados) {
     div.setAttribute('class', owned)
 
     const span = document.createElement('span')
-    span.innerText = new Date().toLocaleTimeString(undefined, {
+    span.setAttribute('class', 'messageTime')
+    span.innerText = new Date(dados.createdAt).toLocaleTimeString(undefined, {
         hour: "2-digit",
         minute: '2-digit',
     })
 
-    div.innerText = dados.message
-    div.appendChild(span)
 
     // Criando link para localização
     if (dados.message.includes('http://google.com/maps?q=')) {
@@ -29,11 +28,14 @@ function createDiv(owned, dados) {
         link.setAttribute('target', 'blanck')
         link.innerText = 'Localização'
         div.append(link)
+        div.appendChild(span)
         // div.innerText = 'Localização'
         $messagesContainer.append(div)
         return
     }
 
+    div.innerText = dados.message
+    div.appendChild(span)
     $messagesContainer.append(div)
 }
 
