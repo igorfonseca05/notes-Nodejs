@@ -6,11 +6,34 @@ const $input = document.querySelector('input')
 const $messagesContainer = document.querySelector('.messages')
 const $conversationContainer = document.getElementById("conversation")
 
+const $sendLocation = document.querySelector('#sendLocationButton')
 
-function createDiv(owned, message) {
+
+function createDiv(owned, dados) {
     const div = document.createElement('div')
     div.setAttribute('class', owned)
-    div.innerHTML = message
+
+    const span = document.createElement('span')
+    span.innerText = new Date().toLocaleTimeString(undefined, {
+        hour: "2-digit",
+        minute: '2-digit',
+    })
+
+    div.innerText = dados.message
+    div.appendChild(span)
+
+    // Criando link para localização
+    if (dados.message.includes('http://google.com/maps?q=')) {
+        const link = document.createElement('a')
+        link.setAttribute('href', dados.message)
+        link.setAttribute('target', 'blanck')
+        link.innerText = 'Localização'
+        div.append(link)
+        // div.innerText = 'Localização'
+        $messagesContainer.append(div)
+        return
+    }
+
     $messagesContainer.append(div)
 }
 
@@ -42,15 +65,14 @@ function sendMessage(e) {
 function getLocation() {
     navigator.geolocation
         .getCurrentPosition(position => {
-            socket.emit('sendLocation', {
+            socket.emit('location', {
                 latitude: position.coords.latitude,
                 longitude: position.coords.longitude
+            }, (message) => {
+                console.log(message)
             })
 
-        },
-            (error) => {
-                console.error("Erro ao obter localização:", error);
-            },
+        }, (error) => { console.error("Erro ao obter localização:", error); },
             {
                 enableHighAccuracy: true, // <- ESSENCIAL
                 timeout: 10000,
@@ -67,18 +89,29 @@ socket.on('warning', (message) => {
 })
 
 socket.on('message', (dados) => {
+    console.log(dados)
     if (dados.id === socket.id) {
-        return createDiv('message received', dados.message)
+        return createDiv('message received', dados)
     }
-    createDiv('message sent', dados.message)
+    createDiv('message sent', dados)
 
     // http://google.com/maps?q=0,0
 
-    console.log(dados)
+})
+socket.on('location', (dados) => {
+
+    // console.log(dados)
+
+    if (dados.id === socket.id) {
+        return createDiv('message received', dados)
+    }
+    createDiv('message sent', dados)
+
+    // http://google.com/maps?q=0,0
+
 })
 
-
+$sendLocation.addEventListener('click', getLocation)
 $conversationContainer.addEventListener('click', openNewConversationTab)
 $form.addEventListener('submit', sendMessage)
 
-getLocation()

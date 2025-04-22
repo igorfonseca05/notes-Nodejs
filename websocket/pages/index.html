@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title>Chat Moderno</title>
     <style>
         :root {
@@ -147,13 +148,22 @@
         }
 
         .chat-input {
+            width: 100%;
             display: flex;
-            padding: 15px;
+            justify-content: space-between;
+            padding: 10px;
             border-top: 1px solid #ccc;
             background-color: var(--light);
+            /* background-color: red; */
         }
 
-        .chat-input input {
+        .forminput {
+            width: 100%;
+            display: flex;
+        }
+
+        .chat-input .forminput input {
+
             flex: 1;
             padding: 12px 16px;
             font-size: 1rem;
@@ -166,8 +176,8 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            margin-left: 10px;
-            padding: 12px 20px;
+            margin: 0px 10px 0px 10px;
+            padding: 12px;
             font-size: 1rem;
             border-radius: 20px;
             cursor: pointer;
@@ -235,10 +245,13 @@
                 <!-- <div class="message received">Tudo bem! Hoje à tarde posso revisar.</div> -->
                 <!-- <div class="message sent">Perfeito. Depois te passo os detalhes.</div> -->
             </div>
-            <form class="chat-input" id="form">
-                <input type="text" placeholder="Digite uma mensagem..." id="input" name="message" />
-                <button id="enviar" type="submit">Enviar</button>
-            </form>
+            <div class="chat-input">
+                <button id="sendLocationButton"><span class="material-symbols-outlined">location_on</span></button>
+                <form class="forminput" id="form">
+                    <input type="text" placeholder="Digite uma mensagem..." id="input" name="message" />
+                    <button id="enviar" type="submit"><span class="material-symbols-outlined">send</span></button>
+                </form>
+            </div>
         </div>
     </div>
 </body>
