@@ -16,7 +16,13 @@ const io = new Server(server)
 const port = 5000 || process.env.PORT
 
 // middlewares
-app.use(express.static(path.join(__dirname, 'pages')))
+app.use(express.static(path.join(__dirname, 'pages', 'home')))
+app.use('/chat', express.static(path.join(__dirname, 'pages', 'chat')));
+
+
+app.get('/chat', (req, res) => {
+    res.sendFile(path.join(__dirname, 'pages/chat/chat.html'))
+})
 
 
 io.on('connection', (socket) => {
