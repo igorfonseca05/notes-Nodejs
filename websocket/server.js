@@ -36,11 +36,14 @@ io.on('connection', (socket) => {
             message: generateMessage(message).message.msg,
             createdAt: generateMessage(message).createdAt
         }
+        // socket.join(message.sala)
+
 
         callback('recebido')
         if (data.message === '') return
 
-        io.emit('message', data)
+        // Emitindo messagem para membros da sala
+        io.to(message.sala).emit('message', data)
     })
 
     // Ouvintes
@@ -50,15 +53,35 @@ io.on('connection', (socket) => {
     })
 
 
-
     socket.on('disconnect', () => {
         io.emit('warning', generateMessage('Usuário saiu'))
     })
 
+    socket.on('warning', (username) => {
+        // console.log(username)
+        socket.broadcast.emit('warning', generateMessage(`${username} entrou na sala`))
+    })
+
+    socket.on('connected', ({ username, sala }) => {
+        // console.log(username)
+        socket.join(sala)
+        socket.broadcast.to(sala).emit('connected', username)
+    })
+
+    // Criando sala com socket
+    socket.on('join', ({ username, sala }) => {
+        socket.join(sala)
+
+        socket.broadcast.to(sala).emit('message', generateMessage(`${username} entrou!`))
+
+    })
+
+    socket.on('digitando', () => {
+        socket.broadcast.emit('digitando')
+    })
 
     // Emissores
     socket.emit('greating', generateMessage('Bem vindo a nosso chat'))
-    socket.broadcast.emit('warning', generateMessage('Um novo usuário entrou'))
     io.emit('warning', `Conectados: ${io.engine.clientsCount}`)
 
 })

@@ -5,9 +5,14 @@ const $form = document.querySelector('form')
 const $input = document.querySelector('input')
 const $messagesContainer = document.querySelector('.messages')
 const $conversationContainer = document.getElementById("conversation")
+const $conversationinfo = document.querySelector(".conversation-info")
+const $userName = document.querySelector(".conversation-name")
+const $info = document.querySelector(".conversation-last-msg")
 
 const $sendLocation = document.querySelector('#sendLocationButton')
 
+
+const params = Object.fromEntries(new URLSearchParams(location.search))
 
 function createDiv(owned, dados) {
     const div = document.createElement('div')
@@ -58,7 +63,7 @@ function sendMessage(e) {
 
     $button.setAttribute('disabled', 'disabled')
 
-    socket.emit('message', { msg: $input.value }, (message) => {
+    socket.emit('message', { msg: $input.value, ...params }, (message) => {
         $button.removeAttribute('disabled')
         $input.value = ''
     })
@@ -100,20 +105,47 @@ socket.on('message', (dados) => {
     // http://google.com/maps?q=0,0
 
 })
+
 socket.on('location', (dados) => {
-
-    // console.log(dados)
-
     if (dados.id === socket.id) {
         return createDiv('message received', dados)
     }
     createDiv('message sent', dados)
-
-    // http://google.com/maps?q=0,0
-
 })
+
+socket.on('connected', (user) => {
+    const conversation = document.createElement('div')
+    conversation.setAttribute('class', 'conversation')
+
+    const img = document.createElement('img')
+    img.setAttribute('src', 'https://i.pravatar.cc/40?img=2')
+
+    const conversationInfo = document.createElement('div')
+    conversationInfo.setAttribute('class', 'conversation-info')
+
+    const spanName = document.createElement('span')
+    spanName.setAttribute('class', 'conversation-name')
+    spanName.innerText = user
+
+    const spanInfo = document.createElement('span')
+    spanInfo.setAttribute('class', 'conversation-last-msg')
+    spanInfo.innerText = 'Está online'
+
+    conversationInfo.append(spanName, spanInfo)
+    conversation.append(img, conversationInfo)
+    $conversationContainer.insertAdjacentElement('afterbegin', conversation)
+})
+
+socket.on('digitando', () => {
+    console.log('digitando')
+})
+
+
+socket.emit('join', { ...params })
+socket.emit('warning', params.username)
+socket.emit('connected', { ...params })
 
 $sendLocation.addEventListener('click', getLocation)
 $conversationContainer.addEventListener('click', openNewConversationTab)
 $form.addEventListener('submit', sendMessage)
-
+$input.addEventListener('input', (e) => socket.emit('digitando'))
