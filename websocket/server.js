@@ -7,6 +7,7 @@ const http = require('http')
 
 const { generateMessage } = require('./src/utils/message')
 
+// Managing users
 const { addUser, getUser, getUsersInRoom, removeUser } = require('./src/utils/users')
 
 
@@ -55,32 +56,68 @@ io.on('connection', (socket) => {
     })
 
 
-    socket.on('disconnect', () => {
-        io.emit('warning', generateMessage('Usuário saiu'))
-    })
-
     socket.on('warning', (username) => {
         // console.log(username)
         socket.broadcast.emit('warning', generateMessage(`${username} entrou na sala`))
     })
 
+
+    /** Esse escutado */
     socket.on('connected', ({ username, sala }) => {
         // console.log(username)
         socket.join(sala)
         socket.broadcast.to(sala).emit('connected', username)
     })
 
+
     // Criando sala com socket
-    socket.on('join', ({ username, sala }) => {
-        socket.join(sala)
+    /** Aqui usamos o método .join() para criar uma sala, ou seja, usamos o join para agrupar sockets numa sala
+     * permitindo enviar e receber mensagem dentro de uma sala. Para podermos garantir que as mensagens enviadas
+     * serão recebidas somente por usuários conectados aquela sala, usamos o método .to(nome da sala) para isso.
+     * O atributo broadcast é usado para garantir que o emissor não receba a mensagem quee ele mesmo enviou, 
+     * mas que todos os demais da sala sim.
+     * 
+     * o error e user são retornados do arquivo user.js que criamos para podemos gerenciar usuários online,
+     * remove-los e até obter os usuários da sala.
+     */
 
-        socket.broadcast.to(sala).emit('message', generateMessage(`${username} entrou!`))
+    socket.on('join', (options, callback) => {
 
+        const { error, user } = addUser({ id: socket.id, ...options })
+
+        if (error) {
+            return callback(error)
+        }
+
+        socket.join(user.sala)
+        socket.broadcast.to(user.sala).emit('message', generateMessage(`${user.username} entrou!`))
     })
 
+    /** Aqui criei um escutador que ouve o evento de input de algum usúarios e por meio do
+     * broadcast, emito um evento para todos os outros usúarios conectados
+     */
     socket.on('digitando', () => {
         socket.broadcast.emit('digitando')
     })
+
+    /** Aqui criei um ouvinte para o evento de desconexão, ou seja, quando algum usuário sair da aplicação
+     * o evento será disparado do lado do cliente e capturado do lado no escutados abaixo, emitindo um alerta 
+     * a todos os usuários conectados na aplicação, mesmo os que estiverem fora da sala, uma vez que não estou usando
+     * o .to(nome da sala) para que essa info fose passada somente para os membros da sala.
+     */
+
+    socket.on('disconnect', () => {
+
+        const user = removeUser(socket.id)
+
+        if (user) {
+            io.to(user.room).emit('warning', generateMessage(`${user.name} saiu!`))
+        }
+
+        console.log('usuário saiu')
+
+    })
+
 
     // Emissores
     socket.emit('greating', generateMessage('Bem vindo a nosso chat'))

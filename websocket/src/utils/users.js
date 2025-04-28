@@ -2,8 +2,10 @@ let users = []
 
 function addUser({ id, username, room }) {
 
+    console.log()
+
     username = username.trim().toLowerCase()
-    room = room.trim().toLowerCase()
+    room = room?.trim().toLowerCase()
 
     if (!username || !room) {
         return { error: 'Informe nome de usuário e sala' }
@@ -14,7 +16,7 @@ function addUser({ id, username, room }) {
     // console.log(existingUser)
 
     if (existingUser) {
-        return { error: 'username está em uso!' }
+        return { error: 'Username indisponivel, tente novamente!' }
     }
 
     const user = { id, username, room }

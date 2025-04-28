@@ -141,7 +141,15 @@ socket.on('digitando', () => {
 })
 
 
-socket.emit('join', { ...params })
+/**Quando o usuário entrar na sala e já ouver alguém na sala com o mesmo username,
+ * será mostrado um alert e o usuário será redirecionado para o  pagina inicial
+ */
+socket.emit('join', { ...params }, (error) => {
+    if (error) {
+        alert(error)
+        location.href = '/'
+    }
+})
 socket.emit('warning', params.username)
 socket.emit('connected', { ...params })
 
