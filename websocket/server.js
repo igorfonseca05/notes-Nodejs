@@ -7,6 +7,8 @@ const http = require('http')
 
 const { generateMessage } = require('./src/utils/message')
 
+const { addUser, getUser, getUsersInRoom, removeUser } = require('./src/utils/users')
+
 
 const app = express()
 const server = http.createServer(app)
