@@ -244,3 +244,6 @@ A nivel de commando, dentro do yargs temos 4 comandos basicos que são o :
 
 Utilizamos o **Add** acima, os demais comandos fica como exercicio onde vc criará a estrutura basíca de cada um deles e
 e exibindo mensages dentro da função hadler que estejam de acordo com a ação que está sendo executada pelo método.
+
+> YOLO test commit 🚀
+
