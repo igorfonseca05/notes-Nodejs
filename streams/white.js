@@ -1,5 +1,6 @@
 const fs = require("fs");
 const rl = require("readline");
+const csv = require('csv-parser')
 
 /** Aqui vamos simular a analise de um arquivo muito grande
  * que eu eventualmente poderia ter no toqi. Aqui será um arquivo muito grande sobre
@@ -28,23 +29,29 @@ function createFile() {
 
 // createFile();
 
+const genre = new Set()
+
 async function proccessLargeFile() {
   console.time("Lendo arquivo");
-  const stream = fs.createReadStream("orders.txt");
-  const file = rl.createInterface({ input: stream });
 
-  let contador = 0;
+  const stream = fs.createReadStream("file/data.csv");
+  const file = rl.createInterface({input: stream})
 
-  file.on("line", (line) => {
-    const [, , preco] = line.split(";");
-    contador += Number(preco);
-  });
+  const valid = fs.createWriteStream('valid.txt')
+  const invalid = fs.createWriteStream('invalid.txt')
 
-  file.on("close", () => {
-    console.log(`O total é ${contador}`);
-  });
-
+  file.on('line', (line) => {
+    const lines = line.split(',')
+  
+    if(lines.length !== 6) {
+      invalid.write(String(lines))
+    } else {
+      valid.write(String(lines))
+    }
+  })
   console.timeEnd("Lendo arquivo");
 }
 
 proccessLargeFile();
+
+
