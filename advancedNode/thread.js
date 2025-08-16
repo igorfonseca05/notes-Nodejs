@@ -16,17 +16,17 @@ crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
   console.log("2:", Date.now() - start)
 });
 
-crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
-  console.log("3:", Date.now() - start)
-});
+// crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
+//   console.log("3:", Date.now() - start)
+// });
 
-crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
-  console.log("4:", Date.now() - start)
-});
+// crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
+//   console.log("4:", Date.now() - start)
+// });
 
-crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
-  console.log("5:", Date.now() - start)
-});
+// crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
+//   console.log("5:", Date.now() - start)
+// });
 
 // crypto.pbkdf2(password, salt, iterations, keylen, digest, (err, derivedKey) => {
 //   console.log("1:", Date.now() - start)
